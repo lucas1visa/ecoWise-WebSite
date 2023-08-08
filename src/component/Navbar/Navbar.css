@@ -1,0 +1,72 @@
+#Navbar{
+    height: 100px;
+    background-color: #353b57;
+}
+
+.nav-link{
+    color: aliceblue;
+    margin-top: 13px;
+    font-size: 18px;
+}
+
+.navbar-brand{
+    font-size: 30px;
+    margin-bottom: 3px;
+}
+
+.prolijo-button {
+    padding: 2px 13px 0px 13px; /* Ajusta el padding según tus preferencias */
+    background-color: transparent; /* Cambia el color de fondo según tus preferencias */
+    border: 1px solid #ccc; /* Cambia el estilo del borde según tus preferencias */
+    border-radius: 5px; /* Ajusta el radio del borde según tus preferencias */
+    cursor: pointer;
+    font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+
+}
+
+.button-icon-car{
+    background-color: transparent;
+    font-size: 33px;
+    margin: 10px 0px 0px 10px;
+    padding: 0px;
+    border: none;
+    color: aliceblue;
+    
+}
+
+.container-car{
+    margin-top: 0px;
+}
+
+.ecoWise{
+    height: 80px;
+}
+
+.button-icon-cora{
+    background-color: transparent;
+    font-size: 25px;
+    margin: 10px 0px 0px 10px;
+    padding: 0px;
+    border: none;
+}
+
+.favorite-count {
+    color: rgb(255, 255, 255);
+    border-radius:50%;
+    font-size: 18px;
+
+}
+
+.boton-login{
+    background-color: white;
+    color: black;
+    height: 37px;
+    border-radius: 5px;
+    padding-top: 5px;
+    margin-left: 8px;
+}
+
+.favorits-count-container{
+    display: flex;
+    flex-direction: row;
+}

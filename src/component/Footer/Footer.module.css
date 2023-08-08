@@ -1,0 +1,38 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #30a357;
+    margin: 0;
+    padding: 24px;
+  }
+  
+  .footer h5,
+  .footer h6 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: rgb(34, 0, 0);
+  }
+  
+  .footer .socialMedia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 16px;
+  }
+  
+  .socialMedia img {
+    margin: 0;
+    padding: 0;
+    max-width: 40px;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .socialMedia img:hover {
+    transform: scale(1.2);
+    filter: invert(39%) sepia(11%) saturate(6657%) hue-rotate(180deg)
+      brightness(90%) contrast(75%);
+  }
+

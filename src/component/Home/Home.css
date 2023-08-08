@@ -1,0 +1,38 @@
+.title-container {
+    position: relative;
+  }
+  
+  .title-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height:60px;
+  }
+  
+  h6 {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 24px;
+  }
+  
+  h6:before,
+  h6:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 2px;
+    background-color: black;
+  }
+  
+  h6:before {
+    left: -70px;
+  }
+  
+  h6:after {
+    right: -70px;
+  }
+  
