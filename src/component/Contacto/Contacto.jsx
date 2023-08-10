@@ -1,64 +1,34 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import styles from "./Contacto.module.css"
 
 const Contacto = () => {
   return (
-    <section className='contact'>
-        <div className='content'>
-            <h2>Contact Us</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, sed non. Cupiditate aut accusamus ab. Ipsum quis hic odio at corrupti sed nihil? Magni nesciunt doloribus cum laboriosam voluptatem blanditiis!</p>
-        </div>
-        <div className='container'>
-            <div className='contactInfo'>
-                <div className='box'>
-                    <div className='icon'></div>
-                    <div className='text'>
-                        <h3>Address</h3>
-                        </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim voluptates neque adipisci ipsam, et quasi sapiente velit asperiores eos, nihil deserunt corrupti dolores consectetur cum blanditiis perferendis veniam placeat quod.</p>
-                </div>
-            </div>
-            <div className='box'>
-                    <div className='icon'></div>
-                    <div className='text'>
-                        <h3>Phone</h3>
-                    </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim voluptates neque adipisci ipsam, et quasi sapiente velit asperiores eos, nihil deserunt corrupti dolores consectetur cum blanditiis perferendis veniam placeat quod.</p>
-                </div>
-        </div>
-        <div className='box'>
-                    <div className='icon'></div>
-                    <div className='text'>
-                        <h3>Email</h3>
-                    </div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim voluptates neque adipisci ipsam, et quasi sapiente velit asperiores eos, nihil deserunt corrupti dolores consectetur cum blanditiis perferendis veniam placeat quod.</p>
-                </div>
-                <div className='contactForm'>
-                    <Form>
-                        <h2>Send Message</h2>
-                        <div className='inputBox'>
-                        <input type="text" name="" required="required" />
-                        <span>Full Name</span>
-                        </div>
-
-                        <div className='inputBox'>
-                        <input type="text" name="" required="required" />
-                        <span>Email</span>
-                        </div>
-                        
-                        <div className='inputBox'>
-                        <textarea required="required"></textarea>
-                        <span>Type Your Message . . .</span>
-                        </div>
-
-                        <div className='inputBox'>
-                        <input type="submit" name="" value="Send" />
-                        </div>
-                    </Form>
-
-                </div>
-    </section>
-  )
+<div class="container">  
+  <form id="contact" action="" method="post">
+    <h4>Contact us </h4>
+    <fieldset>
+      <input placeholder="Your name" type="text" tabindex="1" required autofocus/>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Email Address" type="email" tabindex="2" required/>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required/>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required/>
+    </fieldset>
+    <fieldset>
+      <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+</div>
+  );
 }
+
 
 export default Contacto
