@@ -14,9 +14,9 @@ const ProductDetail = () => {
 
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
+  const [quantityAvailable, setQuantityAvailable] = useState(1);
   const favorites = useSelector((state) => state.favorites);
-  console.log(quantity);
+  console.log(quantityAvailable);
   const [state, setState] = useState({
     loading: true,
   });
@@ -29,7 +29,7 @@ const ProductDetail = () => {
   }, [dispatch, id]);
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product.id, quantity));
+    dispatch(addToCart(product));
   };
 
   const handleAddFavorite = () => {
@@ -90,8 +90,8 @@ const ProductDetail = () => {
                     <label htmlFor="quantity-select" className="texto">Cantidad</label>
                     <select
                       id="quantity-select"
-                      value={quantity}
-                      onChange={(e) => setQuantity(Number(e.target.value))}
+                      value={quantityAvailable}
+                      onChange={(e) => setQuantityAvailable(Number(e.target.value))}
                       className="form-select custom-select"
                     >
                       {Array.from(
@@ -119,7 +119,7 @@ const ProductDetail = () => {
                       <MPButton
                         titul={product.name}
                         precio={product.price}
-                        cantidad={quantity}
+                        cantidad={quantityAvailable}
                       />
                        <button className="btn-button" onClick={handleGoBack}>
           Volver 

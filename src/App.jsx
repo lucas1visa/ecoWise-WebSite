@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import './App.css'
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://ecowise-server01.onrender.com";
 import Home from './component/Home/Home';
 import { getProducts } from './redux/actions';
 import NavbarComponent from './component/Navbar/Navbar';
@@ -15,7 +15,7 @@ import ProductDetail from "./component/ProductDetail/ProductDetail"
 import Favorites from "./component/Favorites/Favorites"
 import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
-import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
+import Contacto from './component/Contacto/Contacto';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +47,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contacto/>} />
         </Routes>
         <div><Footer /></div>
       </div>

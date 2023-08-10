@@ -17,7 +17,7 @@ function CategorySelect({ selectedCategory, onCategoryChange, resetCategory }) {
     return (
         <div>
             <select id="categorySelect" value={selectedCategory} onChange={handleCategoryChange} className="form-control">
-                <option value="">Seleccione una categoría</option>
+                <option value="">Categorías</option>
                 {categories.map((category) => (
                     <option key={category} value={category}>
                         {category}

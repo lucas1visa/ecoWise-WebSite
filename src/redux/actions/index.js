@@ -9,6 +9,7 @@ import {
   ADD_FAV,
   REMOVE_FAV,
   ADD_TO_CART,
+  GET_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
@@ -87,15 +88,37 @@ export function addFav(product) {
     };
   }
   
-export const addToCart = (product, quantity) => {
-  return {
-    type: ADD_TO_CART,
-    payload: {
-      product,
-      quantity,
-    },
-  };
-};
+  export const addToCart = (id, quantityAvailable, userId ) => {
+    return async function(dispatch){
+      try {
+        await axios.post(`/cart`, id, quantityAvailable, userId );
+        return dispatch({
+        type: ADD_TO_CART,
+         payload: 
+         id,
+          quantityAvailable,
+          userId
+        })
+      } catch (error) {
+        console.log('error al crear el producto en el carrito:'+ error)
+      }
+    }
+  }
+
+  export const getCarrito = () => {
+    return async function(dispatch){
+      try {
+       const {data} =  await axios.get(`/cart`);
+       console.log('este es mi restcart:', JSON.stringify(data, null, 2))
+        return dispatch({
+          type: GET_TO_CART,
+          payload: data
+        })
+      } catch (error) {
+        console.log('error al crear el producto en el carrito:'+ error)
+      }
+    }
+  }
 
 export const resetQuantity = (productId) => {
   return {
