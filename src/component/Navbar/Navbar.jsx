@@ -107,7 +107,7 @@ const NavbarComponent = () => {
   }
   // =========================================================================================================================
 
-  const isHomePage = location.pathname === "/" || location.pathname === "/favorites";
+  const isHomePage = location.pathname === "/";
 
 
   const handleOrderChange = (e) => {
