@@ -15,6 +15,7 @@ import ProductDetail from "./component/ProductDetail/ProductDetail"
 import Favorites from "./component/Favorites/Favorites"
 import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
+import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,12 +33,13 @@ function App() {
   }, []);
 
   return (
-    <div className="App-container">
-      <div className="container">
+      
+      <div>
         <div><NavbarComponent /></div>
         {isLoading && <LoadingScreen />} {/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<DashboardAdmin/>}/>
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />
@@ -47,7 +49,6 @@ function App() {
         </Routes>
         <div><Footer /></div>
       </div>
-    </div>
   );
 }
 
