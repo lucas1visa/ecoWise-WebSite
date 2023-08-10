@@ -142,22 +142,21 @@ const DashboardAdmin = ()=>{
                 </div>
                 <div>
                   <h5 className="text-lg font-bold">
-                    Need a designer to form branding essentials for my business.
+                    prueba
                   </h5>
                   <p className="text-gray-500">
-                    Looking for a talented brand designer to create all the
-                    branding materials my new startup.
+                  prueba
                   </p>
                 </div>
                 <div className="bg-primary-100/10 flex flex-col md:flex-row items-center justify-between gap-4 py-8 px-4 rounded-lg">
                   <div>
                     <sup className="text-sm text-gray-500">&euro;</sup>{" "}
-                    <span className="text-2xl font-bold mr-2">8,700</span>
-                    <span className="text-sm text-gray-500">/ month</span>
+                    <span className="text-2xl font-bold mr-2"></span>
+                    <span className="text-sm text-gray-500"></span>
                   </div>
                   <div>
                     <span className="border border-primary-100 text-primary-100 py-2 px-4 rounded-full">
-                      Full time
+                    prueba
                     </span>
                   </div>
                 </div>

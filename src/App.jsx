@@ -20,7 +20,8 @@ import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-
+  
+  
   useEffect(() => {
     dispatch(getProducts())
       .then(() => {
