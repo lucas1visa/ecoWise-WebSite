@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 import {
   RiHome3Line,
   RiFileCopyLine,
@@ -16,7 +18,7 @@ const NavbarAdmin = () => {
           menu ? "left-0" : "-left-full"
         }`}
       >
-        {/* Profile */}
+        {/* Perfil */}
         <div className="flex flex-col items-center justify-center p-8 gap-2 h-[30vh]">
           <img
             src="https://ecowise-web-site.vercel.app/assets/EcoWise-d97d203f.jpg"
@@ -34,13 +36,13 @@ const NavbarAdmin = () => {
               href="#"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors "
             >
-              <RiHome3Line /> Inicio
+              <RiHome3Line /> <Link to="/">Inicio</Link>
             </a>
             <a
               href="#"
               className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-900/50 transition-colors"
             >
-              <RiFileCopyLine /> Productos
+              <RiFileCopyLine /> <Link to="/product/register/">Agregar Productos</Link>
             </a>
             <a
               href="#"
@@ -67,7 +69,7 @@ const NavbarAdmin = () => {
           </div>
         </div>
       </div>
-      {/* Button mobile */}
+      {/* Boton para celular */}
       <button
         onClick={() => SetMenu(!menu)}
         className="lg:hidden fixed right-4 bottom-4 text-2xl bg-primary-900 p-2.5 rounded-full text-white z-50"
