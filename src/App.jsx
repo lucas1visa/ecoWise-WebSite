@@ -16,6 +16,8 @@ import Favorites from "./component/Favorites/Favorites"
 import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
+import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
+import GraphAdmin from './component/DashboardAdmin/GraphAdmin';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +42,8 @@ function App() {
         {isLoading && <LoadingScreen />} {/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<DashboardAdmin/>}/>
+          <Route path="/grafica" element={<GraphAdmin />} />
+          <Route path="/admin" element={<DashboardAdmin/>} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />

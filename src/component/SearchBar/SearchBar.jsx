@@ -10,11 +10,14 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = () => {
-    if (productName === '') {
+  
+  if (productName === '') {
       dispatch(getProducts());
-    } else {
+    } 
+    else {
       setIsLoading(true);
-
+      
+      
       // Simular una carga de 1 segundo antes de completar la búsqueda
       setTimeout(() => {
         dispatch(searchPrducts(productName))
@@ -22,12 +25,17 @@ const Search = () => {
             setIsLoading(false);
           })
           .catch(error => {
+            console.log(error)
             console.error('Error fetching search results:', error);
             setIsLoading(false);
           });
-      }, 600); 
+          dispatch(getProducts([]));
+         alert('No se encontro el nombre del producto que buscas')
+         setProductName('')
+      }, 600);
     }
   };
+
 
   return (
     <div className={styles.containerSearch}>
@@ -42,6 +50,7 @@ const Search = () => {
         <ion-icon name="search-outline"></ion-icon>
       </Button>
       {isLoading && <LoadingScreen />}
+    
     </div>
   );
 };

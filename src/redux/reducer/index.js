@@ -62,34 +62,6 @@ const reducer = (state = inicialState, actions) => {
           cartItems: actions.payload
         }
 
-/*     case ADD_TO_CART:
-      existingCartItem = state.cartItems.find(
-        (item) => item.product.id === actions.payload.product.id
-      );
-
-      if (existingCartItem) {
-        return {
-          ...state,
-          cartItems: state.cartItems.map((item) =>
-            item.product.id === actions.payload.product.id
-              ? { ...item, quantity: item.quantity + actions.payload.quantity }
-              : item
-          ),
-          cartCount: state.cartCount + actions.payload.quantity, 
-        };
-      } else {
-        return {
-          ...state,
-          cartItems: [
-            ...state.cartItems,
-            {
-              product: actions.payload.product,
-              quantity: actions.payload.quantity,
-            },
-          ],
-          cartCount: state.cartCount + actions.payload.quantity, 
-        };
-      } */
 
     case RESET_QUANTITY: {
       const itemToReset = state.cartItems.find(
@@ -112,14 +84,13 @@ const reducer = (state = inicialState, actions) => {
     }
 
     case REMOVE_FROM_CART: {
-      const updatedCartItems = state.cartItems.filter(
-        (item) => item.product.id !== actions.payload
-      );
-
-      return {
+      return{
         ...state,
-        cartItems: updatedCartItems,
-      };
+        cartItems: state.cartItems.filter(
+          (product) => product.id !== actions.payload
+        ),
+        cartCount: state.cartCount - 1,
+      }
     }
 
     case GET_CATEGORY:
