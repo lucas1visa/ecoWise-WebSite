@@ -3,7 +3,7 @@ import {
   GET_ID,
   ADD_FAV,
   REMOVE_FAV,
-  ADD_TO_CART,
+  GET_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
@@ -23,7 +23,7 @@ const inicialState = {
 const reducer = (state = inicialState, actions) => {
   actions.payload;
   console.log(actions.payload);
-  let existingCartItem;
+  /* let existingCartItem; */
   switch (actions.type) {
     case GETPRODUCTS:
       return {
@@ -56,7 +56,13 @@ const reducer = (state = inicialState, actions) => {
       };
     
 
-    case ADD_TO_CART:
+      case GET_TO_CART:
+        return{
+          ...state,
+          cartItems: actions.payload
+        }
+
+/*     case ADD_TO_CART:
       existingCartItem = state.cartItems.find(
         (item) => item.product.id === actions.payload.product.id
       );
@@ -83,7 +89,7 @@ const reducer = (state = inicialState, actions) => {
           ],
           cartCount: state.cartCount + actions.payload.quantity, 
         };
-      }
+      } */
 
     case RESET_QUANTITY: {
       const itemToReset = state.cartItems.find(

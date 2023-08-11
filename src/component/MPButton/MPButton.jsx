@@ -12,9 +12,10 @@ const MPButton = ({titul,precio,cantidad}) => {
 
   initMercadoPago(publicKey);
 
+  
   const createPreference = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/create_preference", {
+      const response = await axios.post("https://ecowise-server01.onrender.com/create_preference", {
         description: titul,
         price: precio,
         quantity: cantidad,

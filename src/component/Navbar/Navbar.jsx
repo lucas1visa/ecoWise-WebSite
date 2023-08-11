@@ -1,5 +1,6 @@
 //import React from 'react';
 import CategorySelect from "../Filters/Filter";
+import Cart from "../ShoppingCar/Cart";
 
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
@@ -30,6 +31,30 @@ const NavbarComponent = () => {
   const dispatch = useDispatch();
   const favoriteCount = useSelector((state) => state.favoriteCount);
   const CartCount = useSelector((state) => state.cartCount);
+
+     // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
+  // estado del carrito para el modal.
+  const [showCartForm, setShowCartForm] = useState({
+    open: false
+  });
+  // estado para cerrar
+  const [showCartClose,setShowCartClose]= useState(false);
+  const [showCart, setShowCart]= useState(true);
+
+  // manejador para abrir
+    const HandleCartOpen = ()=>{
+      setShowCartForm({
+        open: !showCartForm.open
+      })
+    };
+
+  // funcion de cerrado del carrito
+  const handleCartClose = () =>{
+    // mostramos el boton de login
+    setShowCart(true);
+    // dejamos de mostrar el boton de logout
+    setShowCartClose(false);
+  };
 
   // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
   // estado para controlar la apertura o cierre de la ventana emergente
@@ -160,14 +185,6 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link">
               Contacto
             </Link>
-            <div className="container-car">
-              <Link to="/Cart" className="nav-linkk">
-                <button className="button-icon-car">
-                  <ion-icon name="cart-outline"></ion-icon>
-                  {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
-                </button>
-              </Link>
-            </div>
             <div>
               <Link to="/favorites" className="nav-linkk">
                 <button className="button-icon-cora">🤍</button>
@@ -175,7 +192,23 @@ const NavbarComponent = () => {
               </Link>
             </div>
           </Nav>
-
+{/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
+        {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
+        {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
+        <ion-icon name="cart-outline"></ion-icon>
+        {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
+        </button>}
+            <Modal isOpen={showCartForm.open}>
+              <ModalHeader>
+              </ModalHeader>
+              <ModalBody>
+               <Cart/>
+              </ModalBody>
+              <ModalFooter>
+              <Button onClick={HandleCartOpen}>Cerrar</Button>
+              </ModalFooter>
+              </Modal>
+{/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */} 
           {isHomePage && <Search />}
 
           {isHomePage && (
