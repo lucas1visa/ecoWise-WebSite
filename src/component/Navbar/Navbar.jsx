@@ -194,10 +194,10 @@ const NavbarComponent = () => {
           </Nav>
 {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
         {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
-        {showCart && <image className="button-icon-car" onClick={HandleCartOpen}>
+        {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
         <ion-icon name="cart-outline"></ion-icon>
         {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
-        </image>}
+        </button>}
             <Modal isOpen={showCartForm.open}>
               <ModalHeader>
               </ModalHeader>
