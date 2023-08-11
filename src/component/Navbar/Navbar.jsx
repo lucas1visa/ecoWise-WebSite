@@ -238,7 +238,7 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
-
+          <Button > <Link to="/admin">Admin</Link></Button>
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
       {showLogout && <Button onClick={handleLogout}>Salir</Button>}
       {showLogin && <Button onClick={handleLogin}>Iniciar</Button>}
