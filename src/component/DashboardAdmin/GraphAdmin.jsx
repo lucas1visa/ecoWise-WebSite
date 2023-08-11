@@ -22,7 +22,7 @@ const data = {
   datasets: [
     {
       label: "Grafico De Ventas",
-      data: [3, 6, 9, 12,15, 18, 21],
+      data: [1000, 100, 9, 12,15, 18, 10000],
       backgroundColor: "aqua",
       borderColor: "black",
       pointBorderColor: 'rgb(75, 192, 192)',
