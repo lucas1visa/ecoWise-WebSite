@@ -22,7 +22,8 @@ import GraphAdmin from './component/DashboardAdmin/GraphAdmin';
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-
+  
+  
   useEffect(() => {
     dispatch(getProducts())
       .then(() => {
@@ -35,7 +36,8 @@ function App() {
   }, []);
 
   return (
-    <div >
+      
+      <div>
         <div><NavbarComponent /></div>
         {isLoading && <LoadingScreen />} {/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
