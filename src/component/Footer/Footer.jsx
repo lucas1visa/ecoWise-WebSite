@@ -31,13 +31,13 @@ const Footer = () => {
           <div className="col-xs-12 col-md-6 col-lg-3">
             <p className="h5 mb-3">Contactos</p>
             <div>
-              <a className="text-secondary text-decoration-none" href="https://www.facebook.com/">
-                Facebook
-              </a>
+            <a className="text-secondary text-decoration-none" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+ Facebook
+</a>
             </div>
             <div>
-              <a className="text-secondary text-decoration-none" href="https://www.instagram.com/">
-                Instagram
+            <a className="text-secondary text-decoration-none" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+ Instagram              
               </a>
             </div>
             <div>
