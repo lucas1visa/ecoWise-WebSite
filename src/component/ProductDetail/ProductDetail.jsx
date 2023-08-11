@@ -70,10 +70,10 @@ const ProductDetail = () => {
                 <>
                   <div className="product-info">
                     <h2 className="h2-name">{product.name}</h2>
-                  <p>{product.description}</p>
-                  <p>Precio: ${product.price}</p>
-                  <p>Cantidad disponible: {product.quantityAvailable}</p>
-                  <p>Categoría: {product.category}</p>
+                  <p className="pdescription" >{product.description}</p>
+                  <p className="p1">Precio: ${product.price}</p>
+                  <p className="p2">Cantidad disponible: {product.quantityAvailable}</p>
+                  <p className="p3">Categoría: {product.category}</p>
                   {favorites.find(
                     (favProduct) => favProduct.id === product.id
                   ) ? (
@@ -90,7 +90,7 @@ const ProductDetail = () => {
 
                     <div className="btn-container">  
                         <button 
-                          className="btn-button"
+                          className="btn-button1"
                           onClick={handleAddToCart}
                         >
                           Agregar al carrito

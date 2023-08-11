@@ -26,9 +26,9 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 .h2-name {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: antiquewhite;
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: rgb(255, 255, 255);
 }
 
 p {
@@ -45,6 +45,26 @@ p {
   cursor: pointer;
   margin-top: 10px;
 }
+
+.p1{
+  font-size: large;
+  color: black;
+}
+.p2{
+  font-size: large;
+  color: black;
+}
+.p3{
+  font-size: large;
+  color: black;
+}
+
+.pdescription{
+  font-size: large;
+  color: black;
+}
+
+
 
 .btn-button:hover {
   background-color:  #ff8c00; 
@@ -77,15 +97,25 @@ p {
 
 
 .product-info {
-  padding: 20px;
-  background-color: #60729b;
+  padding: 50px;
+  background-color: #8ea5db;
   border: 1px solid #0c02029f; 
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 5px rgba(236, 236, 236, 0.2);
   border-radius: 8px;
   text-align: left;
   font-weight: 580;
 }
-
+.btn-button1{
+  background-color: #ff9f43; 
+  color: white;
+  border: #ff9f43;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 90%; 
+  margin: 15px;
+  animation: 0.4s;
+}
 .btn-button {
   background-color: #ff9f43; 
   color: white;
@@ -94,6 +124,8 @@ p {
   border-radius: 4px;
   cursor: pointer;
   width: 100%; 
+  margin: 15px;
+  animation: 0.4s;
 }
 
 .btn-button:hover {
