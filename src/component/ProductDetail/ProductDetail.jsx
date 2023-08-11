@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 
 import MPButton from "../MPButton/MPButton";
 import "./ProductDetail.css";
@@ -14,9 +14,9 @@ const ProductDetail = () => {
 
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
-  const [quantityAvailable, setQuantityAvailable] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const favorites = useSelector((state) => state.favorites);
-  console.log(quantityAvailable);
+  console.log(quantity);
   const [state, setState] = useState({
     loading: true,
   });
@@ -29,7 +29,7 @@ const ProductDetail = () => {
   }, [dispatch, id]);
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
+    dispatch(addToCart(product, quantity));
   };
 
   const handleAddFavorite = () => {
@@ -87,39 +87,18 @@ const ProductDetail = () => {
                     </button>
                   )}
                   <div className="quantity-select d-flex align-items-center ms-sm-5">
-                    <label htmlFor="quantity-select" className="texto">Cantidad</label>
-                    <select
-                      id="quantity-select"
-                      value={quantityAvailable}
-                      onChange={(e) => setQuantityAvailable(Number(e.target.value))}
-                      className="form-select custom-select"
-                    >
-                      {Array.from(
-                        { length: product.quantityAvailable },
-                        (_, index) => index + 1
-                      ).map((count) => (
-                        <option
-                          key={count}
-                          value={count}
-                          disabled={count > product.quantityAvailable}
-                        >
-                          {count}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="btn-container">
-                      <Link to="/cart" className="btn-link">
+
+                    <div className="btn-container">  
                         <button 
                           className="btn-button"
                           onClick={handleAddToCart}
                         >
                           Agregar al carrito
                         </button>
-                      </Link>
                       <MPButton
                         titul={product.name}
                         precio={product.price}
-                        cantidad={quantityAvailable}
+                        cantidad={quantity}
                       />
                        <button className="btn-button" onClick={handleGoBack}>
           Volver 
