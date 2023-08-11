@@ -4,29 +4,18 @@ import styles from "./Contacto.module.css"
 
 const Contacto = () => {
   return (
-<div class="container">  
-  <form id="contact" action="" method="post">
-    <h4>Contact us </h4>
-    <fieldset>
-      <input placeholder="Your name" type="text" tabindex="1" required autofocus/>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Email Address" type="email" tabindex="2" required/>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required/>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required/>
-    </fieldset>
-    <fieldset>
-      <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-    </fieldset>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-    </fieldset>
-  </form>
-</div>
+    <div className={styles.container}>
+        <form className={styles.form} action="https://formsubmit.co/eco.wise.ecommerce@gmail.com" method="POST" >
+            <h1 className={styles.h1}>Contacta Con Nosotros</h1>
+            <input className={styles.input1} type="text" id='First Name' name='name' placeholder='Nombre' required/>
+            <input className={styles.input2} type="text" id='Last Name'name='Apellido' placeholder='Apellido' required/>
+            <input className={styles.input3} type="email" id='email' name='Email' placeholder='Email' required/>
+            <input className={styles.input4} type="text" id='mobile'name='Mobile' placeholder='Mobile' required/>
+            <h4 className={styles.h4}>Escribe tu mensaje aquí . . .</h4>
+            <textarea className={styles.text} required ></textarea>
+            <input  className={styles.button} type="submit" value="send" id='buttom'/>
+        </form>
+    </div>
   );
 }
 
