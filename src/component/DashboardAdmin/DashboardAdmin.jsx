@@ -1,6 +1,7 @@
 import { RiLineChartLine, RiHashtag } from "react-icons/ri";
 import HeaderAdmin from "./HeaderAdmin";
 import NavbarAdmin from "./NavbarAdmin";
+import GraphAdmin from "./GraphAdmin"
 
 const DashboardAdmin = ()=>{
 return(
@@ -13,7 +14,7 @@ return(
 {/* Card 1 */}
 <div className="bg-primary-100 p-8 rounded-xl text-gray-300 flex flex-col gap-6">
 <RiLineChartLine className="text-5xl" />
-<h4 className="text-2xl">Earnings</h4>
+<h4 className="text-2xl">Ganancias</h4>
 <span className="text-5xl text-white">$ 10,000</span>
 <span className="py-1 px-3 bg-primary-300/80 rounded-full">
 Gancias de este mes
@@ -59,6 +60,7 @@ Ver mas
 <section className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-8">
 <div>
 <h1 className="text-2xl font-bold mb-8">x</h1>
+<div><GraphAdmin/></div>
 <div className="bg-white p-8 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">
 {/* Card 1 */}
 <div className="grid grid-cols-1 xl:grid-cols-4 items-center gap-4 mb-4">
@@ -151,6 +153,7 @@ prueba
 </div>
 </div>
 </div>
+
 </section>
 </main>
 </div>
