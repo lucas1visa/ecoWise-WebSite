@@ -13,7 +13,7 @@ import {
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
-  RESET_QUANTITY
+ /*  RESET_QUANTITY */
 } from "./Types";
 
 export const getUsers = () => {
@@ -88,16 +88,15 @@ export function addFav(product) {
     };
   }
   
-  export const addToCart = (id, quantityAvailable, userId ) => {
+  export const addToCart = (id, quantity, userId ) => {
     return async function(dispatch){
       try {
-        await axios.post(`/cart`, id, quantityAvailable, userId );
+        const resAddCart = await axios.post(`/cart`, id, quantity, userId );
+        console.log(resAddCart);
         return dispatch({
         type: ADD_TO_CART,
          payload: 
-         id,
-          quantityAvailable,
-          userId
+         resAddCart
         })
       } catch (error) {
         console.log('error al crear el producto en el carrito:'+ error)
@@ -120,17 +119,28 @@ export function addFav(product) {
     }
   }
 
-export const resetQuantity = (productId) => {
+/* export const resetQuantity = (productId) => {
+  console.log('id del producto ' + productId)
   return {
     type: RESET_QUANTITY,
     payload: productId,
   };
 };
-
-export const removeFromCart = (productId) => {
-  return {
-    type: REMOVE_FROM_CART,
-    payload: productId,
+ */
+export const removeFromCart = (id) => {
+  console.log('este es el id del removeFromCard ' + id);
+  return async function (dispatch) {
+    try {
+      await axios.delete(
+        `/cart/delete/${id}`
+      );
+      return dispatch({
+        type: REMOVE_FROM_CART,
+        payload: id, 
+      });
+    } catch (error) {
+      console.log("removeCart not found", error);
+    }
   };
 };
 
