@@ -16,17 +16,21 @@
 
 .prolijo-button {
     padding: 2px 13px 0px 13px; /* Ajusta el padding según tus preferencias */
-    background-color: transparent; /* Cambia el color de fondo según tus preferencias */
-    border: 1px solid #ccc; /* Cambia el estilo del borde según tus preferencias */
     border-radius: 5px; /* Ajusta el radio del borde según tus preferencias */
     cursor: pointer;
-    font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+    font-size: 20px; /* Ajusta el tamaño de fuente según tus preferencias */
+    background-color: transparent;
+    color: #29CE8A;
+    transition: transform 0.3s ease; /* Agrega una transición suave a la propiedad transform */
+  }
 
-}
+  .prolijo-button:hover {
+    transform: rotate(360deg); /* Gira 360 grados al pasar el cursor */
+  }
 
 .button-icon-car{
     background-color: transparent;
-    font-size: 33px;
+    font-size: 35px;
     margin: 10px 0px 0px 10px;
     padding: 0px;
     border: none;
@@ -38,8 +42,18 @@
     margin-top: 0px;
 }
 
-.ecoWise{
+.final{
     height: 80px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border-radius: 300px; /* Ajusta el valor según la cantidad de redondez deseada */
+    overflow: hidden; /* Para asegurarte de que el border-radius se aplique correctamente */
+}
+
+.final:hover{
+    background-color: transparent;
+    box-shadow: 0 0 20px 10px rgba(41, 206, 138, 0.5); /* Cambia al color #29CE8A */
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen */
+    filter: brightness(1.6); /* Ajusta este valor para controlar la intensidad del brillo */
 }
 
 .button-icon-cora{
@@ -69,4 +83,23 @@
 .favorits-count-container{
     display: flex;
     flex-direction: row;
+}
+
+.btn-entrar{
+    color: aliceblue;
+    margin-top: 13px;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.btn-admin{
+    color: aliceblue;
+    margin-top: 13px;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.link-admin{
+    text-decoration: none;
+    color: #29CE8A;
 }

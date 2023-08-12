@@ -4,7 +4,7 @@ import Cart from "../ShoppingCar/Cart";
 
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
-import eco from "../../Img/eco.png";
+import final from "../../Img/final.jpeg";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -171,7 +171,7 @@ const NavbarComponent = () => {
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
         <Link to="/" className="navbar-brand">
-          <img src={eco} alt="ecoWise" className="ecoWise" />
+          <img src={final} alt="final" className="final" />
         </Link>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
@@ -212,14 +212,14 @@ const NavbarComponent = () => {
           {isHomePage && <Search />}
 
           {isHomePage && (
-            <Button
+            <button
               className="prolijo-button"
               onClick={handleOrderChange}
               value="clean"
             >
               ↻
               {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
-            </Button>
+            </button>
           )}
 
           <div className="ml-auto m-2">
@@ -238,10 +238,10 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
-          <Button > <Link to="/admin">Admin</Link></Button>
+          <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>
       {/*=============================================== REGISTRO DE LOGIN ================================================= */}
-      {showLogout && <Button onClick={handleLogout}>Salir</Button>}
-      {showLogin && <Button onClick={handleLogin}>Iniciar</Button>}
+      {showLogout && <button className="btn-salir" onClick={handleLogout}>Salir</button>}
+      {showLogin && <button className="btn-entrar" onClick={handleLogin}>Iniciar</button>}
       <Modal isOpen={showFormLogin.open}>
         <ModalHeader>
           Iniciar Sesion

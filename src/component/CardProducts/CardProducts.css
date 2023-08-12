@@ -32,12 +32,14 @@
     color: rgb(255, 255, 255);
     text-decoration: none;
   }
+  
   .precio {
     font-size: 19px;
     font-weight: 800;
-    color: #3ad801;
+    color: #29CE8A;
     float: left;
   }
+
   .titulo {
     width: auto;
     font-size: 19px;
