@@ -1,81 +1,67 @@
-.formContainer {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 50px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 100px;
-    background-color: #e3e0d7;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
- .general{
-  background-color: #a6aeb8;
- }
-  .formContainer label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #444;
-  }
-  
-  .formContainer input,
-  .formContainer select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #444;
-  }
-  
-  .formContainer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .formContainer li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .formContainer li button {
-    margin-left: 5px;
-    cursor: pointer;
-    background-color: #ccc;
-    border: none;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 12px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .formContainer li button:hover {
-    background-color: #ff4c4c;
-  }
-  
-  .formContainer span {
-    color: rgb(74, 40, 40);
-    font-size: 14px;
-    display: block;
-    margin-top: 5px;
-  }
-  
-  .formContainer button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
+.container{
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form{
+  padding: 50px, 60px;
+  border-radius: 20px;
+  box-shadow: 0,0,20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 400px;
+}
+
+.inputgroup{
+  display: flex;
+ flex-direction: column;
+ text-align: left;padding: 17px 25px;
+ border-radius: 25px;
+ margin-bottom: 20px;
+ background-color: rgb(105, 114, 153);
+ border: 2px solid #f0faf1;
+ color: #252725;
+ 
+
+}
+.h2{
+  font-size: 35px;
+  color: #141414;
+  margin: 20px;
+}
+
+label{
+  color: #000000;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+
+
+input{
+  padding: 17px 25px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  outline: none;
+}
+
+input::placeholder{
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+ 
+
+
