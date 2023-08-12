@@ -21,12 +21,12 @@ const UserProfile = () => {
 
   // Estado local para almacenar los mensajes de error de validación
   const [errors, setErrors] = useState({
-    name: "Nombre requerido",
-    surname: "Apellido requerido",
-    email: "Email requerido",
-    phone: "",
-    password: "Contraseña requerida",
-    confirmPassword: "Debe confirmar la contraseña",
+    name: "Completar",
+    surname: "Completar",
+    email: "Completar",
+    phone: "Completar",
+    password: "Completar",
+    confirmPassword: "Completar",
   });
 
   // Nuevo estado para rastrear si el usuario se ha creado correctamente
@@ -200,12 +200,15 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <FormGroup>
-        <form onSubmit={handleSubmit}>
+      <div className={styles.inputgroup}>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <h2 className={styles.h2}>Formulario Registro</h2>
           {/* Campos del formulario */}
-          <div>
-            <label>Nombre</label>
+          <div className={styles.inputnombre}>
+            <label >Nombre</label>
             <input
               type="text"
               name="name"
@@ -214,7 +217,7 @@ const UserProfile = () => {
             />
             {errors.name}
           </div>
-          <div>
+          <div className={styles.inputapellido}>
             <label>Apellido</label>
             <input
               type="text"
@@ -224,7 +227,7 @@ const UserProfile = () => {
             />
             {errors.surname}
           </div>
-          <div>
+          <div className={styles.inputemail}>
             <label>Email</label>
             <input
               type="text"
@@ -234,7 +237,7 @@ const UserProfile = () => {
             />
             {errors.email}
           </div>
-          <div>
+          <div className={styles.inputtelefono}>
             <label>Telefono</label>
             <input
               type="text"
@@ -244,9 +247,9 @@ const UserProfile = () => {
             />
             {errors.phone}
           </div>
-          <div>
-            <label>Contraseña</label>
-            <div style={{ position: "relative" }}>
+          <div className={styles.inputcontraseña}>
+            <label className={styles.contraseña}>Contraseña</label>
+            <div>
               <input
                 // type="password"
                 type={showPassword ? "text" : "password"}
@@ -258,15 +261,7 @@ const UserProfile = () => {
               <button
                 type="button"
                 onClick={toggleShowPassword}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  right: "10px",
-                  transform: "translateY(-50%)",
-                  backgroundColor: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                }}
+                
               >
                 {showPassword ? "👁️" : "👁️‍🗨️"}
               </button>
@@ -274,9 +269,9 @@ const UserProfile = () => {
             {errors.password}
           </div>
           {/* Campo de confirmación de contraseña */}
-          <div>
+          <div className={styles.inputcontraseña2}>
             <label>Confirmar Contraseña</label>
-            <div style={{ position: "relative" }}>
+            <div>
               <input
                 // type="password"
                 type={showConfirmPassword ? "text" : "password"}
@@ -288,15 +283,7 @@ const UserProfile = () => {
               <button
                 type="button"
                 onClick={toggleShowConfirmPassword}
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  right: "10px",
-                  transform: "translateY(-50%)",
-                  backgroundColor: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                }}
+                
               >
                 {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
               </button>
@@ -306,10 +293,11 @@ const UserProfile = () => {
           {/* Mostrar FiestaMessage cuando userCreated sea verdadero */}
           {userCreated && <FiestaMessage />}
           {/* Botón de envío */}
-          <button disabled={disable()} type="submit">
-            Submit
-          </button>
+          <button disabled={disable()} type="submit"  class="btn btn-primary" ><span>   Submit  </span></button>
         </form>
+        </div>
+        
+
       </FormGroup>
     </div>
   );
