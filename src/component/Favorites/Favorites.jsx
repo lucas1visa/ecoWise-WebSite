@@ -26,14 +26,14 @@ return (
         {fav.map((product) => (
           <li key={product.id} className="favorito-item">
             <Link to={`/product/${product.id}`} className="product-link">
-              <div>
-                <img className="image-favo" src={product.image} alt={product.name} />
-              </div>
+          
+              <img className="image-favo" src={product.image} alt={product.name} />
               <h3 className="h2-favo">{product.name}</h3>
-              <p className="h2-favo">{product.description}</p>
-              <p className="h2-favo">Precio: ${product.price}</p>
+              <p className="h2-favo h2-description">{product.description}</p>
+              <p className="h2-favo h2-price" >Precio: ${product.price}</p>
+            
             </Link>
-            <button onClick={() => handleRemoveFav(product.id)}>
+            <button onClick={() => handleRemoveFav(product.id)} className="button-delete-fav">
               Borrar Favoritos
             </button>
           </li>

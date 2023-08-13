@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../redux/actions/index';
+import '../ShoppingCar/Cart.css'
 
 const CartItem = ({ product, cartId }) => {
     const dispatch = useDispatch();
@@ -17,9 +18,10 @@ const CartItem = ({ product, cartId }) => {
     const totalPrice = product.price * quantity;
 
     return (
-        <div>
+        <div className='container-cart'>
+            <div className='subContainer-cart'>
             <h3>Nombre Del Producto: {product.name}</h3>
-            <img src={product.image} alt={product.name} />
+            <img src={product.image} alt={product.name} className='image-product-cart'/>
             <p>
                 <label htmlFor={`quantity-select-${product.id}`} className="texto">
                     Cantidad
@@ -39,7 +41,8 @@ const CartItem = ({ product, cartId }) => {
             </p>
             <p>Precio: {product.price}</p>
             <h3>Total: {totalPrice}</h3>
-            <button onClick={handleDeleteCart}>Quitar</button>
+            <button onClick={handleDeleteCart} className='quitar-product-cart'>❌</button>
+            </div>
         </div>
     );
 };

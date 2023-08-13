@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import './App.css'
 import axios from "axios";
-axios.defaults.baseURL = "https://ecowise-server01.onrender.com";
+axios.defaults.baseURL = "http://localhost:3001";
 import Home from './component/Home/Home';
 import { getProducts } from './redux/actions';
 import NavbarComponent from './component/Navbar/Navbar';
@@ -33,7 +33,7 @@ function App() {
         console.error('Error fetching data:', error);
         setIsLoading(false);
       });
-  }, []);
+  }, [dispatch]);
 
   return (
       
