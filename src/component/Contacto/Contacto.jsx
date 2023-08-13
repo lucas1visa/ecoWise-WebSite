@@ -10,10 +10,10 @@ const Contacto = () => {
             <input className={styles.input1} type="text" id='First Name' name='name' placeholder='Nombre' required/>
             <input className={styles.input2} type="text" id='Last Name'name='Apellido' placeholder='Apellido' required/>
             <input className={styles.input3} type="email" id='email' name='Email' placeholder='Email' required/>
-            <input className={styles.input4} type="text" id='mobile'name='Mobile' placeholder='Mobile' required/>
+            <input className={styles.input4} type="text" id='mobile'name='Mobile' placeholder='Teléfono' required/>
             <h4 className={styles.h4}>Escribe tu mensaje aquí . . .</h4>
             <textarea className={styles.text} required ></textarea>
-            <input  className={styles.button} type="submit" value="send" id='buttom'/>
+            <input  className={styles.button} type="submit" value="Enviar" id='buttom'/>
         </form>
     </div>
   );

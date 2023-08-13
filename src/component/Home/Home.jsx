@@ -1,10 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import CardProducts from "../CardProducts/CardProducts";
 import "./Home.css";
 
 const Home = () => {
-  const products = useSelector((state) => state.products);
+
   
   return (
     <div className="container">

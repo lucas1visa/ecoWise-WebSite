@@ -29,12 +29,12 @@ return (
           
               <img className="image-favo" src={product.image} alt={product.name} />
               <h3 className="h2-favo">{product.name}</h3>
-              <p className="h2-favo h2-description">{product.description}</p>
-              <p className="h2-favo h2-price" >Precio: ${product.price}</p>
+              <p className=" h2-description">{product.description}</p>
+              <p className=" h2-price" >Precio: ${product.price}</p>
             
             </Link>
             <button onClick={() => handleRemoveFav(product.id)} className="button-delete-fav">
-              Borrar Favoritos
+            ❎
             </button>
           </li>
         ))}

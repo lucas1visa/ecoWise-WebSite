@@ -214,6 +214,8 @@ export function getCategory(category) {
     console.log(data)
   };
 }
+
+
 export const searchPrducts = (name)=>{
   return async (dispatch) => {
   const res = await axios.get(`products/?name=${name}`);

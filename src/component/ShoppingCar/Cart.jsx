@@ -1,55 +1,79 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito, removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cartItems);
+  const cartItems = useSelector(state => state.cartItems);
   const dispatch = useDispatch();
 
+  const [totalPrices, setTotalPrices] = useState([]);
+  const [carritoTotals, setCarritoTotals] = useState([]); // Estado para almacenar totales individuales
+  const [totalCarritoss, setTotalCarritos] = useState(0);
+  
+  
 
+  
+  useEffect(() => {
+    dispatch(getCarrito());
+  }, [dispatch]);
 
+  useEffect(() => {
+    const newTotalPrices = cartItems.map(item =>
+      item.Products.reduce((acc, product) => {
+        const total = product.price * product.quantitySelected;
+        return acc + total;
+      }, 0)
+    );
+
+    // Crear un objeto que mapee el ID del carrito a su total
+    const newCarritoTotals = {};
+    cartItems.forEach((item, index) => {
+      newCarritoTotals[item.id] = newTotalPrices[index];
+    });
+    const safeCarritoTotals = {};
+    Object.keys(newCarritoTotals).forEach(cartId => {
+      safeCarritoTotals[cartId] = isNaN(newCarritoTotals[cartId]) ? 0 : newCarritoTotals[cartId];
+    });
+
+    setTotalPrices(newTotalPrices);
+    setCarritoTotals(safeCarritoTotals); // Usar los totales seguros
+    setTotalCarritos(0);
+  }, [cartItems]);
 
   const handleDeleteCart = (cartId, productId) => {
     dispatch(removeFromCart(cartId, productId));
   };
- 
-  const [productTotals, setProductTotals] = useState({}); // Almacena los totales individuales de cada producto
-
-  useEffect(() => {
-    const newProductTotals = {};
-
-    cartItems.forEach((item) => {
-      item.Products.forEach((product) => {
-        const total = product.price * product.quantitySelected;
-        newProductTotals[product.id] = total;
-      });
-    });
-      dispatch(getCarrito());
-    setProductTotals(newProductTotals);
-  }, [dispatch]);
-
-  const total = Object.values(productTotals).reduce((acc, val) => acc + val, 0);
+  const handleSaveCartTotal = (cartId, total) => {
+    setCarritoTotals(prevState => ({
+      ...prevState,
+      [cartId]: total,
+    }));
+  };
+  const totalCarritos = Object.values(carritoTotals).reduce((acc, total) => acc + total, 0);
+  const totalGeneralSafe = isNaN(totalCarritos) ? 0 : totalCarritos;
 
   return (
     <div>
       <h1>Carrito De Compras</h1>
-      {cartItems.map((item) => (
+      {cartItems.map(item => (
         <div key={item.id}>
-          {item.Products.map((product) => (
+          {item.Products.map(product => (
             <CartItem
               key={product.id}
               product={product}
               cartId={item.id}
+              cartTotal={carritoTotals[item.id]} // Usar el total almacenado
+              onSaveCartTotal={(cartId, total) => handleSaveCartTotal(cartId, total)} // Función para almacenar el total
               handleDeleteCart={handleDeleteCart}
-              productTotal={productTotals[product.id]} // Pasa el total del producto como prop
             />
           ))}
+          {console.log(carritoTotals[item.id])}
         </div>
       ))}
-      <p>Suma total de precios de productos: {total}</p>
+      <h1>Total: {totalGeneralSafe}</h1>
+      
     </div>
-  );
-};
+  );}
 
 export default Cart;
