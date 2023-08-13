@@ -206,6 +206,7 @@ const NavbarComponent = () => {
               </ModalBody>
               <ModalFooter>
               <Button onClick={HandleCartOpen}>Cerrar</Button>
+              <Button>Finalizar compras</Button>
               </ModalFooter>
               </Modal>
 {/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */} 

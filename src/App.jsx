@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import axios from "axios";
 axios.defaults.baseURL = "https://ecowise-server01.onrender.com";
@@ -17,11 +17,13 @@ import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
-import GraphAdmin from './component/DashboardAdmin/GraphAdmin';
+import GraphAdmin from './component/DashboardAdmin/DashboardAdmin';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isDashboardAdmin = location.pathname.includes("/admin");
   
   
   useEffect(() => {
@@ -38,8 +40,8 @@ function App() {
   return (
       
       <div>
-        <div><NavbarComponent /></div>
-        {isLoading && <LoadingScreen />} {/* Mostrar LoadingScreen siempre que isLoading sea true */}
+        {!isDashboardAdmin && <NavbarComponent />}
+      {isLoading && <LoadingScreen />}{/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/grafica" element={<GraphAdmin />} />
@@ -52,7 +54,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
         </Routes>
-        <div><Footer /></div>
+        {!isDashboardAdmin && <Footer />}
       </div>
   );
 }
