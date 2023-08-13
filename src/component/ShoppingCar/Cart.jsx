@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito, removeFromCart } from '../../redux/actions/index';
+import CartItem from './CartItem';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems);
@@ -10,9 +11,26 @@ const Cart = () => {
     dispatch(getCarrito());
   }, [dispatch]);
 
-  const handleDeleteCart = (id) => {
-    dispatch(removeFromCart(id));
+  const handleDeleteCart = (cartId, productId) => {
+    dispatch(removeFromCart(cartId, productId));
   };
+
+  const [productTotals, setProductTotals] = useState({}); // Almacena los totales individuales de cada producto
+
+  useEffect(() => {
+    const newProductTotals = {};
+
+    cartItems.forEach((item) => {
+      item.Products.forEach((product) => {
+        const total = product.price * product.quantitySelected;
+        newProductTotals[product.id] = total;
+      });
+    });
+
+    setProductTotals(newProductTotals);
+  }, [cartItems]);
+
+  const total = Object.values(productTotals).reduce((acc, val) => acc + val, 0);
 
   return (
     <div>
@@ -20,47 +38,17 @@ const Cart = () => {
       {cartItems.map((item) => (
         <div key={item.id}>
           {item.Products.map((product) => (
-            <CartItem key={product.id} product={product} handleDeleteCart={handleDeleteCart} />
+            <CartItem
+              key={product.id}
+              product={product}
+              cartId={item.id}
+              handleDeleteCart={handleDeleteCart}
+              productTotal={productTotals[product.id]} // Pasa el total del producto como prop
+            />
           ))}
         </div>
       ))}
-    </div>
-  );
-};
-
-const CartItem = ({ product, handleDeleteCart }) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleQuantityChange = (e) => {
-    setQuantity(Number(e.target.value));
-  };
-
-  return (
-    <div>
-      <h3>Nombre Del Producto: {product.name}</h3>
-      <img src={product.image} alt={product.name} />
-      <p>
-        <label htmlFor={`quantity-select-${product.id}`} className="texto">
-          Cantidad
-        </label>
-        <select
-          id={`quantity-select-${product.id}`}
-          value={quantity}
-          onChange={handleQuantityChange}
-          className="form-select custom-select"
-        >
-          {Array.from({ length: product.quantityAvailable }, (_, index) => index + 1).map((count) => (
-            <option key={count} value={count}>
-              {count}
-            </option>
-          ))}
-        </select>
-      </p>
-      <p>Precio: {product.price}</p>
-      <h3>Total: {product.price * quantity}</h3>
-      <button onClick={() => handleDeleteCart(product.id)}>Quitar</button>
-      <br />
-      <button>Finalizar Compras</button>
+      <p>Suma total de precios de productos: {total}</p>
     </div>
   );
 };
