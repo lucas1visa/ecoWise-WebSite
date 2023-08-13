@@ -19,7 +19,6 @@ import {
 export const getUsers = () => {
   return async (dispatch) => {
     const { data } = await axios.get("/users");
-    console.log(data);
     dispatch({ type: GETUSERS, payload: data });
   };
 };

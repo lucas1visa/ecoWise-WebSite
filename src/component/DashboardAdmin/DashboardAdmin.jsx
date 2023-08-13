@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiLineChartLine } from "react-icons/ri";
 import HeaderAdmin from "./HeaderAdmin";
 import NavbarAdmin from "./NavbarAdmin";
+import UserControl from "./UsersControl/UserControl";
+import { useLocation } from "react-router-dom";
+import NewProduct from "../NewProduct/NewProduct";
 
 const DashboardAdmin = () => {
+  const [selectedComponent, setSelectedComponent] = useState("default")
+  const handleComponentChange = (componentName) => {
+    setSelectedComponent(componentName);
+  };
   return (
     <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
-      <NavbarAdmin />
+     <NavbarAdmin handleComponentChange={handleComponentChange}/>
       <main className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll">
         <HeaderAdmin />
         {/* Section 1 */}
-        <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
+        {selectedComponent === "userControl" && <UserControl />}
+        {selectedComponent === "newProduct" && <NewProduct />}
+
+        {selectedComponent === "default" && (<div><section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
           {/* Card 1 */}
           <div className="bg-primary-100 p-8 rounded-xl text-gray-300 flex flex-col gap-6">
             <RiLineChartLine className="text-5xl" />
@@ -18,6 +28,7 @@ const DashboardAdmin = () => {
             <span className="text-5xl text-white">$ 10,000</span>
             <span className="py-1 px-3 bg-primary-300/80 rounded-full">
               Ganancias de este mes
+              
             </span>
           </div>
           {/* Card 2 */}
@@ -58,7 +69,7 @@ const DashboardAdmin = () => {
                     textDecoration: "none",
                   }}
                   className="hover:text-primary-100 transition-colors hover:underline"
-                >
+                  >
                   Ver más
                 </a>
               </div>
@@ -95,7 +106,7 @@ const DashboardAdmin = () => {
               {/* para agregar mas section*/}
             </div>
           </div>
-        </section>
+        </section></div>)}
       </main>
     </div>
   );

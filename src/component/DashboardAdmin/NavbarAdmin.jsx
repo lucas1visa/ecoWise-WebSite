@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { FcAddDatabase,FcBarChart,FcApprove,FcHome,FcPrevious,FcNext,FcBadDecision} from "react-icons/fc";
-const NavbarAdmin = () => {
+const NavbarAdmin = ({handleComponentChange}) => {
   const [menu, SetMenu] = useState(false);
   return (
     <>
@@ -26,9 +26,9 @@ const NavbarAdmin = () => {
         <div className="bg-primary-900 p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8">
           <nav className="flex flex-col gap-8">
              <Link to="/"className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" ><FcHome /> Inicio</Link> 
-             <Link to="/product/register/"className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" ><FcAddDatabase />Productos </Link> 
-             <Link className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"><FcBarChart /> Graficos</Link> 
-             <Link className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"><FcBadDecision /> Usuarios</Link> 
+             <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("newProduct")}><FcAddDatabase />Productos </button> 
+             <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"><FcBarChart /> Graficos</button> 
+             <button  className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"  onClick={() => handleComponentChange("userControl")}><FcBadDecision /> Usuarios</button> 
              <Link className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none">< FcApprove/> Perfil</Link> 
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl">

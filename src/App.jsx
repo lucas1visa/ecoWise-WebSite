@@ -18,6 +18,7 @@ import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
 import GraphAdmin from './component/DashboardAdmin/DashboardAdmin';
+import UserControl from './component/DashboardAdmin/UsersControl/UserControl';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,15 +45,13 @@ function App() {
       {isLoading && <LoadingScreen />}{/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/grafica" element={<GraphAdmin />} />
-          <Route path="/admin" element={<DashboardAdmin/>} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
-          <Route path="/product/register/" element={<NewProduct />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
+          <Route path="/admin" element={<DashboardAdmin/>} />
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>
