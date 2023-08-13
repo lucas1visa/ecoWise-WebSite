@@ -22,6 +22,8 @@ import GraphAdmin from './component/DashboardAdmin/DashboardAdmin';
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isDashboardAdmin = location.pathname.includes("/admin");
   
   
   useEffect(() => {
@@ -38,8 +40,8 @@ function App() {
   return (
       
       <div>
-        <div><NavbarComponent /></div>
-        {isLoading && <LoadingScreen />} {/* Mostrar LoadingScreen siempre que isLoading sea true */}
+        {!isDashboardAdmin && <NavbarComponent />}
+      {isLoading && <LoadingScreen />}{/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/grafica" element={<GraphAdmin />} />
@@ -52,7 +54,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
         </Routes>
-        <div><Footer /></div>
+        {!isDashboardAdmin && <Footer />}
       </div>
   );
 }
