@@ -71,7 +71,7 @@ const Cart = () => {
           {console.log(carritoTotals[item.id])}
         </div>
       ))}
-      <p>Total general de todos los carritos: {totalGeneralSafe}</p>
+      <h1>Total: {totalGeneralSafe}</h1>
       
     </div>
   );}

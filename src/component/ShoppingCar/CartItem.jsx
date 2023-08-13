@@ -50,8 +50,8 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
                     ))}
                 </select>
             </p>
-            <p>Precio: {product.price}</p>
-            <h3>Total: {totalPrice}</h3>
+            <p>Precio: {totalPrice}</p>
+            
             {console.log(safeCartTotal)} {/* Mostrar el total del carrito aquí */}
             {/* <button onClick={handleSaveCartTotal}>Guardar Total</button> Agregar el botón para guardar el total */}
             <button onClick={handleDeleteCart}  className='quitar-product-cart'>❌</button>
