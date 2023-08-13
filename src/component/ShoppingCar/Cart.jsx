@@ -7,14 +7,13 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCarrito());
-  }, [dispatch]);
+
+
 
   const handleDeleteCart = (cartId, productId) => {
     dispatch(removeFromCart(cartId, productId));
   };
-
+ 
   const [productTotals, setProductTotals] = useState({}); // Almacena los totales individuales de cada producto
 
   useEffect(() => {
@@ -26,9 +25,9 @@ const Cart = () => {
         newProductTotals[product.id] = total;
       });
     });
-
+      dispatch(getCarrito());
     setProductTotals(newProductTotals);
-  }, [cartItems]);
+  }, [dispatch]);
 
   const total = Object.values(productTotals).reduce((acc, val) => acc + val, 0);
 

@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../redux/actions/index';
+import { getCarrito, removeFromCart } from '../../redux/actions/index';
 import '../ShoppingCar/Cart.css'
 
-const CartItem = ({ product, cartId }) => {
+const CartItem = ({ product, cartId}) => {
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(product.quantitySelected || 1);
+    const  [valueProduct, setValueProduct] = useState(1)
 
+    useEffect(() => {
+        const storeValue1 = localStorage.getItem(`Cantidad_${product.ProductId}}`)
+        if(storeValue1){
+        setValueProduct(parseInt(storeValue1))}
+        dispatch(getCarrito());
+      }, []);
+   
+    
     const handleQuantityChange = (e) => {
-        setQuantity(Number(e.target.value));
+        const cantidad = parseInt(e.target.value)
+        setQuantity(Number(cantidad));
+       localStorage.setItem(`Cantidad_${product.ProductId}`,cantidad)
     };
 
     const handleDeleteCart = () => {
@@ -16,7 +27,7 @@ const CartItem = ({ product, cartId }) => {
     };
 
     const totalPrice = product.price * quantity;
-
+    console.log(product)
     return (
         <div className='container-cart'>
             <div className='subContainer-cart'>
@@ -28,7 +39,7 @@ const CartItem = ({ product, cartId }) => {
                 </label>
                 <select
                     id={`quantity-select-${product.id}`}
-                    value={quantity}
+                    value={valueProduct}
                     onChange={handleQuantityChange}
                     className="form-select custom-select"
                 >
