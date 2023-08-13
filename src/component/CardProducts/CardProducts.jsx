@@ -9,7 +9,7 @@ const CardProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
 
-  const products = useSelector((state) => state.products) || []; // Asegura que products sea un arreglo válido
+  const products = useSelector((state) => state.products); // Asegura que products sea un arreglo válido
 
   const totalProducts = products.length;
   const totalPages = Math.ceil(totalProducts / productsPerPage);
