@@ -8,6 +8,7 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   RESET_QUANTITY,
+  GETUSERS
 } from "../actions/Types";
 
 const inicialState = {
@@ -18,6 +19,7 @@ const inicialState = {
   filtered: [],
   favoriteCount: 0,
   cartCount: 0,
+  users:[]
 };
 
 const reducer = (state = inicialState, actions) => {
@@ -103,6 +105,11 @@ const reducer = (state = inicialState, actions) => {
         ...state,
         products: actions.payload,
       };
+      case GETUSERS:
+        return {
+          ...state,
+          users: actions.payload
+        }
 
     default:
       return {

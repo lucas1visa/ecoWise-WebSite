@@ -7,7 +7,7 @@ return(
 <>
 <header className="flex flex-col md:flex-row items-center justify-between gap-4">
 <h1 className="text-2xl md:text-3xl font-bold">
-Hola, <span className="text-primary-100">Lucas</span>
+Hola, <span className="text-primary-100">Admin</span>
 </h1>
 <form className="w-full md:w-auto">
 <div className="relative">
