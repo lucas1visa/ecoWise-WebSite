@@ -5,7 +5,7 @@ import styles from "./Contacto.module.css"
 const Contacto = () => {
   return (
     <div className={styles.container}>
-        <form className={styles.form} action="https://formsubmit.co/eco.wise.ecommerce@gmail.com" method="POST" >
+        <form className={styles.form} action="https://formsubmit.co/eco.wise.commerce@gmail.com" method="POST" >
             <h1 className={styles.h1}>Contacta Con Nosotros</h1>
             <input className={styles.input1} type="text" id='First Name' name='name' placeholder='Nombre' required/>
             <input className={styles.input2} type="text" id='Last Name'name='Apellido' placeholder='Apellido' required/>

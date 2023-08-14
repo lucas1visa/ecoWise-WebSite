@@ -17,7 +17,7 @@ const NavbarAdmin = ({handleComponentChange}) => {
             src="https://ecowise-web-site.vercel.app/assets/EcoWise-d97d203f.jpg"
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
-          <h1 className="text-xl text-white font-bold">Lucas Julian Visa</h1>
+          <h1 className="text-xl text-white font-bold">Administrador</h1>
           <p className="bg-primary-900 py-2 px-4 rounded-full text-white">
             Administrador
           </p>
