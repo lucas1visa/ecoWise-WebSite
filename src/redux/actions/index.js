@@ -32,8 +32,9 @@ export const getProducts = () => {
   };
 };
 export const deletLogical = (id)=>{
+  console.log(id)
   return async (dispatch)=> {
-    const res = await axios.get(`/users//deletelogical/${id}`)
+    const res = await axios.put(`/users/deletelogical/${id}`)
     dispatch({ type: DELETELOGICAL, payload: res });
 
   }

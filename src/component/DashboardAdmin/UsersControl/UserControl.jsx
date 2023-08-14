@@ -6,7 +6,7 @@ const UserControl = () => {
     const users = useSelector(state => state.users);
     useEffect(() => {
         dispatch(getUsers());
-    }, [dispatch]);
+    }, [users]);
     const [isLocked, setIsLocked] = useState(true);
     const handleToggleLock = (userId) => {
         dispatch(deletLogical(userId))
