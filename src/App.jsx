@@ -18,6 +18,7 @@ import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
 import GraphAdmin from './component/DashboardAdmin/DashboardAdmin';
+import ProtectedRoutes from './component/ProtectedRoutes/ProtectedRoutes';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +46,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/grafica" element={<GraphAdmin />} />
-          <Route path="/admin" element={<DashboardAdmin/>} />
+          <Route path="/admin" element={
+            <ProtectedRoutes>
+              <DashboardAdmin/>
+            </ProtectedRoutes>
+          } />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/product/register/" element={<NewProduct />} />

@@ -59,7 +59,8 @@ const Login = () => {
         if (Object.keys(errorinput).length === 0) {
             // despachamos la informacion y obtenemos el valor del token
             let infotoken = await LoginUser(valuesInputs);
-            console.log(infotoken.newToken);
+            // console.log(infotoken.newToken);
+            // console.log(typeof infotoken.newToken);
             // comprobamos el resultado del token, si el usuario y password fueron validados debera devolver
             // un token, en caso contrario devolvera un objeto vacio
             if (Object.getOwnPropertyNames(infotoken.newToken).length) {

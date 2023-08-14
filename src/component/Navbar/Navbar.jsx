@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 // importamos todos los componentes de para el formulario de login
 import { FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Login from "../Login/Login";
+// import AdminOrUser from "../../services/isAdmin";
 
 const NavbarComponent = () => {
   const [selectedOrder, setSelectedOrder] = useState(""); // Estado para el select de ordenamiento
@@ -28,6 +29,24 @@ const NavbarComponent = () => {
   const dispatch = useDispatch();
   const favoriteCount = useSelector((state) => state.favoriteCount);
   const CartCount = useSelector((state) => state.cartCount);
+  
+  // // ============================================= MOSTRAR BOTON DE ADMIN ==================================================
+  // // estado local que permite mostrar boton admin
+  // const [showAdmin,setShowAdmin] = useState(false);
+
+  // const [userData,setUserData] = useState(null);
+  // // obtenemos desde la localstorage en caso de estar logueado el token, en caso de no estarlo nos dara 'null'
+  // let tokenUser = localStorage.getItem('tokenDB');
+  // // preguntamos si tenemos token, en caso de tener, pedimos al back la payload del token
+  // useEffect(()=>{
+  //     AdminOrUser(tokenUser).then((res)=>setUserData(res))
+  // },[tokenUser])
+
+  // console.log(userData);
+
+
+
+  // ========================================================================================================================
 
      // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
@@ -160,6 +179,8 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
+          {/* MOSTRAMOS EL BOTON DE ADMIN EN CASO DE QUE EL USUARIO LOGUEADO TENGA LA PROPIEDAD ADMIN EN TRUE */}
+          {/* {showAdmin && <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>} */}
           <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>
       <Login/>
     </Navbar.Collapse>
