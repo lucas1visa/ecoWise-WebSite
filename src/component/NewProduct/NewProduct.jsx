@@ -145,7 +145,7 @@ const NewProduct = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:3001/products/admin/create", dataToSend);
+            const response = await axios.post("https://ecowise-server01.onrender.com/products/admin/create", dataToSend);
             alert('Creado con éxito');
         } catch (error) {
             alert('ERROR');

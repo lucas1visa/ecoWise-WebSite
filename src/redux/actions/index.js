@@ -13,8 +13,10 @@ import {
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
+  DELETELOGICAL
  /*  RESET_QUANTITY */
 } from "./Types";
+import { async } from "@firebase/util";
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -29,6 +31,13 @@ export const getProducts = () => {
     dispatch({ type: GETPRODUCTS, payload: data });
   };
 };
+export const deletLogical = (id)=>{
+  return async (dispatch)=> {
+    const res = await axios.get(`/users//deletelogical/${id}`)
+    dispatch({ type: DELETELOGICAL, payload: res });
+
+  }
+}
 
 export const postProduct = (product) => {
   return async (dispatch) => {

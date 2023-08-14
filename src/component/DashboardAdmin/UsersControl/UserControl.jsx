@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../../redux/actions';
+import { getUsers,deletLogical } from '../../../redux/actions';
 const UserControl = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
@@ -9,7 +9,7 @@ const UserControl = () => {
     }, [dispatch]);
     const [isLocked, setIsLocked] = useState(true);
     const handleToggleLock = (userId) => {
-        // dispatch(toggleUserLock(userId));
+        dispatch(deletLogical(userId))
         console.log(userId)
     };
 
@@ -31,7 +31,7 @@ const UserControl = () => {
       className={`bg-${isLocked ? "blue-500" : "green-500"} hover:bg-${isLocked ? "blue-700" : "green-700"} text-white font-bold py-2 px-4 rounded-full`}
       onClick={()=>{handleToggleLock(user.id)}}
     >
-      {isLocked ? "Bloquear" : "Desbloquear"}
+      {!user.isDeleted ? "Bloquear" : "Desbloquear"}
     </button>
                 <div>
                 </div>
