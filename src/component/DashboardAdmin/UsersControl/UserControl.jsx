@@ -23,9 +23,12 @@ const UserControl = () => {
                 <div className="col-span-2 flex items-center gap-4">
                     <span>Nombre y apellido</span>
                     <h3 className="font-bold">{user.name} {user.surname}</h3>
-                    <span className="bg-primary-200 text-dark py-1 px-3 rounded-full font-medium">
+                    {!user.isDeleted ? <span className="bg-primary-200 text-dark py-1 px-3 rounded-full font-medium">
                         Activo
-                    </span>
+                    </span> :
+                    <span className="bg-gray-200 text-dark py-1 px-3 rounded-full font-medium">
+                        Desactivado
+                    </span>}
                 </div>
                 <button
       className={`bg-${isLocked ? "blue-500" : "green-500"} hover:bg-${isLocked ? "blue-700" : "green-700"} text-white font-bold py-2 px-4 rounded-full`}

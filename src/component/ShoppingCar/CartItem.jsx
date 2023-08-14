@@ -56,6 +56,7 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
             {console.log(safeCartTotal)} {/* Mostrar el total del carrito aquí */}
             {/* <button onClick={handleSaveCartTotal}>Guardar Total</button> Agregar el botón para guardar el total */}
             <button onClick={handleDeleteCart}  className='quitar-product-cart'>❌</button>
+            
         </div>
     );
 };

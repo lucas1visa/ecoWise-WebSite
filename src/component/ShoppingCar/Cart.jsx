@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito, removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
+import MPButton from '../MPButton/MPButton';
 
 const Cart = () => {
   const cartItems = useSelector(state => state.cartItems);
@@ -72,7 +73,7 @@ const Cart = () => {
         </div>
       ))}
       <h1>Total: {totalGeneralSafe}</h1>
-      
+      <MPButton titul={"Producto Ecowise"} precio={totalGeneralSafe} cantidad={1}/>
     </div>
   );}
 

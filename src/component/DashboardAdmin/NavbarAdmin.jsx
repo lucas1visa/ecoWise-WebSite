@@ -7,7 +7,7 @@ const NavbarAdmin = ({handleComponentChange}) => {
   return (
     <>
       <div
-       className={`bg-primary-900 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
+       className={`bg-primary-100 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
         menu ? "left-0" : "-left-full"
       }`}
       >
@@ -18,7 +18,7 @@ const NavbarAdmin = ({handleComponentChange}) => {
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
           <h1 className="text-xl text-white font-bold">Lucas Julian Visa</h1>
-          <p className="bg-primary-100 py-2 px-4 rounded-full text-white">
+          <p className="bg-primary-900 py-2 px-4 rounded-full text-white">
             Administrador
           </p>
         </div>
