@@ -1,45 +1,43 @@
-.container{
+.container {
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form{
+.form {
   padding: 50px, 60px;
   border-radius: 20px;
-  box-shadow: 0,0,20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0, 0, 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 400px;
 }
 
-.inputgroup{
+.inputgroup {
   display: flex;
- flex-direction: column;
- text-align: left;padding: 17px 25px;
- border-radius: 25px;
- margin-bottom: 20px;
- background-color: rgb(105, 114, 153);
- border: 2px solid #f0faf1;
- color: #252725;
- 
-
+  flex-direction: column;
+  text-align: left;
+  padding: 17px 25px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  background-color: rgb(105, 114, 153);
+  border: 2px solid #f0faf1;
+  color: #252725;
 }
-.h2{
+.h2 {
   font-size: 35px;
   color: #141414;
   margin: 20px;
 }
 
-label{
+label {
   color: #000000;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 18px;
 }
 
-
-input{
+input {
   padding: 17px 25px;
   border-radius: 25px;
   margin-bottom: 20px;
@@ -49,19 +47,6 @@ input{
   outline: none;
 }
 
-input::placeholder{
+input::placeholder {
   color: #ffffff;
 }
-
-
-
-
-
-
-
-
-
-
- 
-
-
