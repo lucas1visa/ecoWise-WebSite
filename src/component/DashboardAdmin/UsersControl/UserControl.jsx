@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../../redux/actions';
 const UserControl = () => {
@@ -7,7 +7,7 @@ const UserControl = () => {
     useEffect(() => {
         dispatch(getUsers());
     }, [dispatch]);
-
+    const [isLocked, setIsLocked] = useState(true);
     const handleToggleLock = (userId) => {
         // dispatch(toggleUserLock(userId));
         console.log(userId)
@@ -27,7 +27,12 @@ const UserControl = () => {
                         Activo
                     </span>
                 </div>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Bloquear</button>
+                <button
+      className={`bg-${isLocked ? "blue-500" : "green-500"} hover:bg-${isLocked ? "blue-700" : "green-700"} text-white font-bold py-2 px-4 rounded-full`}
+      onClick={()=>{handleToggleLock(user.id)}}
+    >
+      {isLocked ? "Bloquear" : "Desbloquear"}
+    </button>
                 <div>
                 </div>
             </div>
