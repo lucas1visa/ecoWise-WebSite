@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import ecoWise from "../Footer/EcoWise.jpg";
 import { Modal } from "react-bootstrap";
@@ -6,11 +5,14 @@ import { Modal } from "react-bootstrap";
 const Footer = () => {
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
+  const [ShowPagosModal, setShowPagosModal] = useState(false);
 
   const handleFAQClose = () => setShowFAQModal(false);
   const handleFAQShow = () => setShowFAQModal(true);
   const handleTermsClose = () => setShowTermsModal(false);
   const handleTermsShow = () => setShowTermsModal(true);
+  const handlePagosClose = () => setShowPagosModal(false);
+  const handlePagosShow = () => setShowPagosModal(true);
 
   function preventDefault(event) {
     event.preventDefault();
@@ -29,7 +31,6 @@ const Footer = () => {
           </div>
 
           <div className="mb-6 md:mb-0 text-center md:text-left text-white ">
-           
             <p className="text-white font-bold mb-2">Contactos</p>
             <div>
               <a
@@ -74,7 +75,16 @@ const Footer = () => {
           </div>
 
           <div className="mb-4 md:mb-0 text-center md:text-left text-white">
-            <p className="text-white font-bold mb-2">Métodos de Pago</p>
+            <div>
+              <a
+                className="block text-white  no-underline"
+                href="#"
+                onClick={handlePagosShow}
+              >
+                Métodos de Pago
+              </a>
+            </div>
+            <p className="text-white font-bold mb-2"></p>
             <div>
               <a
                 className="block text-white  no-underline"
@@ -228,6 +238,73 @@ const Footer = () => {
                 </p>
 
                 <p>Última actualización: 08/08/2023</p>
+              </p>
+            </Modal.Body>
+            <Modal.Footer></Modal.Footer>
+          </Modal>
+
+          <Modal show={ShowPagosModal} onHide={handlePagosClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Métodos de Pago</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h3>
+                Compra con Confianza: Métodos de Pago Seguros con Mercado Pago
+              </h3>
+              <p>
+                En la actualidad, realizar compras en línea se ha convertido en
+                una parte fundamental de nuestras vidas, permitiéndonos acceder
+                a una amplia gama de productos y servicios desde la comodidad de
+                nuestro hogar. Sin embargo, una de las preocupaciones más
+                comunes al comprar en línea es la seguridad de los métodos de
+                pago. Es aquí donde Mercado Pago entra en escena, ofreciendo una
+                solución integral que brinda tranquilidad y confianza a los
+                compradores en línea.
+              </p>
+              <h3>Variedad de Métodos de Pago</h3>
+              <p>
+                Mercado Pago se destaca por ofrecer una amplia variedad de
+                métodos de pago, desde tarjetas de crédito y débito hasta
+                transferencias bancarias y pagos en efectivo en puntos de pago
+                autorizados. Esto permite a los compradores elegir el método que
+                les resulte más conveniente y familiar, adaptándose a sus
+                preferencias individuales.
+              </p>
+              <h3>Pasarela de Pago Segura</h3>
+              <p>
+                La pasarela de pago de Mercado Pago es una de las más seguras
+                del mercado. Utiliza tecnología de encriptación de última
+                generación para proteger los datos sensibles de los usuarios,
+                como los números de tarjeta y la información financiera. Esto
+                garantiza que la información personal y financiera del cliente
+                esté resguardada contra posibles amenazas cibernéticas.
+              </p>
+              <h3>Proceso de Compra Sencillo y Transparente</h3>
+              <p>
+                Uno de los aspectos que más tranquilidad brinda a los clientes
+                es el proceso de compra sencillo y transparente que ofrece
+                Mercado Pago. Desde la selección de productos hasta el pago
+                final, cada paso está diseñado para ser intuitivo y fácil de
+                entender. Además, durante todo el proceso, el cliente tiene
+                acceso a información clara sobre los montos a pagar y los
+                detalles de la transacción.
+              </p>
+              <h3>Protección al Comprador</h3>
+              <p>
+                Mercado Pago va más allá al ofrecer una protección al comprador.
+                Si surge algún problema con la compra, como la no recepción del
+                producto o servicios no conformes, los usuarios tienen la
+                posibilidad de abrir una disputa y recibir asistencia para
+                resolver el problema de manera justa y equitativa.
+              </p>
+              <h3>Respaldo de una Marca Confiable</h3>
+              <p>
+                La reputación de Mercado Pago como una plataforma confiable y
+                reconocida en el ámbito del comercio electrónico agrega un nivel
+                adicional de tranquilidad. Al elegir realizar una transacción a
+                través de Mercado Pago, los compradores pueden confiar en que
+                están tratando con una entidad que valora la seguridad y la
+                satisfacción del cliente.
               </p>
             </Modal.Body>
             <Modal.Footer></Modal.Footer>
