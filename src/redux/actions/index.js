@@ -13,7 +13,8 @@ import {
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
-  DELETELOGICAL
+  DELETELOGICAL,
+  ACTUALIZAR_PRODUCTO
  /*  RESET_QUANTITY */
 } from "./Types";
 import { async } from "@firebase/util";
@@ -231,3 +232,22 @@ export const searchPrducts = (name)=>{
   dispatch({ type: SEARCH_PRODUCTS, payload: res.data });
 };
 };
+
+
+export function actualizarProducto(id, quantityAvailable, price) {
+  return async function (dispatch) {
+    try {
+      await axios.put(
+        `/update`,
+        id, quantityAvailable, price
+      );
+      console.log('Este es el producto Actualizado: ' + id, quantityAvailable, price )
+      return dispatch({
+        type: ACTUALIZAR_PRODUCTO,
+        payload: id, quantityAvailable, price
+      });
+    } catch (error) {
+      console.log("No se pudo agregar la nueva Informacion: ", error);
+    }
+  };
+}
