@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
-import MPButton from "../MPButton/MPButton";
 import "./ProductDetail.css";
 
 const ProductDetail = ({ productId, setShowModal }) => {
@@ -77,18 +76,10 @@ const ProductDetail = ({ productId, setShowModal }) => {
                 </div>
                 <div className="quantity-select d-flex align-items-center ms-sm-5">
                   <div className="btn-container">
-                    <button
-                      className="btn btn-button"
-                      onClick={handleAddToCart}
-                    >
+                    <button className="btn-button" onClick={handleAddToCart}>
                       {addToCartText}
                     </button>
 
-                    <MPButton
-                      titul={product.name}
-                      precio={product.price}
-                      cantidad={quantity}
-                    />
                   </div>
                 </div>
               </div>
