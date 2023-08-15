@@ -127,7 +127,7 @@ const Login = () => {
             let surname = credentialsUser._tokenResponse.lastName;
             let email = credentialsUser._tokenResponse.email;
             let phone = credentialsUser.user.phoneNumber;
-            // let register = credentialsUser._tokenResponse.providerId;
+            let register = credentialsUser._tokenResponse.providerId;
             localStorage.setItem('token',credentialsUser.user.accessToken);
             Swal.fire({
                 icon: 'success',
@@ -135,7 +135,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 2000
             });
-            dispatch(postUser({name, surname, email, phone}));
+            // dispatch(postUser({name, surname, email, phone}));
             setSession(true);
             setShow({
                 formlogin: false
