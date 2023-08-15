@@ -27,7 +27,7 @@ const NavbarComponent = () => {
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const favoriteCount = useSelector((state) => state.favoriteCount);
-  const CartCount = useSelector((state) => state.cartCount);
+  const cartCount = useSelector((state) => state.cartCount);
 
      // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
@@ -111,13 +111,13 @@ const NavbarComponent = () => {
                 {favoriteCount > 0 ? <button className="button-icon-cora">❤️</button> : <button className="button-icon-cora">🤍</button> }
               </Link>
                 {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+                {cartCount > 0 && <span className="favorite-count">{cartCount}</span>}
             </div>
           </Nav>
 {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
         {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
         {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
         <ion-icon name="cart-outline"></ion-icon>
-        {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
         </button>}
             <Modal isOpen={showCartForm.open}>
               <ModalHeader>
@@ -150,10 +150,10 @@ const NavbarComponent = () => {
 
           {isHomePage && (
             <div className="">
-              <select className="form-control" onChange={handleOrderChange} value={selectedOrder}>
-                <option value="">Order by</option>
-                <option value="upward">Order A-Z</option>
-                <option value="falling">Order Z-A</option>
+              <select id="form-control" onChange={handleOrderChange} value={selectedOrder}>
+                <option value="">Ordenar por</option>
+                <option value="upward">Ordenar A-Z</option>
+                <option value="falling">Ordenar Z-A</option>
                 <option value="price">Mas Caros</option>
                 <option value="pricent">Mas Baratos</option>
               </select>

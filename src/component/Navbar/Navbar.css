@@ -107,3 +107,10 @@
     color: #29CE8A;
 }
 
+#form-control{
+   width: 120px;
+   border-radius: 5px;
+   height: 37px;
+   padding-left: 10px;
+   appearance: none;
+}
