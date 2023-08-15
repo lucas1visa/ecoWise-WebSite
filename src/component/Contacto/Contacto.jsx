@@ -13,7 +13,7 @@ const Contacto = () => {
             <input className={styles.input4} type="text" id='mobile'name='Mobile' placeholder='Teléfono' required/>
             <h4 className={styles.h4}>Escribe tu mensaje aquí . . .</h4>
             <textarea className={styles.text} required ></textarea>
-            <input  className={styles.button} type="submit" value="Enviar" id='buttom'/>
+            <input  className={styles.button} type="submit"  value="Enviar" id='buttom'/>
         </form>
     </div>
   );

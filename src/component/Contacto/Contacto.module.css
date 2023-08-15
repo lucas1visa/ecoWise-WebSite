@@ -9,7 +9,7 @@
 
 .form{
   width: 670px;
-  height: 400px;
+  height: 450px;
   display: flex;
   justify-content: center;
   box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
@@ -37,6 +37,9 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
+  background: linear-gradient(to left,white, rgb(57, 70, 145));
+  
+  
 }
 .input2{
   width: 290px;
@@ -48,6 +51,8 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
+  background: linear-gradient(to left,white, rgb(57, 70, 145));
+
 }
 .input3 
 {
@@ -60,6 +65,8 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
+  background: linear-gradient(to left,white, rgb(57, 70, 145));
+
 
 }
 .input4{
@@ -72,6 +79,8 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
+  background: linear-gradient(to left,white, rgb(57, 70, 145));
+
 }
 
 .h4{
@@ -117,4 +126,5 @@ padding: 0;
 margin-right: 500px;
 margin-bottom: 30px;
 transition: 0.6s;
+display: flex;
 }

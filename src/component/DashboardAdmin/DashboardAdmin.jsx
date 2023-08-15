@@ -5,6 +5,7 @@ import NavbarAdmin from "./NavbarAdmin";
 import UserControl from "./UsersControl/UserControl";
 import { useLocation } from "react-router-dom";
 import NewProduct from "../NewProduct/NewProduct";
+import VentanaDeProductos from "./VentanaEmergente/VentanaDeProductos";
 
 const DashboardAdmin = () => {
   const [selectedComponent, setSelectedComponent] = useState("default")
@@ -18,7 +19,8 @@ const DashboardAdmin = () => {
         <HeaderAdmin />
         {/* Section 1 */}
         {selectedComponent === "userControl" && <UserControl />}
-        {selectedComponent === "newProduct" && <NewProduct />}
+        {selectedComponent === "newProduct" && ( <> <NewProduct /><div><VentanaDeProductos /></div></>)}
+
 
         {selectedComponent === "default" && (<div><section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-10 gap-8">
           {/* Card 1 */}
