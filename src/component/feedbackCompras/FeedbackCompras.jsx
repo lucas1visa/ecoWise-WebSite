@@ -3,10 +3,11 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { postPurcharse } from "../../redux/actions";
     const FeedbackCompras = () => {
-        const dispatch = useDispatch
+        const dispatch = useDispatch()
         const {payment_id,payment_type,status}=useParams()
         useEffect(()=>{
-           const {userId,idProduct,quantity} = localStorage.getItem("cart");
+           const x = localStorage.getItem("cart");
+           const {userId,idProduct,quantity} = JSON.parse(x);
            console.log(userId)
 
             dispatch(postPurcharse(payment_id,payment_type,status,userId,idProduct,quantity))
