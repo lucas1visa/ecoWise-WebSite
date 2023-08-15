@@ -44,13 +44,13 @@ function App() {
       {isLoading && <LoadingScreen />}{/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<DashboardAdmin/>} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<UserProfile />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
-          <Route path="/admin" element={<DashboardAdmin/>} />
           <Route path="/feedback" element={<FeedbackCompras/>} />
         </Routes>
         {!isDashboardAdmin && <Footer />}

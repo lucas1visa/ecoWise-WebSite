@@ -43,7 +43,7 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
                     onChange={handleQuantityChange}
                     className="form-select custom-select"
                 >
-                    <option value="1">Seleccione cantidad</option> {/* Opción adicional */}
+                   {/*  {<option value="1">Seleccione cantidad</option>} {/* Opción adicional */} */
                     {Array.from({ length: product.quantityAvailable }, (_, index) => index + 1).map(count => (
                         <option key={count} value={count}>
                             {count}
@@ -51,11 +51,11 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
                     ))}
                 </select>
             </p>
-            <p>Precio: {totalPrice}</p>
+        {<p>Precio: {totalPrice}</p> }
             
             {console.log(safeCartTotal)} {/* Mostrar el total del carrito aquí */}
             {/* <button onClick={handleSaveCartTotal}>Guardar Total</button> Agregar el botón para guardar el total */}
-            <button onClick={handleDeleteCart}  className='quitar-product-cart'>❌</button>
+            <button onClick={handleDeleteCart}  className='quitar-product-cart'><ion-icon name="close-outline"></ion-icon></button>
             
         </div>
     );

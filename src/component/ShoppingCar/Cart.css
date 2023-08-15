@@ -51,5 +51,6 @@ h3{
    position: absolute;
    bottom: 525px;
    right: 10px;
-   font-size: 20px;
+   font-size: 30px;
+   color: rgb(239, 78, 78);
 }

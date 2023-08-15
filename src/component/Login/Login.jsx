@@ -16,38 +16,38 @@ import { AiOutlineGithub } from "react-icons/ai";
 import { BsFacebook, BsEye } from "react-icons/bs";
 import { postUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+
 
 const Login = () => {
 
     const dispatch = useDispatch();
     // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
-    // BsEyeSlash,BsEye
-    // estado para controlar la apertura o cierre de la ventana emergente
-    const [showFormLogin, setShowFormLogin] = useState({
-        open: false
-    });
+    // estado para controlar la sesion
+    const [session,setSession] = useState(true);
     // estado local para controlar la informacion en los inputs 
     const [valuesInputs, setValuesInputs] = useState({
         email: "",
         password: ""
     });
-    // estado para mostrar el boton de logout
-    const [showLogout, setShowLogout] = useState(false);
-    // estado para mostrar el boton de login
-    const [showLogin, setShowLogin] = useState(true);
-    // estado para almacenar los errores de los inputs
-    const [err, setErr] = useState({});
     // funcion para captura la informacion y almacenarla en el estado local
+    const [err, setErr] = useState({});
+
+    // estado para mostrar el boton de (logout/ login) y ademas permitir abrir el la ventana emergente de logueo
+    const [show, setShow] = useState({
+        formlogin:false
+    });
+    // funcion para almacenar los errores de los inputs
     const handleChangeInput = (event) => {
         const { name, value } = event.target;
         setValuesInputs({ ...valuesInputs, [name]: value })
     };
     // funcion para cerrar el login
     const handleLogin = () => {
-        setShowFormLogin({
-            open: !showFormLogin.open
+        setShow({
+            formlogin: !show.formlogin
         })
-    }
+    };
     // funcion para despachar la informacion de los inputs y almacenarlo en la DB
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
@@ -57,72 +57,96 @@ const Login = () => {
         setErr(errorinput);
         //si no existe ningun error despachamos la info
         if (Object.keys(errorinput).length === 0) {
-            // despachamos la informacion y obtenemos el valor del token
+             // despachamos la informacion al back-end
             let infotoken = await LoginUser(valuesInputs);
-            console.log(infotoken.newToken);
+            // caso de exito, me trae el token
+            // console.log(infotoken.newToken);
+            // caso de falla, devuelve el error
+            // console.log(infotoken.response.data);
             // comprobamos el resultado del token, si el usuario y password fueron validados debera devolver
-            // un token, en caso contrario devolvera un objeto vacio
-            if (Object.getOwnPropertyNames(infotoken.newToken).length) {
+            if(infotoken.response){
+                if(infotoken.response.data.error === 'Usuario Bloqueado'){
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Ooopss...',
+                        text: 'Esta cuenta esta suspendida',
+                        showConfirmButton: false,
+                        timer: 4500,
+                        footer: 'Contactese con un Admin o envie un correo con su consulta'
+                    });
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email o Password erroneos',
+                        showConfirmButton: false,
+                        timer: 4500,
+                        footer: 'Por favor verifique bien sus datos'
+                    });
+                }
+            }else {
+                // console.log('Mostrar cartel de logueo con exito');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Inicio con exitó',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
                 // almacenamos la informacion en localstorage del navegador
-                localStorage.setItem("tokenDB", infotoken.newToken);
-                //dejamos de mostrar el componente login
-                setShowFormLogin({
-                    open: false
+                localStorage.setItem("token", infotoken.newToken);
+                // estado para controlar la session
+                setSession(true);
+                //dejamos de mostrar el componente login y mostramos el boton de logout
+                setShow({
+                    formlogin: false
                 });
                 // limpiamos los inputs
                 setValuesInputs({
                     email: "",
                     password: ""
                 })
-                // dejamos de mostrar el boton de login
-                setShowLogin(false);
-                // mostramos el boton de logout
-                setShowLogout(true);
                 console.log('se envio che');
-            } else {
-                console.log('Hubo error en encontrar el usuario o validar su password');
             }
         } else {
-            console.log('hay errores man');
+            console.log('no se pudo despachar porque tiene errores');
         }
     };
     // funcion para elimanar el token y mostar el boton de login
     const handleLogout = () => {
         // quitamos la informacion almacenada en la localstorage
-        localStorage.removeItem('tokenDB');
-        localStorage.removeItem('tokenGoogle');
-        localStorage.removeItem('tokenFace');
-        localStorage.removeItem('tokenGitHub');
-        // mostramos el boton de login
-        setShowLogin(true);
-        // dejamos de mostrar el boton de logout
-        setShowLogout(false);
+        localStorage.removeItem('token');
+        // estado para controlar la sesion
+        setSession(false)
     }
     const handleGoogleLogin = async (event) => {
         try {
-            // let name=event.target.name;
+            // providerGoogle.addScope("https://www.googleapis.com/auth/cloud-platform");
             // realizamos una peticion a la api de google y esperamos su respuesta
             const credentialsUser = await signInWithPopup(auth, providerGoogle);
             console.log(credentialsUser);
             let name = credentialsUser._tokenResponse.firstName;
             let surname = credentialsUser._tokenResponse.lastName;
             let email = credentialsUser._tokenResponse.email;
+            let phone = credentialsUser.user.phoneNumber;
             let register = credentialsUser._tokenResponse.providerId;
-            localStorage.setItem('tokenGoogle',credentialsUser.user.accessToken);
-            // let name = credentialsUser.tokenResponse.firstName;
-            dispatch(postUser({ name, surname, email,register}));
-
-            setShowLogout(true);
-            setShowLogin(false);
-            setShowFormLogin(false);
+            console.log(name,surname,email,phone,register);
+            localStorage.setItem('token',credentialsUser.user.accessToken);
+            Swal.fire({
+                icon: 'success',
+                title: 'Inicio con exitó',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            dispatch(postUser({name, surname, email, phone, register}));
+            setSession(true);
+            setShow({
+                formlogin: false
+            });
         } catch (error) {
             console.log(error);
         }
     }
     const handleFaceLogin = async (event) => {
         try {
-            // let name=event.target.name;
-            // console.log(name);
             // realizamos una peticion a la api de google y esperamos su respuesta
             const credentialsUser = await signInWithPopup(auth, providerFace);
             console.log(credentialsUser);
@@ -130,43 +154,57 @@ const Login = () => {
             let surname = credentialsUser._tokenResponse.lastName;
             let email = credentialsUser._tokenResponse.email;
             let register = credentialsUser._tokenResponse.providerId;
-            dispatch(postUser({ name, surname,email,register}));
-            setShowLogout(true);
-            setShowLogin(false);
-            setShowFormLogin(false);
+            localStorage.setItem('token',credentialsUser.user.accessToken);
+            Swal.fire({
+                icon: 'success',
+                title: 'Inicio con exitó',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            dispatch(postUser({ name, surname, email, register}));
+            setSession(true);
+            setShow({
+                formlogin: false
+            });
         } catch (error) {
             console.log(error);
         }
     }
     const handleGitHub = async(event)=>{
         try {
-            // let name=event.target.name;
-            // console.log(name);
             // realizamos una peticion a la api de google y esperamos su respuesta
             const credentialsUser = await signInWithPopup(auth, providerGitHub);
             console.log(credentialsUser);
+            localStorage.setItem('token',credentialsUser.user.accessToken);
             let name = credentialsUser._tokenResponse.firstName;
             let surname = credentialsUser._tokenResponse.lastName;
             // let email = credentialsUser._tokenResponse.email;
-            localStorage.setItem('tokenGitHub',credentialsUser.user.accessToken);
             let register = credentialsUser._tokenResponse.providerId;
+            console.log(name,surname,register);
+            Swal.fire({
+                icon: 'success',
+                title: 'Inicio con exitó',
+                showConfirmButton: false,
+                timer: 2000
+            });
             dispatch(postUser({ name, surname,register}));
-            setShowLogout(true);
-            setShowLogin(false);
-            setShowFormLogin(false);
+            setSession(true);
+            setShow({
+                formlogin: false
+            });
         } catch (error) {
             console.log(error);
         }
     }
-
+   
     // =========================================================================================================================
 
     return (
         <>
             {/*=============================================== REGISTRO DE LOGIN ================================================= */}
-            {showLogout && <Button onClick={handleLogout}>Salir</Button>}
-            {showLogin && <Button onClick={handleLogin}>Iniciar</Button>}
-            <Modal isOpen={showFormLogin.open}>
+            {localStorage.getItem('token')&&<Button onClick={handleLogout}>Salir</Button>}
+            {!localStorage.getItem('token')&&<Button onClick={handleLogin}>Iniciar</Button>}
+            <Modal isOpen={show.formlogin}>
                 <ModalHeader>
                     Iniciar Sesion
                 </ModalHeader>
