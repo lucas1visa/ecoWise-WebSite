@@ -1,3 +1,5 @@
+import exp from "constants"
+
 export const GETUSERS = "GETUSERS"
 export const GETPRODUCTS = "GETPRODUCTS"
 export const POSTPRODUCTS = "POSTPRODUCTS"
@@ -13,3 +15,4 @@ export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS"
 export const RESET_QUANTITY = "RESET_QUANTITY"
 export const DELETELOGICAL = "DELETELOGICAL"
 export const ACTUALIZAR_PRODUCTO = "ACTUALIZAR_PRODUCTO"
+export const POSTPURCHARSE = "POSTPURCHARSE"

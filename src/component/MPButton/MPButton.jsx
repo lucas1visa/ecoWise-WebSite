@@ -6,6 +6,9 @@ import "./MPButton.css"
 const publicKey = import.meta.env.VITE_PublicKey;
 console.log(publicKey)
 const MPButton = ({titul,precio,cantidad}) => {
+
+
+
   const [preferenceId, setPreferenceId] = useState(null);
   const [loading, setLoading] = useState(false);
   console.log(titul)

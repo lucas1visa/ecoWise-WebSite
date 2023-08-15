@@ -34,6 +34,15 @@ const ProductDetail = ({ productId, setShowModal }) => {
       dispatch(addFav(product));
     }
   };
+  const handlerClicks = ()=>{
+    const info = {
+      userId:1,
+      idProduct: product.id,
+      quantity: 3
+    }
+    localStorage.setItem("cart", JSON.stringify(info));
+
+  }
 
   return (
     <div className="custom-container">
@@ -83,12 +92,16 @@ const ProductDetail = ({ productId, setShowModal }) => {
                     >
                       {addToCartText}
                     </button>
-
+                    <button onClick={handlerClicks()}>
                     <MPButton
+                    
                       titul={product.name}
                       precio={product.price}
                       cantidad={quantity}
-                    />
+                        productId={ product.id}
+                        userId= {1} 
+                        quantity= {quantity}
+                    /></button>
                   </div>
                 </div>
               </div>

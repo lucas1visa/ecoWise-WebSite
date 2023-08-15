@@ -14,7 +14,8 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   DELETELOGICAL,
-  ACTUALIZAR_PRODUCTO
+  ACTUALIZAR_PRODUCTO,
+  POSTPURCHARSE
  /*  RESET_QUANTITY */
 } from "./Types";
 import { async } from "@firebase/util";
@@ -250,4 +251,14 @@ export function actualizarProducto(id, quantityAvailable, price) {
       console.log("No se pudo agregar la nueva Informacion: ", error);
     }
   };
+}
+export const postPurcharse = (payment_id,payment_type,status,userId,quantity,idProduct)=>{
+  return async (dispatch)=>{
+    try {
+      const res = await axios.post("/pay",payment_id,payment_type,status,userId,quantity,idProduct)
+      dispatch({type: POSTPURCHARSE , payload:res})
+    } catch (error) {
+      console.log("Error en cargar datos")
+    }
+  }
 }
