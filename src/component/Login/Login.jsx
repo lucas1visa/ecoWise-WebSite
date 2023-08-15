@@ -128,6 +128,7 @@ const Login = () => {
             let email = credentialsUser._tokenResponse.email;
             let phone = credentialsUser.user.phoneNumber;
             let register = credentialsUser._tokenResponse.providerId;
+            console.log(name,surname,email,phone,register);
             localStorage.setItem('token',credentialsUser.user.accessToken);
             Swal.fire({
                 icon: 'success',
@@ -135,7 +136,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 2000
             });
-            // dispatch(postUser({name, surname, email, phone}));
+            dispatch(postUser({name, surname, email, phone, register}));
             setSession(true);
             setShow({
                 formlogin: false
@@ -160,7 +161,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 2000
             });
-            // dispatch(postUser({ name, surname,email,register}));
+            dispatch(postUser({ name, surname, email, register}));
             setSession(true);
             setShow({
                 formlogin: false
@@ -179,13 +180,14 @@ const Login = () => {
             let surname = credentialsUser._tokenResponse.lastName;
             // let email = credentialsUser._tokenResponse.email;
             let register = credentialsUser._tokenResponse.providerId;
+            console.log(name,surname,register);
             Swal.fire({
                 icon: 'success',
                 title: 'Inicio con exitó',
                 showConfirmButton: false,
                 timer: 2000
             });
-            // dispatch(postUser({ name, surname,register}));
+            dispatch(postUser({ name, surname,register}));
             setSession(true);
             setShow({
                 formlogin: false
