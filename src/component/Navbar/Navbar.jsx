@@ -127,9 +127,9 @@ const NavbarComponent = () => {
             </Link>
             <div>
               <Link to="/favorites" className="nav-linkk">
-                <button className="button-icon-cora">🤍</button>
-                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+                {favoriteCount > 0 ? <button className="button-icon-cora">❤️</button> : <button className="button-icon-cora">🤍</button> }
               </Link>
+                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
             </div>
           </Nav>
 {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
@@ -158,8 +158,7 @@ const NavbarComponent = () => {
               onClick={handleOrderChange}
               value="clean"
             >
-              ↻
-              {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
+            {<ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon>}
             </button>
           )}
 
@@ -171,7 +170,7 @@ const NavbarComponent = () => {
           {isHomePage && (
             <div className="">
               <select className="form-control" onChange={handleOrderChange} value={selectedOrder}>
-                <option value="">Order By</option>
+                <option value="">Order by</option>
                 <option value="upward">Order A-Z</option>
                 <option value="falling">Order Z-A</option>
                 <option value="price">Mas Caros</option>
