@@ -53,7 +53,7 @@ const Search = () => {
 
   return (
     <div className={styles.containerSearch}>
-      <input
+      <input 
         type="text"
         placeholder="Buscar productos"
         value={productName}

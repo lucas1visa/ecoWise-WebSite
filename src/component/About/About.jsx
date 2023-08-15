@@ -3,7 +3,7 @@ import styles from "./About.module.css";
 
 const About = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <section className={styles.section}>
         <h1>ecoWise</h1>
       </section>

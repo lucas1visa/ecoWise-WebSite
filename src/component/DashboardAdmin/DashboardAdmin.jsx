@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import NewProduct from "../NewProduct/NewProduct";
 import VentanaDeProductos from "./VentanaEmergente/VentanaDeProductos";
 
+
 const DashboardAdmin = () => {
   const [selectedComponent, setSelectedComponent] = useState("default")
   const handleComponentChange = (componentName) => {

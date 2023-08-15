@@ -211,12 +211,12 @@ const Login = () => {
                 <ModalBody>
                     <form onSubmit={handleSubmitLogin}>
                         <FormGroup>
-                            <Label>email</Label>
+                            <Label>Email</Label>
                             <Input type="text" name="email" value={valuesInputs.email} onChange={handleChangeInput} />
                             <p>{err.email}</p>
                         </FormGroup>
                         <FormGroup>
-                            <Label>password</Label>
+                            <Label>Password</Label>
                             <Input type="password" name="password" value={valuesInputs.password} onChange={handleChangeInput} />
                             <p>{err.password}</p>
                         </FormGroup>
