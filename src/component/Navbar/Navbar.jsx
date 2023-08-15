@@ -27,7 +27,7 @@ const NavbarComponent = () => {
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const favoriteCount = useSelector((state) => state.favoriteCount);
-  const CartCount = useSelector((state) => state.cartCount);
+  const cartCount = useSelector((state) => state.cartCount);
 
      // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
@@ -116,8 +116,8 @@ const NavbarComponent = () => {
 {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
         {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
         {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
+        {cartCount > 0 && <h1 className="cart-count">{cartCount}</h1>}
         <ion-icon name="cart-outline"></ion-icon>
-        {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
         </button>}
             <Modal isOpen={showCartForm.open}>
               <ModalHeader>

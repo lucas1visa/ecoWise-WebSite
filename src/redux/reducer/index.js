@@ -19,7 +19,8 @@ const inicialState = {
   filtered: [],
   favoriteCount: 0,
   cartCount: 0,
-  users:[]
+  users:[],
+  productoActualizado: []
 };
 
 const reducer = (state = inicialState, actions) => {
@@ -61,7 +62,8 @@ const reducer = (state = inicialState, actions) => {
       case GET_TO_CART:
         return{
           ...state,
-          cartItems: actions.payload
+          cartItems: actions.payload,
+          cartCount: [...state.cartItems + 1]
         }
 
 
@@ -80,8 +82,7 @@ const reducer = (state = inicialState, actions) => {
 
       return {
         ...state,
-        cartItems: updatedCartItems,
-        cartCount: state.cartCount - itemToReset.quantity,
+        cartItems: updatedCartItems - itemToReset.quantity
       };
     }
 
@@ -117,4 +118,7 @@ const reducer = (state = inicialState, actions) => {
       };
   }
 };
+
+
+
 export default reducer;
