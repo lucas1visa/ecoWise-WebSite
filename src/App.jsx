@@ -16,6 +16,8 @@ import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
+import ProductoAdmin from './component/DashboardAdmin/VentanaEmergente/ProductoAdmin';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +51,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
           <Route path="/admin" element={<DashboardAdmin/>} />
+          <Route path="/productoAdmin" element={<ProductoAdmin/>} />
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>
