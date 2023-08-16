@@ -16,7 +16,6 @@ import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
-import FeedbackCompras from './component/feedbackCompras/FeedbackCompras';
 
 
 function App() {

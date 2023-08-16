@@ -21,10 +21,13 @@ if(payment_id){
         icon: 'success',
         title: 'Gracias por su compra',
         text: 'Espero que lo disfrute',
-        timer: 6500,
-        footer: 'Cualquier inconveniente envie un correo con su consulta',
+        footer: 'Cualquier inconveniente envíe un correo con su consulta',
         showConfirmButton: true,
-    });
+        confirmButtonText: 'Aceptar',
+      }).then(() => {
+        window.location.href = "https://ecowise-web-site.vercel.app"; // Redirige a la página especificada
+      });
+      
       const x = localStorage.getItem("cart");
       const { userId, idProduct, quantity } = JSON.parse(x);
       dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
