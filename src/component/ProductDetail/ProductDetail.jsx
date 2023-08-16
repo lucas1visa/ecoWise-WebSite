@@ -35,8 +35,10 @@ const ProductDetail = ({ productId, setShowModal }) => {
     }
   };
   const handlerClicks = ()=>{
+   const userId = localStorage.getItem("userid")
+   console.log(typeof(userId))
     const info = {
-      userId:1,
+      userId:userId,
       idProduct: product.id,
       quantity: 3
     }
@@ -58,7 +60,7 @@ const ProductDetail = ({ productId, setShowModal }) => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="img-fluid"
+                  className="img-fluid ml-6"
                 />
               )
             )}
@@ -69,7 +71,9 @@ const ProductDetail = ({ productId, setShowModal }) => {
             ) : product ? (
               <div className="product-info">
                 <h2 className="h2-name">{product.name}</h2>
+                
                 <p className="p-description">{product.description}</p>
+                
                 <p className="p-price">Precio: ${product.price}</p>
                 <p className="p-description">
                   Cantidad disponible: {product.quantityAvailable}

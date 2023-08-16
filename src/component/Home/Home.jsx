@@ -21,7 +21,7 @@ if(payment_id){
         title: 'Gracias por su compra',
         text: 'Espero que lo disfrute',
         timer: 6500,
-        footer: 'Calquier inconveniente envie un correo con su consulta',
+        footer: 'Cualquier inconveniente envie un correo con su consulta',
         showConfirmButton: true,
     });
       const x = localStorage.getItem("cart");
