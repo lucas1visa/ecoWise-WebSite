@@ -36,7 +36,7 @@ const ProductDetail = ({ productId, setShowModal }) => {
   };
   const handlerClicks = ()=>{
     const info = {
-      userId:1,
+      userId:6,
       idProduct: product.id,
       quantity: 3
     }
