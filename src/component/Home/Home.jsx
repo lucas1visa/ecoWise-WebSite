@@ -13,7 +13,7 @@ const Home = () => {
     const queryParams = queryString.parse(location.search); 
     const { payment_id, payment_type, status} = queryParams;
     console.log(payment_id)
-    if(!payment_id === null){
+    if(payment_id !== null){
     const x = localStorage.getItem("cart");
     const {userId,idProduct,quantity} = JSON.parse(x);
     dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
