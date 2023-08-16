@@ -1,4 +1,4 @@
-import React from "react";
+
 import CardProducts from "../CardProducts/CardProducts";
 import "./Home.css";
 import React, { useEffect } from "react";
@@ -8,9 +8,11 @@ import queryString from "query-string";
 import { postPurcharse } from "../../redux/actions";
 
 const Home = () => {
-
+  const dispatch = useDispatch()
+  const location = useLocation()
     const queryParams = queryString.parse(location.search); 
     const { payment_id, payment_type, status} = queryParams;
+    console.log(payment_id)
     if(!payment_id === null){
     const x = localStorage.getItem("cart");
     const {userId,idProduct,quantity} = JSON.parse(x);
