@@ -252,10 +252,18 @@ export function actualizarProducto(id, quantityAvailable, price) {
     }
   };
 }
-export const postPurcharse = (payment_id,payment_type,status,userId,quantity,idProduct)=>{
+export const postPurcharse =  (payment_id,payment_type,status,userId,idProduct,quantity)=>{
+  const data = {
+    payment_id: payment_id,
+    payment_type: payment_type,
+    status: status,
+    userId: userId,
+    quantity: quantity,
+    idProduct: idProduct
+  };
   return async (dispatch)=>{
     try {
-      const res = await axios.post("/pay",payment_id,payment_type,status,userId,quantity,idProduct)
+      const res = await axios.post("/pay",data)
       dispatch({type: POSTPURCHARSE , payload:res})
     } catch (error) {
       console.log("Error en cargar datos")
