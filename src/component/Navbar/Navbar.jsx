@@ -35,14 +35,12 @@ const NavbarComponent = () => {
   // const [showAdmin,setShowAdmin] = useState(false);
 
   // const [userData,setUserData] = useState(null);
-  // // obtenemos desde la localstorage en caso de estar logueado el token, en caso de no estarlo nos dara 'null'
-  // let tokenUser = localStorage.getItem('tokenDB');
-  // // preguntamos si tenemos token, en caso de tener, pedimos al back la payload del token
-  // useEffect(()=>{
-  //     AdminOrUser(tokenUser).then((res)=>setUserData(res))
-  // },[tokenUser])
-
-  // console.log(userData);
+  let tokenAdmin = localStorage.getItem('admin');
+  useEffect(()=>{
+  },[localStorage.getItem('admin')])
+  
+  
+  
 
 
 
@@ -180,8 +178,8 @@ const NavbarComponent = () => {
             </div>
           )}
           {/* MOSTRAMOS EL BOTON DE ADMIN EN CASO DE QUE EL USUARIO LOGUEADO TENGA LA PROPIEDAD ADMIN EN TRUE */}
-          {/* {showAdmin && <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>} */}
-          <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>
+          {tokenAdmin && <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>}
+          {/* <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button> */}
       <Login/>
     </Navbar.Collapse>
   </Container>

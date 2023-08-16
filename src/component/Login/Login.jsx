@@ -124,6 +124,7 @@ const Login = () => {
         // quitamos la informacion almacenada en la localstorage
         localStorage.removeItem('token');
         localStorage.removeItem('userid');
+        localStorage.removeItem('admin');
         // estado para controlar la sesion
         setSession(false)
 
