@@ -45,9 +45,9 @@
 }
 
 .final{
-    height: 80px;
+    height: 50px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    border-radius: 300px; /* Ajusta el valor según la cantidad de redondez deseada */
+    border-radius: 400px; /* Ajusta el valor según la cantidad de redondez deseada */
     overflow: hidden; /* Para asegurarte de que el border-radius se aplique correctamente */
 }
 

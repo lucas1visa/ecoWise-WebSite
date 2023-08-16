@@ -4,7 +4,7 @@ import Cart from "../ShoppingCar/Cart";
 
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
-import final from "../../Img/final.jpeg";
+import plantita from "../../Img/plantita.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -92,11 +92,13 @@ const NavbarComponent = () => {
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
         <Link to="/" className="navbar-brand">
-          <img src={final} alt="final" className="final" />
+          <img src={plantita} alt="final" className="final ml-10" />
+          
         </Link>
+        <h3 className=" font-bold pr-12 pt-3 text-primary-900 mx-auto">ecoWise</h3>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
-          <Nav className="ml-auto">
+          <Nav className="ml-auto ">
             <Link to="/" className="nav-link text-black">
               Inicio
             </Link>
@@ -131,7 +133,7 @@ const NavbarComponent = () => {
               </ModalFooter>
               </Modal>
 {/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */} 
-          {isHomePage && <Search />}
+          {isHomePage && <Search/>}
 
           {isHomePage && (
             <button
