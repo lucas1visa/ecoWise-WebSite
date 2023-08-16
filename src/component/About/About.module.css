@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .section h1 {
@@ -33,6 +34,8 @@
     animation: fadeUp 0.2s ease;
     transition: all 0.2s ease;
     margin-bottom: 50px;
+    box-shadow: 20px 20px 50px rgba(10, 241, 60, 0.5);
+
 }
 
 .text {
