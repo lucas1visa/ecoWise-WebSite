@@ -123,7 +123,7 @@ const DashboardAdmin = () => {
                             </span>
                           </div>
                           <div>
-                            <span className="font-bold">{user.Purchases[0].Products[0].price}</span>
+                            <span className="font-bold">${user.Purchases[0].Products[0].price}</span>
                           </div>
                         </div>
                       );
