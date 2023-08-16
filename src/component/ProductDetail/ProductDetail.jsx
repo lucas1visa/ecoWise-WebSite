@@ -38,7 +38,7 @@ const ProductDetail = ({ productId, setShowModal }) => {
    const userId = localStorage.getItem("userid")
    console.log(typeof(userId))
     const info = {
-      userId:1,
+      userId:userId,
       idProduct: product.id,
       quantity: 3
     }
