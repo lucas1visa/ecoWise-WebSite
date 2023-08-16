@@ -252,7 +252,7 @@ export function actualizarProducto(id, quantityAvailable, price) {
     }
   };
 }
-export const postPurcharse = async (payment_id,payment_type,status,userId,idProduct,quantity)=>{
+export const postPurcharse =  (payment_id,payment_type,status,userId,idProduct,quantity)=>{
   const data = {
     payment_id: payment_id,
     payment_type: payment_type,
