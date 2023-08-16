@@ -51,7 +51,6 @@ function App() {
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
-          <Route path="/feedback" element={<FeedbackCompras/>} />
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>

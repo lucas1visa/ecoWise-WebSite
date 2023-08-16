@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom"; 
-import queryString from "query-string"; 
-import { postPurcharse } from "../../redux/actions";
-
+import React from "react";
 const FeedbackCompras = () => {
-  const dispatch = useDispatch();
-  const location = useLocation(); 
+//   const dispatch = useDispatch();
+//   const location = useLocation(); 
 
-  useEffect(() => {
-    const queryParams = queryString.parse(location.search); 
-    const { payment_id, payment_type, status} = queryParams;
-    const x = localStorage.getItem("cart");
-    const {userId,idProduct,quantity} = JSON.parse(x);
-    dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
-  }, []); // 
+//   useEffect(() => {
+//     const queryParams = queryString.parse(location.search); 
+//     const { payment_id, payment_type, status} = queryParams;
+//     const x = localStorage.getItem("cart");
+//     const {userId,idProduct,quantity} = JSON.parse(x);
+//     dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
+//   }, []); // 
 
   return (
     <div className="bg-white shadow-md p-4 rounded-lg">
