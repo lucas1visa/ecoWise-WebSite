@@ -13,7 +13,7 @@ const Home = () => {
   const location = useLocation()
   const queryParams = queryString.parse(location.search); 
   const { payment_id, payment_type, status } = queryParams;
-
+if(payment_id){
   useEffect(() => {
     if (payment_id !== null) {
       Swal.fire({
@@ -29,7 +29,7 @@ const Home = () => {
       dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
     }
   }, [dispatch, payment_id, payment_type, status]);
-
+}
   return (
     <div className="container">
       <div className="text-center m-4 title-container">
