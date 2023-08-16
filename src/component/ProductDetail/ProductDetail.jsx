@@ -35,8 +35,10 @@ const ProductDetail = ({ productId, setShowModal }) => {
     }
   };
   const handlerClicks = ()=>{
+   const userId = localStorage.getItem("userid")
+   console.log(userId)
     const info = {
-      userId:6,
+      userId:userId,
       idProduct: product.id,
       quantity: 3
     }
