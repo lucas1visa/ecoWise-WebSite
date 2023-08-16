@@ -13,7 +13,7 @@ const Home = () => {
   const location = useLocation()
   const queryParams = queryString.parse(location.search); 
   const { payment_id, payment_type, status } = queryParams;
-if(!payment_id){
+if(payment_id !== null){
   useEffect(() => {
     if (payment_id !== null) {
       Swal.fire({
