@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
+import MPButton from "../MPButton/MPButton"
 
 const ProductDetail = ({ productId, setShowModal }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
