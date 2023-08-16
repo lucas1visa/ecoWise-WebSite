@@ -7,21 +7,23 @@ import { LoginUser } from "../../services/tokenlogin";
 // importamos el metodo de la ventana emergente para la autenticacion de google 
 import { signInWithPopup } from "firebase/auth";
 // a su vez debemos importar el metodo de autenticacion
-import { auth, providerGoogle, providerFace, providerGitHub } from "../../services/firebase";
+import { auth, providerGoogle, providerGitHub } from "../../services/firebase";
 // importamos para manejar la apertura y cierre de la ventana emergente
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {FcGoogle} from "react-icons/fc"
 import { AiOutlineGithub } from "react-icons/ai";
-import { BsFacebook, BsEye } from "react-icons/bs";
-import { postUser } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { BsEye } from "react-icons/bs";
+import { getUsers, postUser } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+
 
 
 const Login = () => {
 
     const dispatch = useDispatch();
+    const users = useSelector((state)=>state.users);
     // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
     // estado para controlar la sesion
     const [session,setSession] = useState(true);
@@ -44,6 +46,7 @@ const Login = () => {
     };
     // funcion para cerrar el login
     const handleLogin = () => {
+        dispatch(getUsers());
         setShow({
             formlogin: !show.formlogin
         })
@@ -104,6 +107,12 @@ const Login = () => {
                     email: "",
                     password: ""
                 })
+                let userid = users.find((e)=> e.email === valuesInputs.email);
+                if(userid){
+                    localStorage.setItem('userid',userid.id);
+                }else if(userid.isAdmin){
+                    localStorage.setItem('admin',true)
+                }
                 console.log('se envio che');
             }
         } else {
@@ -114,8 +123,10 @@ const Login = () => {
     const handleLogout = () => {
         // quitamos la informacion almacenada en la localstorage
         localStorage.removeItem('token');
+        localStorage.removeItem('userid');
         // estado para controlar la sesion
         setSession(false)
+
     }
     const handleGoogleLogin = async (event) => {
         try {
@@ -129,43 +140,36 @@ const Login = () => {
             let phone = credentialsUser.user.phoneNumber;
             let register = credentialsUser._tokenResponse.providerId;
             console.log(name,surname,email,phone,register);
-            localStorage.setItem('token',credentialsUser.user.accessToken);
-            Swal.fire({
-                icon: 'success',
-                title: 'Inicio con exitó',
-                showConfirmButton: false,
-                timer: 2000
-            });
-            dispatch(postUser({name, surname, email, phone, register}));
-            setSession(true);
-            setShow({
-                formlogin: false
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    const handleFaceLogin = async (event) => {
-        try {
-            // realizamos una peticion a la api de google y esperamos su respuesta
-            const credentialsUser = await signInWithPopup(auth, providerFace);
-            console.log(credentialsUser);
-            let name = credentialsUser._tokenResponse.firstName;
-            let surname = credentialsUser._tokenResponse.lastName;
-            let email = credentialsUser._tokenResponse.email;
-            let register = credentialsUser._tokenResponse.providerId;
-            localStorage.setItem('token',credentialsUser.user.accessToken);
-            Swal.fire({
-                icon: 'success',
-                title: 'Inicio con exitó',
-                showConfirmButton: false,
-                timer: 2000
-            });
-            dispatch(postUser({ name, surname, email, register}));
-            setSession(true);
-            setShow({
-                formlogin: false
-            });
+            let userid = users.find((e)=> e.email === email);
+            if(!userid){
+                dispatch(postUser({name, surname, email, phone, register}));
+            }
+            if(userid.isAdmin){
+                localStorage.setItem('admin',true)
+            }
+            if(userid.isDeleted){
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Ooopss...',
+                    text: 'Esta cuenta esta suspendida',
+                    showConfirmButton: false,
+                    timer: 4500,
+                    footer: 'Contactese con un Admin o envie un correo con su consulta'
+                });
+            }else{
+                localStorage.setItem('token',credentialsUser.user.accessToken);
+                localStorage.setItem('userid',userid.id);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Inicio con exitó',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setSession(true);
+                setShow({
+                    formlogin: false
+                });
+            }
         } catch (error) {
             console.log(error);
         }
@@ -178,7 +182,6 @@ const Login = () => {
             localStorage.setItem('token',credentialsUser.user.accessToken);
             let name = credentialsUser._tokenResponse.firstName;
             let surname = credentialsUser._tokenResponse.lastName;
-            // let email = credentialsUser._tokenResponse.email;
             let register = credentialsUser._tokenResponse.providerId;
             console.log(name,surname,register);
             Swal.fire({
@@ -223,7 +226,6 @@ const Login = () => {
                         <Button color="primary" type="submit">Iniciar Sesion</Button>
                     </form>
                     <Button onClick={handleGoogleLogin}><FcGoogle/></Button>
-                    <Button onClick={handleFaceLogin}><BsFacebook/></Button>
                     <Button onClick={handleGitHub}><AiOutlineGithub/></Button>
                 </ModalBody>
                 <ModalFooter>
