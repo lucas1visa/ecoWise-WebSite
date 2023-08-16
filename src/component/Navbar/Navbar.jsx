@@ -26,10 +26,14 @@ const NavbarComponent = () => {
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const favoriteCount = useSelector((state) => state.favoriteCount);
+  const favorites = useSelector((state) => state.favorites);
   const CartCount = useSelector((state) => state.cartCount);
   const admin = localStorage.getItem("admin")
   console.log(admin)
+  const favoriteCount = favorites.length;
+
+  
+
      // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
   const [showCartForm, setShowCartForm] = useState({

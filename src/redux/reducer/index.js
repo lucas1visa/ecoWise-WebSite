@@ -7,6 +7,7 @@ import {
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
+  SET_FAVORITES,
   RESET_QUANTITY,
   GETUSERS,
   ACTUALIZAR_PRODUCTO
@@ -18,7 +19,7 @@ const inicialState = {
   favorites: [],
   cartItems: [],
   filtered: [],
-  favoriteCount: 0,
+  //favoriteCount: 0,
   cartCount: 0,
   users:[],
   productoActualizado: []
@@ -41,12 +42,14 @@ const reducer = (state = inicialState, actions) => {
         detail: actions.payload,
       };
 
+      
+    
     case ADD_FAV:
       console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
        favorites: [...state.favorites, actions.payload],
-        favoriteCount: state.favoriteCount + 1,
+        //favoriteCount: state.favoriteCount + 1,
       };
      
 
@@ -56,8 +59,14 @@ const reducer = (state = inicialState, actions) => {
         favorites: state.favorites.filter(
           (product) => product.id !== actions.payload
         ),
-        favoriteCount: state.favoriteCount - 1,
+        //favoriteCount: state.favoriteCount - 1,
       };
+
+      case SET_FAVORITES:
+        return {
+          ...state,
+          favorites: actions.payload,
+        };
     
 
       case GET_TO_CART:
