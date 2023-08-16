@@ -28,7 +28,8 @@ const NavbarComponent = () => {
   const dispatch = useDispatch();
   const favoriteCount = useSelector((state) => state.favoriteCount);
   const CartCount = useSelector((state) => state.cartCount);
-
+  const admin = localStorage.getItem("admin")
+  console.log(admin)
      // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
   const [showCartForm, setShowCartForm] = useState({
@@ -162,7 +163,11 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
-          <button className="btn-admin"><Link className="link-admin" to="/admin">Admin</Link></button>
+        {admin === 'true' && (
+  <button className="btn-admin">
+    <Link className="link-admin" to="/admin">Admin</Link>
+  </button>
+)}
       <Login/>
     </Navbar.Collapse>
   </Container>

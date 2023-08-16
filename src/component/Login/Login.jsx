@@ -128,6 +128,7 @@ const Login = () => {
         localStorage.removeItem('admin');
         // estado para controlar la sesion
         setSession(false)
+        window.location.reload();
 
     }
     const handleGoogleLogin = async (event) => {
@@ -147,7 +148,7 @@ const Login = () => {
                 dispatch(postUser({name, surname, email, phone, register}));
             }
             if(userid.isAdmin){
-                localStorage.setItem('admin',true)
+                localStorage.setItem('admin','true')
             }
             if(userid.isDeleted){
                 Swal.fire({
@@ -156,17 +157,20 @@ const Login = () => {
                     text: 'Esta cuenta esta suspendida',
                     showConfirmButton: false,
                     timer: 4500,
-                    footer: 'Contactese con un Admin o envie un correo con su consulta'
+                    footer: 'Contactese con un Admin o envie un correo con su consulta',
+                    
                 });
             }else{
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
                 Swal.fire({
                     icon: 'success',
-                    title: 'Inicio con exitó',
+                    title: 'Inicio con éxito',
                     showConfirmButton: false,
-                    timer: 2000
-                });
+                    timer: 2000,
+                  }).then(() => {
+                    window.location.reload(); // Recarga la página después de cerrar la notificación
+                  });                  
                 setSession(true);
                 setShow({
                     formlogin: false
