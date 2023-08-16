@@ -17,6 +17,7 @@ import { BsEye } from "react-icons/bs";
 import { getUsers, postUser } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import "./Login.css"
 
 
 
@@ -206,8 +207,8 @@ const Login = () => {
     return (
         <>
             {/*=============================================== REGISTRO DE LOGIN ================================================= */}
-            {localStorage.getItem('token')&&<Button onClick={handleLogout}>Salir</Button>}
-            {!localStorage.getItem('token')&&<Button onClick={handleLogin}>Iniciar</Button>}
+            {localStorage.getItem('token')&&<Button onClick={handleLogout} className="logout-button">Salir</Button>}
+            {!localStorage.getItem('token')&&<Button onClick={handleLogin} className="login-button">Iniciar</Button>}
             <Modal isOpen={show.formlogin}>
                 <ModalHeader>
                     Iniciar Sesion

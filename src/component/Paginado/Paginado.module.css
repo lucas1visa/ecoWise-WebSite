@@ -12,7 +12,7 @@
     margin-right: 0.5rem;
     border: none;
     background-color: #eaeaea;
-    color: #333;
+    color: #333333;
     cursor: pointer;
 }
 
@@ -26,6 +26,6 @@
 }
 
 .active .pageButton {
-    background-color: #333;
+    background-color: #75c0c5;
     color: #fff;
 }

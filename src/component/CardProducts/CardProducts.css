@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s, box-shadow 0.3s; /* Agrega una transición suave */
+    cursor: pointer;
   }
   
   .card-image {
@@ -22,6 +24,7 @@
     text-align: center;
     transform: translateY(100%);
     transition: transform 0.3s ease;
+    
   }
   
   .product-card:hover .hover-button {
@@ -34,15 +37,24 @@
   }
   
   .precio {
-    font-size: 19px;
+    font-size: 25px;
     font-weight: 800;
     color: #29CE8A;
     float: left;
+    
   }
 
   .titulo {
     width: auto;
-    font-size: 19px;
+    font-size: 25px;
     font-weight: 700;
     float: left;
+    
   }
+
+  
+
+.product-card:hover {
+  transform: translateY(-5px); /* Desplaza la carta ligeramente hacia arriba */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
+}

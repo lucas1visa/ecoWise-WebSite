@@ -1,0 +1,23 @@
+/* Estilos para el botón de salir */
+.logout-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+.logout-button:hover {
+    background-color: red; /* Mantén el mismo color en estado hover */
+}
+/* Estilos para el botón de iniciar */
+.login-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color:#b4df37; /* Mantén el mismo color en estado hover */
+}
