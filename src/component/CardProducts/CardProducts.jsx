@@ -83,16 +83,14 @@ const CardProducts = () => {
       currentPage={currentPage}
       onPageChange={handlePageChange}
     />
-      <Modal show={showModal} onHide={handleCloseModal} size="xl">
-        <Modal.Body>
+      <Modal show={showModal} onHide={handleCloseModal} size="xl" >
+        
           <ProductDetail
             productId={modalProductId}
             setShowModal={setShowModal}
           />
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Cerrar
-          </Button>
-        </Modal.Body>
+          
+        
       </Modal>
   </div>
   

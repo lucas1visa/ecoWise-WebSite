@@ -6,6 +6,7 @@ import MPButton from "../MPButton/MPButton";
 import "./ProductDetail.css";
 
 const ProductDetail = ({ productId, setShowModal }) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
@@ -34,11 +35,11 @@ const ProductDetail = ({ productId, setShowModal }) => {
       dispatch(addFav(product));
     }
   };
-  const handlerClicks = ()=>{
-   const userId = localStorage.getItem("userid")
-   console.log(typeof(userId))
+  const handlerClicks = () => {
+    const userId = localStorage.getItem("userid")
+    console.log(typeof (userId))
     const info = {
-      userId:userId,
+      userId: userId,
       idProduct: product.id,
       quantity: 3
     }
@@ -47,74 +48,76 @@ const ProductDetail = ({ productId, setShowModal }) => {
   }
 
   return (
-    <div className="custom-container">
-      <div className="container-fluid">
-        <main className="row">
-          <div className="col-md-6">
-            {state.loading ? (
-              <div className="loading-container">
-                <div className="loading-spinner"></div>
-              </div>
-            ) : (
-              product && (
+    <div className="container-fluid">
+      <main className="row">
+        <div className="col-md-6">
+          {state.loading ? (
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+            </div>
+          ) : (
+            product && (
+              <div className="d-flex flex-column align-items-center">
+                <h1 className="h2-name ml-7">{product.name}</h1>
                 <img
                   src={product.image}
                   alt={product.name}
                   className="img-fluid ml-6"
                 />
-              )
-            )}
-          </div>
-          <div className="col-md-6 d-flex align-items-center">
-            {state.loading ? (
-              <p></p>
-            ) : product ? (
-              <div className="product-info">
-                <h2 className="h2-name">{product.name}</h2>
-                
-                <p className="p-description">{product.description}</p>
-                
-                <p className="p-price">Precio: ${product.price}</p>
-                <p className="p-description">
-                  Cantidad disponible: {product.quantityAvailable}
-                </p>
-                <p className="p-description">Categoría: {product.category}</p>
-                <div className="corazon-red-fav">
-                  {favorites.find(
-                    (favProduct) => favProduct.id === product.id
-                  ) ? (
-                    <p>❤️</p>
-                  ) : (
-                    <button onClick={handleAddFavorite}>🤍</button>
-                  )}
-                </div>
-                <div className="quantity-select d-flex align-items-center ms-sm-5">
+                <div className="quantity-select d-flex align-items-center">
                   <div className="btn-container">
                     <button
-                      className="btn btn-button"
-                      onClick={handleAddToCart}
+                      className="btn-button-green mx-auto"
+                      onClick={() => {
+                        handleAddToCart();
+                        setIsButtonDisabled(true);
+                      }}
+                      disabled={isButtonDisabled}
                     >
-                      {addToCartText}
+                      {isButtonDisabled ? 'Agregado al carrito' : addToCartText}
                     </button>
                     <button onClick={handlerClicks()}>
-                    <MPButton
-                    
-                      titul={product.name}
-                      precio={product.price}
-                      cantidad={quantity}
-                        productId={ product.id}
-                        userId= {1} 
-                        quantity= {quantity}
-                    /></button>
+                      <MPButton
+                        titul={product.name}
+                        precio={product.price}
+                        cantidad={quantity}
+                        productId={product.id}
+                        userId={1}
+                        quantity={quantity}
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
-            ) : (
-              <p>No se encontró el producto</p>
-            )}
-          </div>
-        </main>
-      </div>
+            )
+          )}
+        </div>
+        <div className="col-md-6 d-flex flex-column">
+          {state.loading ? (
+            <p></p>
+          ) : product ? (
+            <div className="">
+              <h1 className="p-description">{product.description}</h1>
+              <p className="p-price">Precio: ${product.price}</p>
+              <p className="p-description">
+                Stock: {product.quantityAvailable}
+              </p>
+              <p className="p-description"> {product.category}</p>
+              <div className="corazon-red-fav">
+                {favorites.find(
+                  (favProduct) => favProduct.id === product.id
+                ) ? (
+                  <p>❤️</p>
+                ) : (
+                  <button  onClick={handleAddFavorite}>🤍</button>
+                )}
+              </div>
+            </div>
+          ) : (
+            <p>No se encontró el producto</p>
+          )}
+        </div>
+      </main>
     </div>
   );
 };

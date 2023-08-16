@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ecoWise from "../Footer/EcoWise.jpg";
+import plantax from "../../Img/plantax.png";
 import { Modal } from "react-bootstrap";
 
 const Footer = () => {
@@ -23,12 +23,12 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p></p>
-            <p></p>
-            <p></p>
+           
 
-            <img src={ecoWise} alt="ecoWise" className="w-36 h-auto" />
+            <img src={plantax} alt="ecoWise" className="w-20 h-30 ml-5" />
+            <h2>ecoWise</h2>
           </div>
+          
 
           <div className="mb-6 md:mb-0 text-center md:text-left text-white ">
             <p className="text-white font-bold mb-2">Contactos</p>
