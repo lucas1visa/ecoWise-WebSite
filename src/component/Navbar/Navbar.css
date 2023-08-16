@@ -1,12 +1,13 @@
 #Navbar{
     height: 100px;
-    background-color: #353b57;
+    background-color: #f6eee0
 }
 
 .nav-link{
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     margin-top: 13px;
     font-size: 18px;
+    
 }
 
 .navbar-brand{
@@ -34,7 +35,7 @@
     margin: 10px 0px 0px 10px;
     padding: 0px;
     border: none;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     
 }
 
@@ -44,9 +45,9 @@
 }
 
 .final{
-    height: 80px;
+    height: 50px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    border-radius: 300px; /* Ajusta el valor según la cantidad de redondez deseada */
+    border-radius: 400px; /* Ajusta el valor según la cantidad de redondez deseada */
     overflow: hidden; /* Para asegurarte de que el border-radius se aplique correctamente */
 }
 
@@ -58,7 +59,7 @@
 }
 
 .button-icon-cora{
-    background-color: transparent;
+    background-color: #f6eee0;
     font-size: 25px;
     margin: 10px 0px 0px 10px;
     padding: 0px;

@@ -8,7 +8,8 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   RESET_QUANTITY,
-  GETUSERS
+  GETUSERS,
+  ACTUALIZAR_PRODUCTO
 } from "../actions/Types";
 
 const inicialState = {
@@ -110,7 +111,12 @@ const reducer = (state = inicialState, actions) => {
         return {
           ...state,
           users: actions.payload
-        }
+        };
+        case ACTUALIZAR_PRODUCTO:
+          return{
+            ...state,
+            productoActualizado: actions.payload
+          }
 
     default:
       return {
@@ -118,6 +124,7 @@ const reducer = (state = inicialState, actions) => {
       };
   }
 };
+
 
 
 

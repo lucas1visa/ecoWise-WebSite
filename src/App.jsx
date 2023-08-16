@@ -16,7 +16,6 @@ import About from './component/About/About';
 import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
-import FeedbackCompras from './component/feedbackCompras/FeedbackCompras';
 
 
 function App() {
@@ -51,7 +50,6 @@ function App() {
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
-          <Route path="/feedback" element={<FeedbackCompras/>} />
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ecoWise from "../Footer/EcoWise.jpg";
+import plantax from "../../Img/plantax.png";
 import { Modal } from "react-bootstrap";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   const [showFAQModal, setShowFAQModal] = useState(false);
@@ -19,16 +20,16 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gray-900 text-white py-4">
+    <footer className="bg-primary-205 text-white py-4">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p></p>
-            <p></p>
-            <p></p>
+           
 
-            <img src={ecoWise} alt="ecoWise" className="w-36 h-auto" />
+            <img src={plantax} alt="ecoWise" className="w-20 h-30 ml-5" />
+            <h2>ecoWise</h2>
           </div>
+          
 
           <div className="mb-6 md:mb-0 text-center md:text-left text-white ">
             <p className="text-white font-bold mb-2">Contactos</p>
@@ -248,10 +249,10 @@ const Footer = () => {
               <Modal.Title>Métodos de Pago</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h3>
+              <h3 className={styles.metodopago}>
                 Compra con Confianza: Métodos de Pago Seguros con Mercado Pago
               </h3>
-              <p>
+              <p className={styles.parrafos}>
                 En la actualidad, realizar compras en línea se ha convertido en
                 una parte fundamental de nuestras vidas, permitiéndonos acceder
                 a una amplia gama de productos y servicios desde la comodidad de
@@ -261,8 +262,8 @@ const Footer = () => {
                 solución integral que brinda tranquilidad y confianza a los
                 compradores en línea.
               </p>
-              <h3>Variedad de Métodos de Pago</h3>
-              <p>
+              <h3 className={styles.metodopago}>Variedad de Métodos de Pago</h3>
+              <p className={styles.parrafos}>
                 Mercado Pago se destaca por ofrecer una amplia variedad de
                 métodos de pago, desde tarjetas de crédito y débito hasta
                 transferencias bancarias y pagos en efectivo en puntos de pago
@@ -270,8 +271,8 @@ const Footer = () => {
                 les resulte más conveniente y familiar, adaptándose a sus
                 preferencias individuales.
               </p>
-              <h3>Pasarela de Pago Segura</h3>
-              <p>
+              <h3 className={styles.metodopago}>Pasarela de Pago Segura</h3>
+              <p className={styles.parrafos}>
                 La pasarela de pago de Mercado Pago es una de las más seguras
                 del mercado. Utiliza tecnología de encriptación de última
                 generación para proteger los datos sensibles de los usuarios,
@@ -279,8 +280,8 @@ const Footer = () => {
                 garantiza que la información personal y financiera del cliente
                 esté resguardada contra posibles amenazas cibernéticas.
               </p>
-              <h3>Proceso de Compra Sencillo y Transparente</h3>
-              <p>
+              <h3 className={styles.metodopago}>Proceso de Compra Sencillo y Transparente</h3>
+              <p className={styles.parrafos}>
                 Uno de los aspectos que más tranquilidad brinda a los clientes
                 es el proceso de compra sencillo y transparente que ofrece
                 Mercado Pago. Desde la selección de productos hasta el pago
@@ -289,16 +290,16 @@ const Footer = () => {
                 acceso a información clara sobre los montos a pagar y los
                 detalles de la transacción.
               </p>
-              <h3>Protección al Comprador</h3>
-              <p>
+              <h3 className={styles.metodopago}>Protección al Comprador</h3>
+              <p className={styles.parrafos}>
                 Mercado Pago va más allá al ofrecer una protección al comprador.
                 Si surge algún problema con la compra, como la no recepción del
                 producto o servicios no conformes, los usuarios tienen la
                 posibilidad de abrir una disputa y recibir asistencia para
                 resolver el problema de manera justa y equitativa.
               </p>
-              <h3>Respaldo de una Marca Confiable</h3>
-              <p>
+              <h3 className={styles.metodopago}>Respaldo de una Marca Confiable</h3>
+              <p className={styles.parrafos}>
                 La reputación de Mercado Pago como una plataforma confiable y
                 reconocida en el ámbito del comercio electrónico agrega un nivel
                 adicional de tranquilidad. Al elegir realizar una transacción a

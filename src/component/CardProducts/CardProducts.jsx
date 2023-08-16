@@ -51,54 +51,49 @@ const CardProducts = () => {
     setModalProductId(null);
     setShowModal(false);
   };
+  // <div className="bg-[#1F1D2B] p-8 rounded-xl flex flex-col items-center gap-2 text-center text-gray-300">
 
   return (
-    <Container className="product-card">
-      <Row>
-        {currentProducts.map((product) => (
-          <Col key={product.id} md={4} sm={6} className="mb-4">
-            <Card
-              className="product-card"
-              onMouseEnter={() => handleMouseEnter(product.id)}
-              onMouseLeave={handleMouseLeave}
-              onClick={() => handleBuyClick(product.id)}
-            >
-              <Card.Img
-                src={product.image}
-                alt={product.name}
-                className="card-image"
-              />
+    <div className="p-8 rounded-xl flex flex-col items-center gap-2 text-center text-gray-300">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center p-8 ">
+      {currentProducts.map((product) => (
+        <div
+          key={product.id}
+          className=" shadow-md rounded-lg p-4 transition transform hover:scale-105 cursor-pointer m-4 bg-yellow-700"
+          onMouseEnter={() => handleMouseEnter(product.id)}
+          onMouseLeave={handleMouseLeave}
+          onClick={() => handleBuyClick(product.id)}
+        >
+          <img
+            src={product.image}
+            alt={product.name}
+            // className="mx-auto mb-2 rounded-lg h-40 object-cover"
+        className="w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full"
 
-              <Card.Body>
-                <h3 className="titulo">{product.name}</h3>
-                <br />
-                <br />
-                <Card.Text className="precio">${product.price}</Card.Text>
-                <br />
-                <br />
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      <Paginado
-        productsPerPage={productsPerPage}
-        totalProducts={totalProducts}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
-      <Modal show={showModal} onHide={handleCloseModal} size="xl">
-        <Modal.Body>
+          />
+          <h3 className="text-lg font-bold mb-2 text-start text-primary-151">{product.name}</h3>
+          <p className="font-bold text-start text-white">${product.price}</p>
+          <p className="text-black font-bold text-start">{product.category}</p>
+        </div>
+      ))}
+    </div>
+    <Paginado
+      productsPerPage={productsPerPage}
+      totalProducts={totalProducts}
+      currentPage={currentPage}
+      onPageChange={handlePageChange}
+    />
+      <Modal show={showModal} onHide={handleCloseModal} size="xl" >
+        
           <ProductDetail
             productId={modalProductId}
             setShowModal={setShowModal}
           />
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Cerrar
-          </Button>
-        </Modal.Body>
+          
+        
       </Modal>
-    </Container>
+  </div>
+  
   );
 };
 

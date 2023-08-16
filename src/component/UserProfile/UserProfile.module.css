@@ -7,20 +7,21 @@
 }
 
 .form {
-  padding: 50px, 60px;
+  padding: 60px, 60px;
   border-radius: 20px;
   box-shadow: 0, 0, 20px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 400px;
+  width: 1000px;
+  margin: auto;
 }
 
 .inputgroup {
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 17px 25px;
+  padding: 20px 25px;
   border-radius: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   background-color: rgb(105, 114, 153);
   border: 2px solid #f0faf1;
   color: #252725;
@@ -34,7 +35,7 @@
 label {
   color: #000000;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 18px;
 }
 

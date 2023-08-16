@@ -9,18 +9,18 @@
 
 .form{
   width: 670px;
-  height: 450px;
+  height: 500px;
   display: flex;
   justify-content: center;
-  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 20px 20px 70px rgba(85, 204, 16, 0.5);
   border-radius: 15px;
-  background: rgb(255, 255, 255,0.1);
+  background: rgba(26, 23, 23, 0.1);
   backdrop-filter: blur(10px);
   flex-wrap: wrap;
 }
 
 .h1{
-  color: white;
+  color: rgb(57, 88, 53);
   font-weight: 500;
   margin-top: 20px;
   width: 500px;
@@ -37,7 +37,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(57, 70, 145));
+  background: linear-gradient(to left,white, rgb(56, 87, 60));
   
   
 }
@@ -51,7 +51,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(57, 70, 145));
+  background: linear-gradient(to left,white, rgb(56, 87, 60));
 
 }
 .input3 
@@ -65,7 +65,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(57, 70, 145));
+  background: linear-gradient(to left,white, rgb(56, 87, 60));
 
 
 }
@@ -79,12 +79,12 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(57, 70, 145));
+  background: linear-gradient(to left,white, rgb(56, 87, 60));
 
 }
 
 .h4{
-  color: white;
+  color: rgb(57, 88, 53);
   font-weight: 300;
   width: 600px;
   margin-top: 20px;
@@ -120,7 +120,7 @@ border-radius: 5px;
 margin-top: 20px;
 font-weight: 700;
 font-size: 20px;
-color: #ffffff;
+color: rgb(57, 88, 53);
 width: 100px;
 padding: 0;
 margin-right: 500px;

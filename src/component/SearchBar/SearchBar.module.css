@@ -16,7 +16,7 @@
     color: #eeecec;
     box-shadow: 0 2px 4px rgba(2, 2, 2, 0.1);
     transition: box-shadow 0.3s ease;
-    background: linear-gradient(to left,rgb(168, 172, 159),rgb(12, 10, 10));
+    background: linear-gradient(to left,rgb(255, 255, 255),rgb(255, 255, 255));
   }
   
 .containerSearch input:focus {
@@ -27,6 +27,7 @@
 
 .inputSearch{
   height: 30px;
+  
 }
 
 
