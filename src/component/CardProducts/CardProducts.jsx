@@ -53,10 +53,10 @@ const CardProducts = () => {
   };
 
   return (
-    <Container className="product-card">
+    <Container className="  ">
       <Row>
         {currentProducts.map((product) => (
-          <Col key={product.id} md={4} sm={6} className="mb-4">
+          <Col key={product.id} md={4} sm={6} className="mb-4 ">
             <Card
               className="product-card"
               onMouseEnter={() => handleMouseEnter(product.id)}
@@ -69,14 +69,16 @@ const CardProducts = () => {
                 className="card-image"
               />
 
-              <Card.Body>
+              <Card.Body className=" transparent">
+                </Card.Body>
                 <h3 className="titulo">{product.name}</h3>
                 <br />
-                <br />
+                
+                
                 <Card.Text className="precio">${product.price}</Card.Text>
                 <br />
-                <br />
-              </Card.Body>
+                <Card.Text className="mb-4">{product.category}</Card.Text>
+              
             </Card>
           </Col>
         ))}
