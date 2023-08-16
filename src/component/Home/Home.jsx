@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom"; 
 import queryString from "query-string"; 
 import { postPurcharse } from "../../redux/actions";
+import Swal from "sweetalert2";
+
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -14,6 +16,14 @@ const Home = () => {
 
   useEffect(() => {
     if (payment_id !== null) {
+      Swal.fire({
+        icon: 'Compra',
+        title: 'Gracias por su compra',
+        text: 'Espero que lo disfrute',
+        showConfirmButton: false,
+        timer: 4500,
+        footer: 'Calquier inconveniente envie un correo con su consulta'
+    });
       const x = localStorage.getItem("cart");
       const { userId, idProduct, quantity } = JSON.parse(x);
       dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
