@@ -1,23 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom"; 
+import queryString from "query-string"; 
 import { postPurcharse } from "../../redux/actions";
-    const FeedbackCompras = () => {
-        const dispatch = useDispatch()
-        const {payment_id,payment_type,status}=useParams()
-        useEffect(()=>{
-           const x = localStorage.getItem("cart");
-           const {userId,idProduct,quantity} = JSON.parse(x);
-           console.log(userId)
 
-            dispatch(postPurcharse(payment_id,payment_type,status,userId,idProduct,quantity))
-        },[])
-        return (
-          <div className="bg-white shadow-md p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2">Gracias por comprar en ecoWise</h3>
-            <p className="mb-4">Has adquirido <span className="font-semibold"></span> por $.</p>
-            <p className="text-gray-600">Esperamos que disfrutes de tu compra. ¡Vuelve pronto!</p>
-          </div>
-        );
-      };
+const FeedbackCompras = () => {
+  const dispatch = useDispatch();
+  const location = useLocation(); 
+
+  useEffect(() => {
+    const queryParams = queryString.parse(location.search); 
+    const { payment_id, payment_type, status} = queryParams;
+    const x = localStorage.getItem("cart");
+    const {userId,idProduct,quantity} = JSON.parse(x);
+    dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
+  }, []); // 
+
+  return (
+    <div className="bg-white shadow-md p-4 rounded-lg">
+      <h3 className="text-lg font-semibold mb-2">Gracias por comprar en ecoWise</h3>
+      <p className="mb-4">Has adquirido <span className="font-semibold"></span> por $.</p>
+      <p className="text-gray-600">Esperamos que disfrutes de tu compra. ¡Vuelve pronto!</p>
+    </div>
+  );
+};
+
 export default FeedbackCompras;
