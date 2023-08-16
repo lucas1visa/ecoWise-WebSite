@@ -58,3 +58,20 @@
         opacity: 1;
     }
 }
+.rating {
+    font-size: 24px;
+  }
+  
+  .star {
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .star:hover:before,
+  .star:hover ~ .star:before,
+  .star.active:before {
+    content: "\2605";
+    color: gold;
+  }
+  

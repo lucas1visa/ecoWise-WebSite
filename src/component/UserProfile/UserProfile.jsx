@@ -240,9 +240,10 @@ const UserProfile = () => {
   };
 
   return (
-    <div class="container">
+    <div class="container mt-5">
+
       {/* <FormGroup class="mt-2"> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}class="row justify-content-center" className={styles.form}>
         {/* Campos del formulario */}
         <fieldset>
           <div class="pure-g">
