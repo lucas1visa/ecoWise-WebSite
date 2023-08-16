@@ -35,4 +35,21 @@
     filter: invert(39%) sepia(11%) saturate(6657%) hue-rotate(180deg)
       brightness(90%) contrast(75%);
   }
+ .metodopago{
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+ }
+
+ .parrafos{
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.7;
+  color: #050505;
+ }
+
+
+
 
