@@ -13,7 +13,7 @@ const Home = () => {
   const location = useLocation()
   const queryParams = queryString.parse(location.search); 
   const { payment_id, payment_type, status } = queryParams;
-if(payment_id){
+if(!payment_id){
   useEffect(() => {
     if (payment_id !== null) {
       Swal.fire({
@@ -21,7 +21,7 @@ if(payment_id){
         title: 'Gracias por su compra',
         text: 'Espero que lo disfrute',
         timer: 6500,
-        footer: 'Calquier inconveniente envie un correo con su consulta',
+        footer: 'Cualquier inconveniente envie un correo con su consulta',
         showConfirmButton: true,
     });
       const x = localStorage.getItem("cart");
