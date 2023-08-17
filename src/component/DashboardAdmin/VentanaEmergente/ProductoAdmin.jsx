@@ -1,16 +1,22 @@
-import React from 'react';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actualizarProducto } from '../../../redux/actions';
+import { actualizarProducto, getProducts } from '../../../redux/actions';
 
 const ProductoAdmin = () => {
     const products = useSelector((state) => state.products);
     const [modificaciones, setModificaciones] = useState({}); // Estado para almacenar modificaciones por producto
     const dispatch = useDispatch();
 
-    const handleActualizar = (id, quantityAvailable, price) => {
-        dispatch(actualizarProducto(id, quantityAvailable, price));
+    const handleActualizar = async(id, quantityAvailable, price) => {
+        await dispatch(actualizarProducto(id, quantityAvailable, price));
+        dispatch(getProducts())
+        setModificaciones({})
     };
+
+    useEffect(()=>{
+        dispatch(getProducts())
+    }, [dispatch])
 
     const handleCantidad = (e) => {
         const productId = e.target.id;
@@ -62,7 +68,7 @@ const ProductoAdmin = () => {
                             Modificar Precio: <input
                                 className="w-36 border p-1"
                                 placeholder="$"
-                                id={pro.id}
+                                id={pro.id} min={0}
                                 value={modificaciones[pro.id]?.precio || ''}
                                 onChange={(e) => handlePrecio(e)}
                             />
@@ -88,7 +94,7 @@ const ProductoAdmin = () => {
                     onClick={() => {
                         const cantidadModificada = modificaciones[pro.id]?.cantidad || 0;
                         const precioModificado = modificaciones[pro.id]?.precio || pro.price;
-                        handleActualizar(pro.id, parseInt(cantidadModificada) + pro.quantityAvailable, precioModificado);
+                        handleActualizar(pro.id, parseInt(cantidadModificada) , precioModificado);
                     }}
                     >
                         Actualizar

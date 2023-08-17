@@ -121,11 +121,10 @@ const reducer = (state = inicialState, actions) => {
           ...state,
           users: actions.payload
         };
-        case ACTUALIZAR_PRODUCTO:
+/*         case ACTUALIZAR_PRODUCTO:
           return{
             ...state,
-            productoActualizado: actions.payload
-          }
+          } */
 
     default:
       return {
