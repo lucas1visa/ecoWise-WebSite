@@ -5,12 +5,13 @@ import CartItem from './CartItem';
 const Cart = () => {
   const cartItems = useSelector(state => state.cartItems);
   const [selectedCantidad, setSelectedCantidad] = useState({})// estado para la cantidad
+  const userid = localStorage.getItem("userid");// id del usuario logueado
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getCarrito())
   },[])
-/// handlers 
-console.log(selectedCantidad)
+const cartUsers = cartItems.filter(e=>e.UserId == userid)//filtramos usuarios segun el id
+console.log(cartUsers,"este es")
 // Función para manejar el cambio de cantidad
 const handleCantidadChange = (event, cartId, productId) =>{
   const newCantidad = parseInt(event.target.value);
@@ -25,7 +26,7 @@ const handleCantidadChange = (event, cartId, productId) =>{
   return (
     <div>
   <h1>Carrito De Compras</h1>
-  {cartItems.map(item => (
+  {cartUsers.map(item => (
     <div key={item.id}>
       {item.Products.map(product => (
         <CartItem
@@ -49,7 +50,6 @@ const handleCantidadChange = (event, cartId, productId) =>{
     }, 0)
   }</p>
 </div>
-
   );}
 
 export default Cart;
