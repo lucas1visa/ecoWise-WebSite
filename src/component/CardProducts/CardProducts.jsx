@@ -51,8 +51,6 @@ const CardProducts = () => {
     setModalProductId(null);
     setShowModal(false);
   };
-  // <div className="bg-[#1F1D2B] p-8 rounded-xl flex flex-col items-center gap-2 text-center text-gray-300">
-
   return (
     <div className="p-8 rounded-xl flex flex-col items-center gap-2 text-center text-gray-300">
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center p-8 ">
