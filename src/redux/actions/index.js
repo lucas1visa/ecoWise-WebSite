@@ -121,10 +121,10 @@ export function addFav(product) {
       }
     }
   }
-  export const addToCart2 = (carrito) => {
+  export const addToCart2 = (carrito,UserId) => {
     return async function(dispatch){
       try {
-        const resAddCart = await axios.post(`/cart`, {carrito} );
+        const resAddCart = await axios.post(`/cart`, {UserId,carrito} );
         return dispatch({
         type: ADD_TO_CART2,
          payload: 
