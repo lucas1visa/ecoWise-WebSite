@@ -99,10 +99,10 @@ export function addFav(product) {
     };
   }
   
-  export const addToCart = (id, quantity, userId ) => {
+  export const addToCart = (id, UserId ) => {
     return async function(dispatch){
       try {
-        const resAddCart = await axios.post(`/cart`, id, quantity, userId );
+        const resAddCart = await axios.post(`/cart`, id, UserId );
         console.log(resAddCart);
         return dispatch({
         type: ADD_TO_CART,

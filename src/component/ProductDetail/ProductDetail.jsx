@@ -3,31 +3,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
-import MPButton from "../MPButton/MPButton"
 
-const ProductDetail = ({ productId, setShowModal }) => {
+const ProductDetail = ({ productId}) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
   const favorites = useSelector((state) => state.favorites);
-  console.log(quantity);
-  const [state, setState] = useState({
-    loading: true,
-  });
+  const userid = localStorage.getItem("userid");
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
-
-  useEffect(() => {
-    dispatch(getId(productId || id));
-    setTimeout(() => {
-      setState({ ...state, loading: false });
-    }, 1000);
-  }, [dispatch, id, productId]);
-
   const handleAddToCart = () => {
-    dispatch(addToCart(product, quantity));
-    setAddToCartText("Agregado al carrito");
+    const userIdAsNumber = parseInt(userid)
+    if (userIdAsNumber) {
+      dispatch(addToCart(product.id,userid));
+
+      setAddToCartText("Agregado al carrito");
+    } else {
+      const existingCart = localStorage.getItem("carrito");
+      let cart = [];
+      if (existingCart) {
+        cart = JSON.parse(existingCart);
+      }
+      cart.push(product);
+      localStorage.setItem("carrito", JSON.stringify(cart));
+      setAddToCartText("Agregado al carrito");
+    }
   };
 
   const handleAddFavorite = () => {
@@ -35,18 +35,27 @@ const ProductDetail = ({ productId, setShowModal }) => {
       dispatch(addFav(product));
     }
   };
+
   const handlerClicks = () => {
-    const userId = localStorage.getItem("userid")
-    console.log(typeof (userId))
     const info = {
-      userId: userId,
+      userId: userid,
       idProduct: product.id,
-      quantity: 3
-    }
+      quantity: 3,
+    };
     localStorage.setItem("cart", JSON.stringify(info));
+  };
 
-  }
+  const [state, setState] = useState({
+    loading: true,
+  });
 
+  useEffect(() => {
+    dispatch(getId(productId || id));
+    setTimeout(() => {
+      setState({ ...state, loading: false });
+    }, 1000);
+  }, []);
+  
   return (
     <div className="container-fluid">
       <main className="row">
@@ -76,16 +85,13 @@ const ProductDetail = ({ productId, setShowModal }) => {
                     >
                       {isButtonDisabled ? 'Agregado al carrito' : addToCartText}
                     </button>
-                    <button onClick={handlerClicks()}>
+                    {/* <button onClick={handlerClicks()}>
                       <MPButton
                         titul={product.name}
                         precio={product.price}
                         cantidad={quantity}
-                        productId={product.id}
-                        userId={1}
-                        quantity={quantity}
                       />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

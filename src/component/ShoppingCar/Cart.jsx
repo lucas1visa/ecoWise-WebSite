@@ -2,79 +2,54 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito, removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
-import MPButton from '../MPButton/MPButton';
-
 const Cart = () => {
   const cartItems = useSelector(state => state.cartItems);
+  const [selectedCantidad, setSelectedCantidad] = useState({})// estado para la cantidad
   const dispatch = useDispatch();
-
-  const [totalPrices, setTotalPrices] = useState([]);
-  const [carritoTotals, setCarritoTotals] = useState([]); // Estado para almacenar totales individuales
-  const [totalCarritoss, setTotalCarritos] = useState(0);
-  
-  
-
-  
-  useEffect(() => {
-    dispatch(getCarrito());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const newTotalPrices = cartItems.map(item =>
-      item.Products.reduce((acc, product) => {
-        const total = product.price * product.quantitySelected;
-        return acc + total;
-      }, 0)
-    );
-
-    // Crear un objeto que mapee el ID del carrito a su total
-    const newCarritoTotals = {};
-    cartItems.forEach((item, index) => {
-      newCarritoTotals[item.id] = newTotalPrices[index];
-    });
-    const safeCarritoTotals = {};
-    Object.keys(newCarritoTotals).forEach(cartId => {
-      safeCarritoTotals[cartId] = isNaN(newCarritoTotals[cartId]) ? 0 : newCarritoTotals[cartId];
-    });
-
-    setTotalPrices(newTotalPrices);
-    setCarritoTotals(safeCarritoTotals); // Usar los totales seguros
-    setTotalCarritos(0);
-  }, [cartItems]);
-
-  const handleDeleteCart = (cartId, productId) => {
-    dispatch(removeFromCart(cartId, productId));
-  };
-  const handleSaveCartTotal = (cartId, total) => {
-    setCarritoTotals(prevState => ({
-      ...prevState,
-      [cartId]: total,
-    }));
-  };
-  const totalCarritos = Object.values(carritoTotals).reduce((acc, total) => acc + total, 0);
-  const totalGeneralSafe = isNaN(totalCarritos) ? 0 : totalCarritos;
-
+  useEffect(()=>{
+    dispatch(getCarrito())
+  },[])
+/// handlers 
+console.log(selectedCantidad)
+// Función para manejar el cambio de cantidad
+const handleCantidadChange = (event, cartId, productId) =>{
+  const newCantidad = parseInt(event.target.value);
+  setSelectedCantidad((prevSelectedCantidad) => ({
+    ...prevSelectedCantidad,
+    [cartId]: {
+      ...(prevSelectedCantidad[cartId] || {}),
+      [productId]: newCantidad,
+    },
+  }))
+}
   return (
     <div>
-      <h1>Carrito De Compras</h1>
-      {cartItems.map(item => (
-        <div key={item.id}>
-          {item.Products.map(product => (
-            <CartItem
-              key={product.id}
-              product={product}
-              cartId={item.id}
-              cartTotal={carritoTotals[item.id]} // Usar el total almacenado
-              onSaveCartTotal={(cartId, total) => handleSaveCartTotal(cartId, total)} // Función para almacenar el total
-              handleDeleteCart={handleDeleteCart}
-            />
-          ))}
-          {console.log(carritoTotals[item.id])}
-        </div>
+  <h1>Carrito De Compras</h1>
+  {cartItems.map(item => (
+    <div key={item.id}>
+      {item.Products.map(product => (
+        <CartItem
+          key={product.id}
+          product={product}
+          cartId={item.id}
+          cantidad={product.quantityAvailable}
+          handleCantidadChange={handleCantidadChange}
+          selectedCantidad={selectedCantidad}
+        />
       ))}
-      <h1>Total: {totalGeneralSafe}</h1>
-      <MPButton titul={"Producto Ecowise"} precio={totalGeneralSafe} cantidad={1}/>
     </div>
+  ))}
+  <p>Precio Total: ${
+    cartItems.reduce((total, item) => {
+      return ( total + item.Products.reduce((subtotal, product) => {
+          const selected =selectedCantidad[item.id]?.[product.id] || 1;
+          return subtotal + product.price * selected;
+        }, 0)
+      );
+    }, 0)
+  }</p>
+</div>
+
   );}
 
 export default Cart;

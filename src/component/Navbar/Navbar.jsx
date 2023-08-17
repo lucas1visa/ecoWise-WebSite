@@ -124,12 +124,12 @@ const NavbarComponent = () => {
         </button>}
             <Modal isOpen={showCartForm.open}>
               <ModalHeader>
+              <Button onClick={HandleCartOpen}>Cerrar</Button>
               </ModalHeader>
               <ModalBody>
                <Cart/>
               </ModalBody>
               <ModalFooter>
-              <Button onClick={HandleCartOpen}>Cerrar</Button>
               
               </ModalFooter>
               </Modal>
