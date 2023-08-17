@@ -148,8 +148,8 @@ const NavbarComponent = () => {
               value="clean"
             >
 
-              {<ion-icon onClick={handleOrderChange} value="clean" name="reload-outline" ></ion-icon>}
-            </button>
+↻
+            </button> //NO PONERLE ICONOS AL BOTON XD <<<<--------------------------------------------------------------------
           )}
 
           <div className="ml-auto m-2">
