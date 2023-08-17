@@ -12,7 +12,7 @@
   
   .buttons:hover {
     background-color: #ff8c00; 
-    transform: scale(1.05); 
+    transform: scale(1.02); 
   }
   
   .buttons:disabled {

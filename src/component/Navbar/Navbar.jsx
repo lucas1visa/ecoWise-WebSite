@@ -26,28 +26,32 @@ const NavbarComponent = () => {
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const favoriteCount = useSelector((state) => state.favoriteCount);
+  const favorites = useSelector((state) => state.favorites);
   const CartCount = useSelector((state) => state.cartCount);
   const admin = localStorage.getItem("admin")
   console.log(admin)
-     // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
+  const favoriteCount = favorites.length;
+
+
+
+  // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
   const [showCartForm, setShowCartForm] = useState({
     open: false
   });
   // estado para cerrar
-  const [showCartClose,setShowCartClose]= useState(false);
-  const [showCart, setShowCart]= useState(true);
+  const [showCartClose, setShowCartClose] = useState(false);
+  const [showCart, setShowCart] = useState(true);
 
   // manejador para abrir
-    const HandleCartOpen = ()=>{
-      setShowCartForm({
-        open: !showCartForm.open
-      })
-    };
+  const HandleCartOpen = () => {
+    setShowCartForm({
+      open: !showCartForm.open
+    })
+  };
 
   // funcion de cerrado del carrito
-  const handleCartClose = () =>{
+  const handleCartClose = () => {
     // mostramos el boton de login
     setShowCart(true);
     // dejamos de mostrar el boton de logout
@@ -94,7 +98,7 @@ const NavbarComponent = () => {
       <Container>
         <Link to="/" className="navbar-brand">
           <img src={plantita} alt="final" className="final ml-10" />
-          
+
         </Link>
         <h3 className=" font-bold pr-12 pt-3 text-primary-900 mx-auto">ecoWise</h3>
         <Navbar.Toggle aria-controls="navbar" />
@@ -142,8 +146,8 @@ const NavbarComponent = () => {
               onClick={handleOrderChange}
               value="clean"
             >
-              ↻
-              {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
+
+              {<ion-icon onClick={handleOrderChange} value="clean" name="reload-outline" ></ion-icon>}
             </button>
           )}
 
@@ -163,15 +167,15 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
-        {admin === 'true' && (
-  <button className="btn-admin">
-    <Link className="link-admin" to="/admin">Admin</Link>
-  </button>
-)}
-      <Login/>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
+          {admin === 'true' && (
+            <button className="btn-admin">
+              <Link className="link-admin" to="/admin">Admin</Link>
+            </button>
+          )}
+          <Login />
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
 
   );
 };

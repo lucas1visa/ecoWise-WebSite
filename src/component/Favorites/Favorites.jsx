@@ -1,20 +1,38 @@
-
 import { useDispatch, useSelector } from "react-redux";
-import { removeFav } from "../../redux/actions";
+import { useEffect } from "react";
+import { removeFav, setFavorites } from "../../redux/actions";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
 
 
 const Favorites = () => {
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const userId = localStorage.getItem('userid');
   const fav = useSelector((state) => state.favorites);
-  console.log(typeof fav)
 
-  const handleRemoveFav = (productId)=> {
-    console.log('id de product delete ' + productId)
-    dispatch(removeFav(productId))
-}
+  useEffect(() => {
+    if (userId) {
+      const storedUserFavorites = JSON.parse(localStorage.getItem(`userFavorites_${userId}`)) || [];
+      dispatch(setFavorites(storedUserFavorites));
+    } else {
+      const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      dispatch(setFavorites(storedAnonymousFavorites));
+    }
+  }, [dispatch, userId]);
+
+  const handleRemoveFav = (productId) => {
+    dispatch(removeFav(productId));
+
+    if (userId) {
+      const updatedUserFavorites = fav.filter((product) => product.id !== productId);
+      localStorage.setItem(`userFavorites_${userId}`, JSON.stringify(updatedUserFavorites));
+    } else {
+      const updatedAnonymousFavorites = fav.filter((product) => product.id !== productId);
+      localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
+    }
+
+  };
+
 
 return (
   <div>

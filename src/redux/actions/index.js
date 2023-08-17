@@ -14,6 +14,7 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   DELETELOGICAL,
+  SET_FAVORITES,
   ACTUALIZAR_PRODUCTO,
   POSTPURCHARSE
  /*  RESET_QUANTITY */
@@ -98,6 +99,12 @@ export function addFav(product) {
       }
     };
   }
+
+  export const setFavorites = (favorites) => ({
+  type: SET_FAVORITES,
+  payload: favorites,
+});
+  
   
   export const addToCart = (id, UserId ) => {
     return async function(dispatch){

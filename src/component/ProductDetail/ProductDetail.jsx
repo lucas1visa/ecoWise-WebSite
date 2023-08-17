@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getId, addFav } from "../../redux/actions/index";
+import { addToCart, getId, addFav, setFavorites } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 
@@ -31,11 +31,24 @@ const ProductDetail = ({ productId}) => {
   };
 
   const handleAddFavorite = () => {
-    if (!favorites.find((favProduct) => favProduct.id === product.id)) {
-      dispatch(addFav(product));
+    dispatch(addFav(product));
+  
+    const userId = localStorage.getItem('userid');
+    if (userId) {
+      const storedUserFavorites = JSON.parse(localStorage.getItem(`userFavorites_${userId}`)) || [];
+      const updatedUserFavorites = [...storedUserFavorites, product];
+      localStorage.setItem(`userFavorites_${userId}`, JSON.stringify(updatedUserFavorites));
+  
+      // Actualizar los favoritos en el estado global de Redux
+      dispatch(setFavorites(updatedUserFavorites));
+    } else {
+      const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const updatedAnonymousFavorites = [...storedAnonymousFavorites, product];
+      localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
+  
+
     }
   };
-
   const handlerClicks = () => {
     const info = {
       userId: userid,
