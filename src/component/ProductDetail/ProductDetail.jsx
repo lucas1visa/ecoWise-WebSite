@@ -16,7 +16,6 @@ const ProductDetail = ({ productId}) => {
     const userIdAsNumber = parseInt(userid)
     if (userIdAsNumber) {
       dispatch(addToCart(product.id,userid));
-
       setAddToCartText("Agregado al carrito");
     } else {
       const existingCart = localStorage.getItem("carrito");
@@ -29,7 +28,6 @@ const ProductDetail = ({ productId}) => {
       setAddToCartText("Agregado al carrito");
     }
   };
-  
   const handleAddFavorite = () => {
     dispatch(addFav(product));
   
