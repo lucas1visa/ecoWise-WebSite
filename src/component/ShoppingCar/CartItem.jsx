@@ -30,11 +30,14 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
     const totalPrice = product.price * quantity;
     const safeCartTotal = isNaN(cartTotal) ? 0 : cartTotal;
     return (
-        <div className='container-cart'>
-            <h3>Nombre Del Producto: {product.name}</h3>
-            <img src={product.image} alt={product.name} className='image-product-cart' />
-            <p>
-                <label htmlFor={`quantity-select-${product.quantityAvailable}`} className="texto">
+        <div className='w-full max-w-sm bg-primary-201 border border-gray-200 rounded-lg shadow dark:border-gray-700 px-3 pb-5 flex flex-col relative'>
+            <button onClick={handleDeleteCart}  className='quitar-product-cart absolute top-2 right-2 mt-4 mr-2 '><ion-icon name="close-outline"></ion-icon></button>
+            <h3 className=' text-center'> {product.name}</h3>
+
+            <img src={product.image} alt={product.name} className='image-product-cart  w-52 h-52 rounded-full ' />
+            <p> 
+                
+                <label htmlFor={`quantity-select-${product.quantityAvailable}`} className="texto mt-6 ml-3">
                     Cantidad
                 </label>
                 <select
@@ -42,6 +45,7 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
                     value={quantity}
                     onChange={handleQuantityChange}
                     className="form-select custom-select"
+                    
                 >
                    {/*  {<option value="1">Seleccione cantidad</option>} {/* Opción adicional */} */
                     {Array.from({ length: product.quantityAvailable }, (_, index) => index + 1).map(count => (
@@ -51,11 +55,11 @@ const CartItem = ({ product, cartId, cartTotal , onSaveCartTotal }) => {
                     ))}
                 </select>
             </p>
-        {<p>Precio: {totalPrice}</p> }
+        {<p className='ml-4'>Precio: {totalPrice}</p> }
             
             {console.log(safeCartTotal)} {/* Mostrar el total del carrito aquí */}
             {/* <button onClick={handleSaveCartTotal}>Guardar Total</button> Agregar el botón para guardar el total */}
-            <button onClick={handleDeleteCart}  className='quitar-product-cart'><ion-icon name="close-outline"></ion-icon></button>
+           
             
         </div>
     );
