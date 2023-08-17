@@ -128,7 +128,6 @@ const Login = () => {
         localStorage.removeItem('admin');
         // estado para controlar la sesion
         setSession(false)
-        window.location.reload();
 
     }
     const handleGoogleLogin = async (event) => {
@@ -179,9 +178,7 @@ const Login = () => {
                     title: 'Inicio con éxito',
                     showConfirmButton: false,
                     timer: 2000,
-                  }).then(() => {
-                    window.location.reload(); // Recarga la página después de cerrar la notificación
-                  });                  
+                  })          
                 setSession(true);
                 setShow({
                     formlogin: false
