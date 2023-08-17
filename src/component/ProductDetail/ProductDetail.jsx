@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav, setFavorites } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
+import {AiOutlineStar, AiFillStar} from "react-icons/ai";
+
 
 const ProductDetail = ({ productId}) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
