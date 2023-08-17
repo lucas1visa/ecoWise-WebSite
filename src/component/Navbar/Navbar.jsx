@@ -149,7 +149,7 @@ const NavbarComponent = () => {
             >
 
 ↻
-            </button>
+            </button> //NO PONERLE ICONOS AL BOTON XD
           )}
 
           <div className="ml-auto m-2">
