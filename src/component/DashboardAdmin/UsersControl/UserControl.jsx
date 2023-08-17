@@ -7,7 +7,7 @@ const UserControl = () => {
   const [initialLoad, setInitialLoad] = useState(false);
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getProducts());
   }, []);
 
   const handleToggleLock = async (userId) => {

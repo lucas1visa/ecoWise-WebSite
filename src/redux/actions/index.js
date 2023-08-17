@@ -16,7 +16,8 @@ import {
   DELETELOGICAL,
   SET_FAVORITES,
   ACTUALIZAR_PRODUCTO,
-  POSTPURCHARSE
+  POSTPURCHARSE,
+  ADD_TO_CART2
  /*  RESET_QUANTITY */
 } from "./Types";
 import { async } from "@firebase/util";
@@ -106,13 +107,26 @@ export function addFav(product) {
 });
   
   
-  export const addToCart = (id, UserId ) => {
+  export const addToCart = (id, UserId) => {
     return async function(dispatch){
       try {
-        const resAddCart = await axios.post(`/cart`, id, UserId );
-        console.log(resAddCart);
+        const resAddCart = await axios.post(`/cart`, {id, UserId} );
         return dispatch({
         type: ADD_TO_CART,
+         payload: 
+         resAddCart
+        })
+      } catch (error) {
+        console.log('error al crear el producto en el carrito:'+ error)
+      }
+    }
+  }
+  export const addToCart2 = (carrito,UserId) => {
+    return async function(dispatch){
+      try {
+        const resAddCart = await axios.post(`/cart`, {UserId,carrito} );
+        return dispatch({
+        type: ADD_TO_CART2,
          payload: 
          resAddCart
         })
@@ -247,7 +261,7 @@ export function actualizarProducto(id, quantityAvailable, price) {
     try {
       await axios.put(
         `/products/update`,
-        id, quantityAvailable, price
+        {id, quantityAvailable, price}
       );
       console.log('Este es el producto Actualizado: ' + id, quantityAvailable, price )
       return dispatch({
