@@ -113,11 +113,12 @@ const NavbarComponent = () => {
             <Link to="/contact" className="nav-link text-black">
               Contacto
             </Link>
-            <div>
+            <div>{/* DEJEN ESTO ASÍ 🙄 */}
               <Link to="/favorites" className="nav-linkk">
-                <button className="button-icon-cora">🤍</button>
-                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+                {favoriteCount < 1 ? <button className="button-icon-cora">🤍</button> : <button className="button-icon-cora">❤️</button>  }
               </Link>
+              {/* esto va afuera para que no agarre los estilos predeterminados de la etiqueta Link, no afecta en nada su funcionamientos */}
+                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
             </div>
           </Nav>
           {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}
