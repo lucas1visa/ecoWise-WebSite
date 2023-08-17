@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 import MPButton from "../MPButton/MPButton"
 
+
 const ProductDetail = ({ productId, setShowModal }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
@@ -109,6 +110,7 @@ const ProductDetail = ({ productId, setShowModal }) => {
           )}
         </div>
         <div className="col-md-6 d-flex flex-column">
+          
           {state.loading ? (
             <p></p>
           ) : product ? (
