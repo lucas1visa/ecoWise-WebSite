@@ -146,6 +146,14 @@ const Login = () => {
             let userid = users.find((e)=> e.email === email);
             if(!userid){
                 dispatch(postUser({name, surname, email, phone, register}));
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Inicio con éxito',
+                    showConfirmButton: false,
+                    timer: 2000,
+                  }).then(() => {
+                    window.location.reload(); // Recarga la página después de cerrar la notificación
+                  });        
             }
             if(userid.isAdmin){
                 localStorage.setItem('admin','true')
