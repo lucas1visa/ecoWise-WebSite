@@ -4,7 +4,6 @@ import axios from "axios";
 import "./MPButton.css"
 
 const publicKey = import.meta.env.VITE_PublicKey;
-console.log(publicKey)
 const MPButton = ({titul,precio,cantidad}) => {
 
 
