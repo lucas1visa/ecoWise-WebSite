@@ -59,7 +59,7 @@ const CardProducts = () => {
       {currentProducts.map((product) => (
         <div
           key={product.id}
-          className=" shadow-md rounded-lg p-4 transition transform hover:scale-105 cursor-pointer m-4 bg-yellow-700"
+          className=" shadow-md rounded-lg p-4 transition transform hover:scale-105 cursor-pointer m-4 bg-green-200"
           onMouseEnter={() => handleMouseEnter(product.id)}
           onMouseLeave={handleMouseLeave}
           onClick={() => handleBuyClick(product.id)}
@@ -71,9 +71,9 @@ const CardProducts = () => {
         className="w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full"
 
           />
-          <h3 className="text-lg font-bold mb-2 text-start text-primary-151">{product.name}</h3>
+          <h3 className="text-lg font-bold mb-2 text-start text-white">{product.name}</h3>
           <p className="font-bold text-start text-white">${product.price}</p>
-          <p className="text-black font-bold text-start">{product.category}</p>
+          <p className="text-black font-bold text-white">{product.category}</p>
         </div>
       ))}
     </div>

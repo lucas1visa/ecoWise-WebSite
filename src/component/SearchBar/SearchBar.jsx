@@ -60,7 +60,7 @@ const Search = () => {
         onChange={(event) => setProductName(event.target.value)}
         className={styles.inputSearch}
       />
-      <Button onClick={handleChange} className="ml-auto m-2">
+      <Button onClick={handleChange} id={styles.buttonsearchBar}>
         <ion-icon name="search-outline"></ion-icon>
       </Button>
        {isLoading && <LoadingScreen />}

@@ -21,7 +21,7 @@
     cursor: pointer;
     font-size: 20px; /* Ajusta el tamaño de fuente según tus preferencias */
     background-color: transparent;
-    color: #29CE8A;
+    color: rgb(135, 216, 78);
     transition: transform 0.3s ease; /* Agrega una transición suave a la propiedad transform */
 }
 

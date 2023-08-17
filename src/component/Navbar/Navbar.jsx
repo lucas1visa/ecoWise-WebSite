@@ -146,8 +146,8 @@ const NavbarComponent = () => {
               onClick={handleOrderChange}
               value="clean"
             >
-              ↻
-              {/* <ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon> */}
+              
+              {<ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon>}
             </button>
           )}
 
