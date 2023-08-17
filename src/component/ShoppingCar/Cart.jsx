@@ -15,7 +15,7 @@ const Cart = () => {
   },[])
   
   if(!parseInt(userid)){
-  const c = [{UserId:null,Products:carritoParse}]
+  const c = [{UserId:null,Products:carritoParse || []}]
   
   cartItems = c
 }
@@ -27,7 +27,7 @@ const handleCantidadChange = (event, cartId, productId) =>{
     ...prevSelectedCantidad,
     [cartId]: {
       ...(prevSelectedCantidad[cartId] || {}),
-      [cartId]: newCantidad,
+      [productId]: newCantidad,
     },
   }))
 }
