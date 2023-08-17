@@ -12,7 +12,7 @@ const ProductDetail = ({ productId}) => {
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
-  const userid = localStorage.getItem("userid");
+  const userid = localStorage.getItem("userid");//traemos el usuario
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid)
@@ -20,13 +20,13 @@ const ProductDetail = ({ productId}) => {
       dispatch(addToCart(product.id,userid));
       setAddToCartText("Agregado al carrito");
     } else {
-      const existingCart = localStorage.getItem("carrito");
+      const existingCart = localStorage.getItem("carrito");// me traigo carrito 
       let cart = [];
-      if (existingCart) {
-        cart = JSON.parse(existingCart);
+      if (existingCart) {//
+        cart = JSON.parse(existingCart);//
       }
       cart.push(product);
-      localStorage.setItem("carrito", JSON.stringify(cart));
+      localStorage.setItem("carrito", JSON.stringify(cart));//
       setAddToCartText("Agregado al carrito");
     }
   };
@@ -98,13 +98,6 @@ const ProductDetail = ({ productId}) => {
                     >
                       {isButtonDisabled ? 'Agregado al carrito' : addToCartText}
                     </button>
-                    {/* <button onClick={handlerClicks()}>
-                      <MPButton
-                        titul={product.name}
-                        precio={product.price}
-                        cantidad={quantity}
-                      />
-                    </button> */}
                   </div>
                 </div>
               </div>

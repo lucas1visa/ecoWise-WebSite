@@ -10,8 +10,7 @@ const Cart = () => {
   useEffect(()=>{
     dispatch(getCarrito())
   },[])
-const cartUsers = cartItems.filter(e=>e.UserId == userid)//filtramos usuarios segun el id
-console.log(cartUsers,"este es")
+const cartUsers = cartItems.filter(e=>e.UserId == parseInt(userid))//filtramos usuarios segun el id
 // Función para manejar el cambio de cantidad
 const handleCantidadChange = (event, cartId, productId) =>{
   const newCantidad = parseInt(event.target.value);
@@ -19,7 +18,7 @@ const handleCantidadChange = (event, cartId, productId) =>{
     ...prevSelectedCantidad,
     [cartId]: {
       ...(prevSelectedCantidad[cartId] || {}),
-      [productId]: newCantidad,
+      [cartId]: newCantidad,
     },
   }))
 }
