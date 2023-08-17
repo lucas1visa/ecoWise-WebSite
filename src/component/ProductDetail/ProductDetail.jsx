@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId, addFav, setFavorites } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
-import {AiOutlineStar, AiFillStar} from "react-icons/ai";
-
 
 const ProductDetail = ({ productId}) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -31,7 +29,7 @@ const ProductDetail = ({ productId}) => {
       setAddToCartText("Agregado al carrito");
     }
   };
-
+  
   const handleAddFavorite = () => {
     dispatch(addFav(product));
   
@@ -70,6 +68,7 @@ const ProductDetail = ({ productId}) => {
       setState({ ...state, loading: false });
     }, 1000);
   }, []);
+
   
   return (
     <div className="container-fluid">
@@ -114,7 +113,13 @@ const ProductDetail = ({ productId}) => {
           )}
         </div>
         <div className="col-md-6 d-flex flex-column">
-          
+          <div class="rating">
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+          </div>
           {state.loading ? (
             <p></p>
           ) : product ? (
