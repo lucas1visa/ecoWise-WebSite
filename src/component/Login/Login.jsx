@@ -179,10 +179,11 @@ const Login = () => {
                     footer: 'Contactese con un Admin o envie un correo con su consulta',
                     
                 });
-            }else{
+            }
+            if(userid.register === 'google.com'){
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
-                const UserId =await localStorage.getItem("userid")
+                const UserId = await localStorage.getItem("userid")
                 await dispatch(addToCart2(carritoSinUsuario,UserId));
                 Swal.fire({
                     icon: 'success',
@@ -196,6 +197,14 @@ const Login = () => {
                 setShow({
                     formlogin: false
                 });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de login',
+                    showConfirmButton: false,
+                    timer: 4000,
+                    text: 'Este mail se encuentra registrado con otra autenticacion'
+                  }); 
             }
         } catch (error) {
             console.log(error);
