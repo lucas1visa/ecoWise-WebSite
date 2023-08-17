@@ -30,5 +30,12 @@
   
 }
 
+#buttonsearchBar{
+  background-color: rgb(202, 247, 170);
+  color: rgb(145, 140, 140);
+  border: white solid 1px;
+  height: 37px;
+}
+
 
 

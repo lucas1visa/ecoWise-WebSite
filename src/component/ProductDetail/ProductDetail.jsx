@@ -1,52 +1,74 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getId, addFav } from "../../redux/actions/index";
+import { addToCart, getId, addFav, setFavorites } from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
-import MPButton from "../MPButton/MPButton"
 
-const ProductDetail = ({ productId, setShowModal }) => {
+const ProductDetail = ({ productId}) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
   const product = useSelector((state) => state.detail[0]);
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
   const favorites = useSelector((state) => state.favorites);
-  console.log(quantity);
+  const userid = localStorage.getItem("userid");
+  const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
+  const handleAddToCart = () => {
+    const userIdAsNumber = parseInt(userid)
+    if (userIdAsNumber) {
+      dispatch(addToCart(product.id,userid));
+
+      setAddToCartText("Agregado al carrito");
+    } else {
+      const existingCart = localStorage.getItem("carrito");
+      let cart = [];
+      if (existingCart) {
+        cart = JSON.parse(existingCart);
+      }
+      cart.push(product);
+      localStorage.setItem("carrito", JSON.stringify(cart));
+      setAddToCartText("Agregado al carrito");
+    }
+  };
+
+  const handleAddFavorite = () => {
+    dispatch(addFav(product));
+  
+    const userId = localStorage.getItem('userid');
+    if (userId) {
+      const storedUserFavorites = JSON.parse(localStorage.getItem(`userFavorites_${userId}`)) || [];
+      const updatedUserFavorites = [...storedUserFavorites, product];
+      localStorage.setItem(`userFavorites_${userId}`, JSON.stringify(updatedUserFavorites));
+  
+      // Actualizar los favoritos en el estado global de Redux
+      dispatch(setFavorites(updatedUserFavorites));
+    } else {
+      const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const updatedAnonymousFavorites = [...storedAnonymousFavorites, product];
+      localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
+  
+
+    }
+  };
+  const handlerClicks = () => {
+    const info = {
+      userId: userid,
+      idProduct: product.id,
+      quantity: 3,
+    };
+    localStorage.setItem("cart", JSON.stringify(info));
+  };
+
   const [state, setState] = useState({
     loading: true,
   });
-  const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
 
   useEffect(() => {
     dispatch(getId(productId || id));
     setTimeout(() => {
       setState({ ...state, loading: false });
     }, 1000);
-  }, [dispatch, id, productId]);
-
-  const handleAddToCart = () => {
-    dispatch(addToCart(product, quantity));
-    setAddToCartText("Agregado al carrito");
-  };
-
-  const handleAddFavorite = () => {
-    if (!favorites.find((favProduct) => favProduct.id === product.id)) {
-      dispatch(addFav(product));
-    }
-  };
-  const handlerClicks = () => {
-    const userId = localStorage.getItem("userid")
-    console.log(typeof (userId))
-    const info = {
-      userId: userId,
-      idProduct: product.id,
-      quantity: 3
-    }
-    localStorage.setItem("cart", JSON.stringify(info));
-
-  }
-
+  }, []);
+  
   return (
     <div className="container-fluid">
       <main className="row">
@@ -76,16 +98,13 @@ const ProductDetail = ({ productId, setShowModal }) => {
                     >
                       {isButtonDisabled ? 'Agregado al carrito' : addToCartText}
                     </button>
-                    <button onClick={handlerClicks()}>
+                    {/* <button onClick={handlerClicks()}>
                       <MPButton
                         titul={product.name}
                         precio={product.price}
                         cantidad={quantity}
-                        productId={product.id}
-                        userId={1}
-                        quantity={quantity}
                       />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
