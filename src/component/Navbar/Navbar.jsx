@@ -121,30 +121,25 @@ const NavbarComponent = () => {
                 {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
             </div>
           </Nav>
-          {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}
-          {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
-          {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
-            <ion-icon name="cart-outline"></ion-icon>
-            {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
-          </button>}
-          <Modal isOpen={showCartForm.open} size="lg">
-            <ModalHeader className=" bg-primary-201 text-center">
-              <h2 className=" font-extrabold text-right">CARRITO DE COMPRAS</h2>
-            </ModalHeader>
-            <ModalBody className=" bg-primary-202">
-              <Cart />
-              <div>
-                <p></p>
-                <Button className="bg-black" onClick={HandleCartOpen}>Cerrar</Button>
-              </div>
-            </ModalBody>
-
-
-
-
-          </Modal>
-          {/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */}
-          {isHomePage && <Search />}
+{/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
+        {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
+        {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
+        <ion-icon name="cart-outline"></ion-icon>
+        {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
+        </button>}
+            <Modal isOpen={showCartForm.open}>
+              <ModalHeader>
+              <Button onClick={HandleCartOpen}>Cerrar</Button>
+              </ModalHeader>
+              <ModalBody>
+               <Cart/>
+              </ModalBody>
+              <ModalFooter>
+              
+              </ModalFooter>
+              </Modal>
+{/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */} 
+          {isHomePage && <Search/>}
 
           {isHomePage && (
             <button
