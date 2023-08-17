@@ -56,9 +56,10 @@ const Cart = () => {
 
   return (
     <div>
-      <h1>Carrito De Compras</h1>
+    <div className='grid grid-cols-2 gap-4'>
+      
       {cartItems.map(item => (
-        <div key={item.id}>
+        <div className='' key={item.id}>
           {item.Products.map(product => (
             <CartItem
               key={product.id}
@@ -72,9 +73,12 @@ const Cart = () => {
           {console.log(carritoTotals[item.id])}
         </div>
       ))}
-      <h1>Total: {totalGeneralSafe}</h1>
+      
+    </div>
+    <h1>Total: {totalGeneralSafe}</h1>
       <MPButton titul={"Producto Ecowise"} precio={totalGeneralSafe} cantidad={1}/>
     </div>
+    
   );}
 
 export default Cart;

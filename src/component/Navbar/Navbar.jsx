@@ -32,26 +32,26 @@ const NavbarComponent = () => {
   console.log(admin)
   const favoriteCount = favorites.length;
 
-  
 
-     // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
+
+  // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
   const [showCartForm, setShowCartForm] = useState({
     open: false
   });
   // estado para cerrar
-  const [showCartClose,setShowCartClose]= useState(false);
-  const [showCart, setShowCart]= useState(true);
+  const [showCartClose, setShowCartClose] = useState(false);
+  const [showCart, setShowCart] = useState(true);
 
   // manejador para abrir
-    const HandleCartOpen = ()=>{
-      setShowCartForm({
-        open: !showCartForm.open
-      })
-    };
+  const HandleCartOpen = () => {
+    setShowCartForm({
+      open: !showCartForm.open
+    })
+  };
 
   // funcion de cerrado del carrito
-  const handleCartClose = () =>{
+  const handleCartClose = () => {
     // mostramos el boton de login
     setShowCart(true);
     // dejamos de mostrar el boton de logout
@@ -98,7 +98,7 @@ const NavbarComponent = () => {
       <Container>
         <Link to="/" className="navbar-brand">
           <img src={plantita} alt="final" className="final ml-10" />
-          
+
         </Link>
         <h3 className=" font-bold pr-12 pt-3 text-primary-900 mx-auto">ecoWise</h3>
         <Navbar.Toggle aria-controls="navbar" />
@@ -120,25 +120,30 @@ const NavbarComponent = () => {
               </Link>
             </div>
           </Nav>
-{/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      
-        {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
-        {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
-        <ion-icon name="cart-outline"></ion-icon>
-        {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
-        </button>}
-            <Modal isOpen={showCartForm.open}>
-              <ModalHeader>
-              </ModalHeader>
-              <ModalBody>
-               <Cart/>
-              </ModalBody>
-              <ModalFooter>
-              <Button onClick={HandleCartOpen}>Cerrar</Button>
-              
-              </ModalFooter>
-              </Modal>
-{/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */} 
-          {isHomePage && <Search/>}
+          {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}
+          {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
+          {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
+            <ion-icon name="cart-outline"></ion-icon>
+            {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
+          </button>}
+          <Modal isOpen={showCartForm.open} size="lg">
+            <ModalHeader className=" bg-primary-201 text-center">
+              <h2 className=" font-extrabold text-right">CARRITO DE COMPRAS</h2>
+            </ModalHeader>
+            <ModalBody className=" bg-primary-202">
+              <Cart />
+              <div>
+                <p></p>
+                <Button className="bg-black" onClick={HandleCartOpen}>Cerrar</Button>
+              </div>
+            </ModalBody>
+
+
+
+
+          </Modal>
+          {/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */}
+          {isHomePage && <Search />}
 
           {isHomePage && (
             <button
@@ -146,8 +151,8 @@ const NavbarComponent = () => {
               onClick={handleOrderChange}
               value="clean"
             >
-              
-              {<ion-icon onClick={handleOrderChange}  value="clean" name="reload-outline" ></ion-icon>}
+
+              {<ion-icon onClick={handleOrderChange} value="clean" name="reload-outline" ></ion-icon>}
             </button>
           )}
 
@@ -167,15 +172,15 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
-        {admin === 'true' && (
-  <button className="btn-admin">
-    <Link className="link-admin" to="/admin">Admin</Link>
-  </button>
-)}
-      <Login/>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
+          {admin === 'true' && (
+            <button className="btn-admin">
+              <Link className="link-admin" to="/admin">Admin</Link>
+            </button>
+          )}
+          <Login />
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
 
   );
 };
