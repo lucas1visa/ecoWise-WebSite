@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import {FcGoogle} from "react-icons/fc"
 import { AiOutlineGithub } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
-import { getUsers, postUser } from "../../redux/actions";
+import { getUsers, postUser, addToCart2 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import "./Login.css"
@@ -25,6 +25,7 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const users = useSelector((state)=>state.users);
+    const carritoSinUsuario = localStorage.getItem("carrito")
     // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
     // estado para controlar la sesion
     const [session,setSession] = useState(true);
@@ -174,6 +175,7 @@ const Login = () => {
             }else{
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
+                // dispatch(addToCart2(carritoSinUsuario));
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
