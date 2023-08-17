@@ -5,15 +5,36 @@ import { actualizarProducto } from '../../../redux/actions';
 
 const ProductoAdmin = () => {
     const products = useSelector((state) => state.products);
-    const [actualizarProducts, setActualizarProducts] = useState('');
-    const [nuevaCantidad, setNuevaCantidad] = useState('');
-    const [nuevoPrecio, setNuevoPrecio] = useState('');
+    const [modificaciones, setModificaciones] = useState({}); // Estado para almacenar modificaciones por producto
     const dispatch = useDispatch();
 
-    const handleActualizar = (id) => {
-        dispatch(actualizarProducto(id, nuevaCantidad, nuevoPrecio));
-      };
-      
+    const handleActualizar = (id, quantityAvailable, price) => {
+        dispatch(actualizarProducto(id, quantityAvailable, price));
+    };
+
+    const handleCantidad = (e) => {
+        const productId = e.target.id;
+        const newCantidad = e.target.value;
+        setModificaciones((prevState) => ({
+            ...prevState,
+            [productId]: {
+                ...prevState[productId],
+                cantidad: newCantidad,
+            },
+        }));
+    };
+
+    const handlePrecio = (e) => {
+        const productId = e.target.id;
+        const newPrecio = e.target.value;
+        setModificaciones((prevState) => ({
+            ...prevState,
+            [productId]: {
+                ...prevState[productId],
+                precio: newPrecio,
+            },
+        }));
+    };
 
     return (
         <div>
@@ -34,24 +55,29 @@ const ProductoAdmin = () => {
                         <div className="flex mb-2">
                             <h2 className="text-xl mb-2 ml-4">Cantidad Actual: {pro.quantityAvailable}</h2>
                         </div>
-
+                        
                     
-                    <div className="flex mb-2">
+                        <div className="flex mb-2">
                         <h2 className="text-xl mb-2 ml-4">
                             Modificar Precio: <input
-                            className="w-36 border p-1"
-                            placeholder="$"
-                            value={nuevoPrecio+index}
-                            onChange={(e) => setNuevoPrecio(e.target.value)}/>
+                                className="w-36 border p-1"
+                                placeholder="$"
+                                id={pro.id}
+                                value={modificaciones[pro.id]?.precio || ''}
+                                onChange={(e) => handlePrecio(e)}
+                            />
                         </h2>
                     </div>
 
 
                     <div className="flex mb-2">
                         <h2 className="text-xl mb-2 ml-4">Agregar Cantidad: <input
-                        className="w-32 border p-1"
-                        value={nuevaCantidad+index}
-                        onChange={(e) => setNuevaCantidad(e.target.value)}/>
+                            className="w-32 border p-1"
+                            id={pro.id}
+                            type="number" min={1}
+                            value={modificaciones[pro.id]?.cantidad || ''}
+                            onChange={(e) => handleCantidad(e)}
+                        />
                         </h2>
                     </div>
                     <img className="mx-auto w-32 h-32 object-cover mb-2 " src={pro.image} alt={pro.name} />
@@ -59,7 +85,12 @@ const ProductoAdmin = () => {
                     <div>
                     <button className="text-white bg-blue-700 mb-4 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
                     font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    onClick={() => handleActualizar(pro.id, nuevaCantidad, nuevoPrecio)}>
+                    onClick={() => {
+                        const cantidadModificada = modificaciones[pro.id]?.cantidad || 0;
+                        const precioModificado = modificaciones[pro.id]?.precio || pro.price;
+                        handleActualizar(pro.id, parseInt(cantidadModificada) + pro.quantityAvailable, precioModificado);
+                    }}
+                    >
                         Actualizar
                     </button>
                     </div>
