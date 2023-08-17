@@ -173,9 +173,9 @@ const Login = () => {
                     
                 });
             }else{
+                await dispatch(addToCart2(carritoSinUsuario));
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
-                // dispatch(addToCart2(carritoSinUsuario));
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
