@@ -246,7 +246,7 @@ export function actualizarProducto(id, quantityAvailable, price) {
   return async function (dispatch) {
     try {
       await axios.put(
-        `/update`,
+        `/products/update`,
         id, quantityAvailable, price
       );
       console.log('Este es el producto Actualizado: ' + id, quantityAvailable, price )
@@ -259,6 +259,7 @@ export function actualizarProducto(id, quantityAvailable, price) {
     }
   };
 }
+
 export const postPurcharse =  (payment_id,payment_type,status,userId,idProduct,quantity)=>{
   const data = {
     payment_id: payment_id,
