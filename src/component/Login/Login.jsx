@@ -52,7 +52,7 @@ const Login = () => {
             formlogin: !show.formlogin
         })
     };
-    // funcion para despachar la informacion de los inputs y almacenarlo en la DB
+    // funcion de registro con login para verificar si esta en DB
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
         // controlamos y validamos los inputs
@@ -143,14 +143,17 @@ const Login = () => {
             let phone = credentialsUser.user.phoneNumber;
             let register = credentialsUser._tokenResponse.providerId;
             console.log(name,surname,email,phone,register);
+            // buscamos si el usuario se encuentra registrando en nuestra DB
             let userid = users.find((e)=> e.email === email);
+            // en caso de no estar lo almacenamos y lo guardamos en nuestro Estado Global
             if(!userid){
                 dispatch(postUser({name, surname, email, phone, register}));
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Inicio con éxito',
+                    icon: 'info',
+                    title: 'Por Favor Valide su correo',
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 4000,
+                    footer:'Se envio un mail de confirmacion, por favor validelo'
                   }).then(() => {
                     window.location.reload(); // Recarga la página después de cerrar la notificación
                   });        
