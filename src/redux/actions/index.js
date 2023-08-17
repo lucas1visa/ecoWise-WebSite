@@ -261,7 +261,7 @@ export function actualizarProducto(id, quantityAvailable, price) {
     try {
       await axios.put(
         `/products/update`,
-        id, quantityAvailable, price
+        {id, quantityAvailable, price}
       );
       console.log('Este es el producto Actualizado: ' + id, quantityAvailable, price )
       return dispatch({
