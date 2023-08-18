@@ -37,7 +37,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(56, 87, 60));
+  background-color: white;
   
   
 }
@@ -51,7 +51,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(56, 87, 60));
+  background-color: white;
 
 }
 .input3 
@@ -65,7 +65,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(56, 87, 60));
+  background-color: white;
 
 
 }
@@ -79,7 +79,7 @@
   margin-bottom: 10px;
   background: none;
   border-bottom: 2px solid white;
-  background: linear-gradient(to left,white, rgb(56, 87, 60));
+  background-color: white;
 
 }
 
