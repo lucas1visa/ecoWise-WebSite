@@ -141,7 +141,6 @@ export function addFav(product, UserId) {
     return async function(dispatch){
       try {
        const {data} =  await axios.get(`/cart`);
-       console.log('este es mi restcart:', JSON.stringify(data, null, 2))
         return dispatch({
           type: GET_TO_CART,
           payload: data
@@ -152,14 +151,7 @@ export function addFav(product, UserId) {
     }
   }
 
-/* export const resetQuantity = (productId) => {
-  console.log('id del producto ' + productId)
-  return {
-    type: RESET_QUANTITY,
-    payload: productId,
-  };
-};
- */
+
 export const removeFromCart = (id) => {
   console.log('este es el id del removeFromCard ' + id);
   return async function (dispatch) {

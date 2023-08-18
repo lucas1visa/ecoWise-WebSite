@@ -7,8 +7,8 @@ import MPButton from '../MPButton/MPButton';
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartItems);//estado global de carrito
-  const userid = localStorage.getItem("userid");
-  const carrito = localStorage.getItem("carrito");
+  const userid = localStorage.getItem("userid");//id
+  const carrito = localStorage.getItem("carrito");//carrito 
   const [selectedCantidad, setSelectedCantidad] = useState({});
   const [precioTotal, setPrecioTotal] = useState(0);
 
@@ -24,26 +24,37 @@ const Cart = () => {
     const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
     cartToShow = c;
   }
-  const handleCantidadChange = (event, productId) => {
+  const handleCantidadChange = (event, productId, price) => {
     const newCantidad = parseInt(event.target.value);
-    setSelectedCantidad(e => ({
-      ...e,
-      [productId]: {
-        ...e[productId],
+
+
+    cartToShow.filter((e)=>e.UserId == userid)
+    setSelectedCantidad(prevSelectedCantidad => {
+      const updatedProduct = {
         cantidad: newCantidad,
         productId: productId,
-      },
-    }));
+        precio: newCantidad * price
+      };
+      const updatedSelectedCantidad = { ...prevSelectedCantidad };
+      updatedSelectedCantidad[productId] = updatedProduct;
+      const resultArray = Object.values(updatedSelectedCantidad);
+
+      return resultArray;
+    });
   };
-  // useEffect(() => {
-  //   const total = cartItems.reduce((total, item) => {
-  //     return total + item.Products.reduce((subtotal, product) => {
-  //       const selected = selectedCantidad[item.id]?.[product.id] || 1;
-  //       return subtotal + product.price * selected;
-  //     }, 0);
-  //   }, 0);
-  //   setPrecioTotal(total);
-  // }, [cartItems, selectedCantidad]);
+  const calcularPrecioTotal = () => {
+    let total = 0;
+    selectedCantidad.forEach(element => {
+      
+    });
+  };
+
+//   const totalPrecio = calcularPrecioTotal();
+ 
+console.log(selectedCantidad)
+  
+
+
   return (
     <div>
       <h1>Carrito De Compras</h1>
@@ -61,8 +72,8 @@ const Cart = () => {
           ))}
         </div>
       ))}
-      <p>Precio Total: ${precioTotal}</p>
-      <MPButton titul={"ecoWise"} precio={precioTotal} cantidad={1} />
+      <p>Precio Total: ${100}</p>
+      <MPButton titul={"ecoWise"} precio={100} cantidad={1} />
     </div>
   );
 };
