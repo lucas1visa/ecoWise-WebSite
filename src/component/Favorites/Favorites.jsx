@@ -13,31 +13,43 @@ const Favorites = () => {
   const favorites = useSelector((state) => state.favorites);
   console.log('este es favoritos numero2: ' + JSON.stringify(favorites, null, 2))
 
+  const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
+
   useEffect(() => {
-    dispatch(getFav(favorites));
+    dispatch(getFav());
   }, [dispatch]);
+
+/*   let favToShow = favorites; // let para sobrescribir
+
+  if (!parseInt(UserId)) {//caso no logueado
+    const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
+    cartToShow = c; */
 
 return (
   <div>
     <h2 className="h2-favo">Tus Favoritos</h2>
-    {favorites.length == 0 ? (
+    {favorites.length === 0 ? (
       <p>No Tienes Favoritos 🥹</p>
     ) : (
       <ul className="favoritos-lista">
-        {favorites.map((product, index) => (
-          <li key={product.id + index} className="favorito-item">
-            <Link to={`/product/${product.id}`} className="product-link">
-          
-              <img className="image-favo" src={product.image} alt={product.name} />
-              <h3 className="h2-favo">{product.name}</h3>
-              <p className=" h2-description">{product.description}</p>
-              <p className=" h2-price" >Precio: ${product.price}</p>
-            
-            </Link>
-            <button onClick={() => handleRemoveFav(product.id)} className="button-delete-fav">
+        {favorites.map((product) => (
+          product.Products.map((Carla )=>{
+            return (
+              <div key={Carla.id}>
+            <Link to={`/product/${Carla.id}`} className="product-link"> 
+                <img className="image-favo" src={Carla.image} alt={Carla.name} />
+                <h3 className="h2-favo">{Carla.name}</h3>
+                <p className=" h2-description">{Carla.description}</p>
+                <p className=" h2-price" >Precio: ${Carla.price}</p>
+            <button onClick={() => handleRemoveFav(Carla.id)} className="button-delete-fav">
             ❎
             </button>
-          </li>
+           </Link> 
+              </div>
+            )
+/*           <li key={Carla.id } className="favorito-item">
+          </li> */
+          })
         ))}
       </ul>
     )}

@@ -66,18 +66,18 @@ export function getId(id) {
   };
 }
 
-export function addFav(product, UserId) {
-  console.log(product)
+export function addFav( id, UserId ) {
+  console.log()
   return async function (dispatch) {
     try {
       await axios.post(
         `/favorits`,
-        {product, UserId}
+        { id, UserId}
       );
-      console.log('aqui esta el producto Favorito: ' + JSON.stringify(product, null, 2))
+      console.log('aqui esta el producto Favorito: ' + JSON.stringify(id, null, 2))
       return dispatch({
         type: ADD_FAV,
-        payload: product, UserId 
+        payload: id, UserId 
       });
     } catch (error) {
       console.log("addFav not found", error);
@@ -88,6 +88,7 @@ export function addFav(product, UserId) {
 export const getFav = () => {
   return async (dispatch) => {
     const { data } = await axios.get("/favorits");
+    console.log("elmo sabe donde vives!!: " + JSON.stringify(data, null, 2))
     dispatch({ type: GET_FAV, payload: data });
   };
 };

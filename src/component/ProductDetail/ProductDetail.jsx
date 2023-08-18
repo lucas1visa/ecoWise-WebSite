@@ -34,14 +34,14 @@ const ProductDetail = ({ productId}) => {
   const handleAddFavorite = () => {
    const userIdNumber = parseInt(userid) // aca lo parseo a numero porque llega en texto plano.
    if(userIdNumber){
-    dispatch(addFav(product, userid)) // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
+    dispatch(addFav(product.id, userid)) // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
    } else{
     const existingFav = localStorage.getItem("favorito")
     let fav = [];
     if(existingFav){
       fav = JSON.parse(existingFav)
     }
-    fav.push(product);
+    fav.push(product.id);
     localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
    }
   }
