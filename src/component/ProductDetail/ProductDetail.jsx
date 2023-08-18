@@ -13,9 +13,9 @@ const ProductDetail = ({ productId}) => {
   const userid = localStorage.getItem("userid");//traemos el usuario
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
   const handleAddToCart = () => {
-    const userIdAsNumber = parseInt(userid)
+    const userIdAsNumber = parseInt(userid)//tipo numero
     if (userIdAsNumber) {
-      dispatch(addToCart(product.id,userid));
+      dispatch(addToCart(product.id,userid));//con la info producto y el usuario
       setAddToCartText("Agregado al carrito");
     } else {
       const existingCart = localStorage.getItem("carrito");// me traigo carrito 
@@ -23,8 +23,8 @@ const ProductDetail = ({ productId}) => {
       if (existingCart) {//
         cart = JSON.parse(existingCart);//
       }
-      cart.push(product);
-      localStorage.setItem("carrito", JSON.stringify(cart));//
+      cart.push(product);//agregar
+      localStorage.setItem("carrito", JSON.stringify(cart));//agrega nueva info al carrito localstorage
       setAddToCartText("Agregado al carrito");
     }
   };

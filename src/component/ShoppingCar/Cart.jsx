@@ -2,65 +2,69 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito, removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
+import MPButton from '../MPButton/MPButton';
+
 const Cart = () => {
-  let cartItems = useSelector(state => state.cartItems);
-  const [selectedCantidad, setSelectedCantidad] = useState({})// estado para la cantidad
-  const userid = localStorage.getItem("userid");// id del usuario logueado
-  const carrito = localStorage.getItem("carrito");// id del usuario logueado
-  const carritoParse = JSON.parse(carrito)
-
   const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(getCarrito())
-  },[])
-  
-  if(!parseInt(userid)){
-  const c = [{UserId:null,Products:carritoParse || []}]
-  
-  cartItems = c
-}
-const cartUsers = cartItems.filter(e=>e.UserId == userid)//filtramos usuarios segun el id
-// Función para manejar el cambio de cantidad
-const handleCantidadChange = (event, cartId, productId) =>{
-  const newCantidad = parseInt(event.target.value);
-  setSelectedCantidad((prevSelectedCantidad) => ({
-    ...prevSelectedCantidad,
-    [cartId]: {
-      ...(prevSelectedCantidad[cartId] || {}),
-      [productId]: newCantidad,
-    },
-  }))
-}
-console.log("entro",cartUsers)
+  const cartItems = useSelector(state => state.cartItems);//estado global de carrito
+  const userid = localStorage.getItem("userid");
+  const carrito = localStorage.getItem("carrito");
+  const [selectedCantidad, setSelectedCantidad] = useState({});
+  const [precioTotal, setPrecioTotal] = useState(0);
 
+  const carritoParse = JSON.parse(carrito) || [];//parcear a json
 
+  useEffect(() => {
+    dispatch(getCarrito());
+  }, [dispatch]);
+
+  let cartToShow = cartItems; // let para sobrescribir
+
+  if (!parseInt(userid)) {//caso no logueado
+    const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
+    cartToShow = c;
+  }
+  const handleCantidadChange = (event, productId) => {
+    const newCantidad = parseInt(event.target.value);
+    setSelectedCantidad(e => ({
+      ...e,
+      [productId]: {
+        ...e[productId],
+        cantidad: newCantidad,
+        productId: productId,
+      },
+    }));
+  };
+  // useEffect(() => {
+  //   const total = cartItems.reduce((total, item) => {
+  //     return total + item.Products.reduce((subtotal, product) => {
+  //       const selected = selectedCantidad[item.id]?.[product.id] || 1;
+  //       return subtotal + product.price * selected;
+  //     }, 0);
+  //   }, 0);
+  //   setPrecioTotal(total);
+  // }, [cartItems, selectedCantidad]);
   return (
     <div>
-  <h1>Carrito De Compras</h1>
-  {cartUsers.map(item => (
-    <div key={item.id}>
-      {item.Products.map(product => (
-        <CartItem
-          key={product.id}
-          product={product}
-          cartId={item.id}
-          cantidad={product.quantityAvailable}
-          handleCantidadChange={handleCantidadChange}
-          selectedCantidad={selectedCantidad}
-        />
+      <h1>Carrito De Compras</h1>
+      {cartToShow.map(item => (
+        <div key={item.Products.id}>
+          {item.Products.map(product => (
+            <CartItem
+              key={product.id}
+              product={product}
+              cartId={product.id}
+              cantidad={product.quantityAvailable}
+              handleCantidadChange={handleCantidadChange}
+              selectedCantidad={selectedCantidad}
+            />
+          ))}
+        </div>
       ))}
+      <p>Precio Total: ${precioTotal}</p>
+      <MPButton titul={"ecoWise"} precio={precioTotal} cantidad={1} />
     </div>
-  ))}
-  <p>Precio Total: ${
-    cartItems.reduce((total, item) => {
-      return ( total + item.Products.reduce((subtotal, product) => {
-          const selected =selectedCantidad[item.id]?.[product.id] || 1;
-          return subtotal + product.price * selected;
-        }, 0)
-      );
-    }, 0)
-  }</p>
-</div>
-  );}
+  );
+};
 
 export default Cart;

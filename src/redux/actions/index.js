@@ -107,7 +107,7 @@ export function addFav(product) {
 });
   
   
-  export const addToCart = (id, UserId) => {
+  export const addToCart = (id, UserId) => {//cuando esta logueado agrega un solo registrto
     return async function(dispatch){
       try {
         const resAddCart = await axios.post(`/cart`, {id, UserId} );
@@ -121,7 +121,7 @@ export function addFav(product) {
       }
     }
   }
-  export const addToCart2 = (carrito,UserId) => {
+  export const addToCart2 = (carrito,UserId) => {//agregar multiplo registro de prodcutos al carrito con relacion de usuario
     return async function(dispatch){
       try {
         const resAddCart = await axios.post(`/cart`, {UserId,carrito} );
