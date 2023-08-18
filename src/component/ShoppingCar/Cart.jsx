@@ -9,7 +9,7 @@ const Cart = () => {
   const cartItems = useSelector(state => state.cartItems);//estado global de carrito
   const userid = localStorage.getItem("userid");//id
   const carrito = localStorage.getItem("carrito");//carrito 
-  const [selectedCantidad, setSelectedCantidad] = useState({});
+  const [selectedCantidad, setSelectedCantidad] = useState([]);
   const [precioTotal, setPrecioTotal] = useState(0);
 
   const carritoParse = JSON.parse(carrito) || [];//parcear a json
@@ -24,30 +24,46 @@ const Cart = () => {
     const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
     cartToShow = c;
   }
+  cartToShow.filter((e)=>e.UserId == userid)
   const handleCantidadChange = (event, productId, price) => {
     const newCantidad = parseInt(event.target.value);
-
-
-    cartToShow.filter((e)=>e.UserId == userid)
+  
     setSelectedCantidad(prevSelectedCantidad => {
-      const updatedProduct = {
-        cantidad: newCantidad,
-        productId: productId,
-        precio: newCantidad * price
-      };
-      const updatedSelectedCantidad = { ...prevSelectedCantidad };
-      updatedSelectedCantidad[productId] = updatedProduct;
-      const resultArray = Object.values(updatedSelectedCantidad);
-
-      return resultArray;
+      // Buscar el índice del producto en el array
+      const index = prevSelectedCantidad.findIndex(producto => producto.productId === productId);
+  
+      if (index !== -1) {
+        // Si el producto ya existe, actualiza su cantidad y precio
+        const updatedProduct = {
+          cantidad: newCantidad,
+          productId: productId,
+          precio: newCantidad * price
+        };
+  
+        // Crear una copia del array y actualizar el producto en el índice correspondiente
+        const updatedArray = [...prevSelectedCantidad];
+        updatedArray[index] = updatedProduct;
+  
+        return updatedArray;
+      } else {
+        // Si el producto no existe en el array, añadirlo como un nuevo producto
+        const newProduct = {
+          cantidad: newCantidad,
+          productId: productId,
+          precio: newCantidad * price
+        };
+  
+        return [...prevSelectedCantidad, newProduct];
+      }
     });
   };
-  const calcularPrecioTotal = () => {
+  
     let total = 0;
     selectedCantidad.forEach(element => {
-      
+      total += element.precio
     });
-  };
+  
+  console.log(selectedCantidad)
 
 //   const totalPrecio = calcularPrecioTotal();
  
@@ -72,8 +88,8 @@ console.log(selectedCantidad)
           ))}
         </div>
       ))}
-      <p>Precio Total: ${100}</p>
-      <MPButton titul={"ecoWise"} precio={100} cantidad={1} />
+      <p>Precio Total: ${total}</p>
+      <MPButton titul={"ecoWise"} precio={total} cantidad={1} />
     </div>
   );
 };

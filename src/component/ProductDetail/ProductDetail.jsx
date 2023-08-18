@@ -48,8 +48,8 @@ const ProductDetail = ({ productId}) => {
     }
     fav.push(product);
     localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
-   } 
-  };
+   }
+
 
   const handlerClicks = () => {
     const info = {
@@ -138,6 +138,6 @@ const ProductDetail = ({ productId}) => {
       </main>
     </div>
   );
-};
+}
 
 export default ProductDetail;

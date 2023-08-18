@@ -17,7 +17,7 @@ const CartItem = ( {product,handleCantidadChange,selectedCantidad,cartId} ) => {
         name="cantidad"
         id="cantidad"
         onChange={(event) => handleCantidadChange(event, cartId,product.price)}
-        value={selectedCantidad[cartId]?.cantidad || 1}
+        value={selectedCantidad.forEach(element => {})}
       >
         {[...Array(product.quantityAvailable)].map((_, index) => (
           <option key={index + 1} value={index + 1}>

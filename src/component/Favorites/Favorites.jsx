@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { removeFav, setFavorites } from "../../redux/actions";
+import { setFavorites } from "../../redux/actions";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
 
