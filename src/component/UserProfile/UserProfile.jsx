@@ -477,85 +477,125 @@ const UserProfile = () => {
                 <div class="col-sm-8 text-end text-danger">
                   {errors.confirmPassword}
                 </div>
-                <div>
-                  <label>Dirección</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Dirección</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="address1"
                     value={state.address1}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.address1}
+                  </div>
                 </div>
-                <div>
-                  <label>Complemento a la dirección</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Complemento a la dirección</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="address2"
                     value={state.address2}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.address2}
+                  </div>
                 </div>
-                <div>
-                  <label>Número</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Número</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="number"
                     value={state.number}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.number}
+                  </div>
                 </div>
-                <div>
-                  <label>Piso/Puerta</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Piso/Puerta</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="door"
                     value={state.door}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.door}
+                  </div>
                 </div>
-                <div>
-                  <label>Ciudad</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Ciudad</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="city"
                     value={state.city}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.city}
+                  </div>
                 </div>
-                <div>
-                  <label>Provincia</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Provincia</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="province"
                     value={state.province}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.province}
+                  </div>
                 </div>
-                <div>
-                  <label>País</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">País</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="country"
                     value={state.country}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.country}
+                  </div>
                 </div>
-                <div>
-                  <label>Código Postal</label>
+                <div class="row mb-2">
+                  <label class="col-2 form-label text-end">Código Postal</label>
+                  <div class="col-sm-6">
                   <input
                     type="text"
                     name="postalCode"
                     value={state.postalCode}
                     onChange={handleChange}
+                    class="form-control"
                   />
+                  </div>
+                  <div class="col-sm-8 text-end text-danger">
                   {errors.postalCode}
+                  </div>
                 </div>
               </div>
             </div>
