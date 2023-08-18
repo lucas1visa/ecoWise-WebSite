@@ -35,6 +35,11 @@
   color: rgb(145, 140, 140);
   border: white solid 1px;
   height: 37px;
+  padding-top: 8px;
+}
+
+#buttonsearchBar:hover{
+  background-color: rgb(197, 255, 159);
 }
 
 
