@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { setFavorites } from "../../redux/actions";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
 
@@ -8,13 +7,6 @@ import "./Favorites.css"
 const Favorites = () => {
   const dispatch = useDispatch();
   const userId = localStorage.getItem('userid');
-  const fav = useSelector((state) => state.favorites);
-
-  useEffect(()=>{
-    dispatch(setFavorites())
-  },[dispatch])
-
-
 
 return (
   <div>
