@@ -35,15 +35,19 @@ const Cart = () => {
       },
     }));
   };
-  // useEffect(() => {
-  //   const total = cartItems.reduce((total, item) => {
-  //     return total + item.Products.reduce((subtotal, product) => {
-  //       const selected = selectedCantidad[item.id]?.[product.id] || 1;
-  //       return subtotal + product.price * selected;
-  //     }, 0);
-  //   }, 0);
-  //   setPrecioTotal(total);
-  // }, [cartItems, selectedCantidad]);
+
+  
+  const calcularPrecioTotal = () => {
+    let total = 0;
+    
+  };
+
+  const totalPrecio = calcularPrecioTotal();
+  console.log(totalPrecio)
+
+  
+
+
   return (
     <div>
       <h1>Carrito De Compras</h1>
@@ -61,8 +65,8 @@ const Cart = () => {
           ))}
         </div>
       ))}
-      <p>Precio Total: ${precioTotal}</p>
-      <MPButton titul={"ecoWise"} precio={precioTotal} cantidad={1} />
+      <p>Precio Total: ${totalPrecio}</p>
+      <MPButton titul={"ecoWise"} precio={totalPrecio} cantidad={1} />
     </div>
   );
 };

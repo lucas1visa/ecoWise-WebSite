@@ -20,8 +20,8 @@ const ProductDetail = ({ productId}) => {
     } else {
       const existingCart = localStorage.getItem("carrito");// me traigo carrito 
       let cart = [];
-      if (existingCart) {//
-        cart = JSON.parse(existingCart);//
+      if (existingCart) {//si tengo carrito
+        cart = JSON.parse(existingCart);
       }
       cart.push(product);//agregar
       localStorage.setItem("carrito", JSON.stringify(cart));//agrega nueva info al carrito localstorage
@@ -43,8 +43,6 @@ const ProductDetail = ({ productId}) => {
       const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
       const updatedAnonymousFavorites = [...storedAnonymousFavorites, product];
       localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
-  
-
     }
   };
   const handlerClicks = () => {
