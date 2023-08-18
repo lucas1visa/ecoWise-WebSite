@@ -28,7 +28,6 @@ const inicialState = {
 const reducer = (state = inicialState, actions) => {
   actions.payload;
   console.log(actions.payload);
-  /* let existingCartItem; */
   switch (actions.type) {
     case GETPRODUCTS:
       return {

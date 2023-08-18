@@ -24,27 +24,34 @@ const Cart = () => {
     const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
     cartToShow = c;
   }
-  const handleCantidadChange = (event, productId) => {
+  const handleCantidadChange = (event, productId, price) => {
     const newCantidad = parseInt(event.target.value);
-    setSelectedCantidad(e => ({
-      ...e,
-      [productId]: {
-        ...e[productId],
+
+    setSelectedCantidad(prevSelectedCantidad => {
+      const updatedProduct = {
         cantidad: newCantidad,
         productId: productId,
-      },
-    }));
+        precio: newCantidad * price
+      };
+      const updatedSelectedCantidad = { ...prevSelectedCantidad };
+      updatedSelectedCantidad[productId] = updatedProduct;
+      const resultArray = Object.values(updatedSelectedCantidad);
+
+      return resultArray;
+    });
   };
 
   
   const calcularPrecioTotal = () => {
     let total = 0;
-    
+    selectedCantidad.forEach(element => {
+      
+    });
   };
 
-  const totalPrecio = calcularPrecioTotal();
-  console.log(totalPrecio)
-
+//   const totalPrecio = calcularPrecioTotal();
+ 
+console.log(selectedCantidad)
   
 
 
@@ -65,8 +72,8 @@ const Cart = () => {
           ))}
         </div>
       ))}
-      <p>Precio Total: ${totalPrecio}</p>
-      <MPButton titul={"ecoWise"} precio={totalPrecio} cantidad={1} />
+      <p>Precio Total: ${100}</p>
+      <MPButton titul={"ecoWise"} precio={100} cantidad={1} />
     </div>
   );
 };
