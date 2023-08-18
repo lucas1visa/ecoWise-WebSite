@@ -147,9 +147,9 @@ const NavbarComponent = () => {
               onClick={handleOrderChange}
               value="clean"
             >
-
-↻
-            </button> //NO PONERLE ICONOS AL BOTON XD <<<<--------------------------------------------------------------------
+            <ion-icon name="refresh-outline">↻</ion-icon>   
+           </button> //NO PONERLE ICONOS AL BOTON XD <<<<--------------------------------------------------------------------
+            //LISTO NI PARA VOS NI PARA MI 
           )}
 
           <div className="ml-auto m-2">
@@ -160,9 +160,9 @@ const NavbarComponent = () => {
           {isHomePage && (
             <div className="">
               <select className="form-control" onChange={handleOrderChange} value={selectedOrder}>
-                <option value="">Order By</option>
-                <option value="upward">Order A-Z</option>
-                <option value="falling">Order Z-A</option>
+                <option value="">Orden</option>
+                <option value="upward">Orden A-Z</option>
+                <option value="falling">Orden Z-A</option>
                 <option value="price">Mas Caros</option>
                 <option value="pricent">Mas Baratos</option>
               </select>

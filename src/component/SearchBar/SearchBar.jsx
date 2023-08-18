@@ -55,7 +55,7 @@ const Search = () => {
     <div className={styles.containerSearch}>
       <input 
         type="text"
-        placeholder="Buscar productos"
+        placeholder="Buscar prod..."
         value={productName}
         onChange={(event) => setProductName(event.target.value)}
         className={styles.inputSearch}

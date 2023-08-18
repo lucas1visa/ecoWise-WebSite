@@ -5,6 +5,7 @@ import {
   GETPRODUCTS,
   POSTPRODUCTS,
   POSTUSER,
+  PUTUSER,
   GET_ID,
   ADD_FAV,
   REMOVE_FAV,
@@ -55,6 +56,12 @@ export const postUser = (user) => {
   return async (dispatch) => {
     const res = await axios.post("/users", user);
     dispatch({ type: POSTUSER, payload: res });
+  };
+};
+export const putUser = (user) => {
+  return async (dispatch) => {
+    const res = await axios.put("/users", user);
+    dispatch({ type: PUTUSER, payload: res });
   };
 };
 
