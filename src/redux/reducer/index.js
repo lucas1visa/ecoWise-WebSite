@@ -1,13 +1,13 @@
 import {
   GETPRODUCTS,
   GET_ID,
-  ADD_FAV,
+  /* ADD_FAV */
   REMOVE_FAV,
   GET_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,
   SEARCH_PRODUCTS,
-  SET_FAVORITES,
+  GET_FAV,
   RESET_QUANTITY,
   GETUSERS,
   ACTUALIZAR_PRODUCTO
@@ -43,13 +43,13 @@ const reducer = (state = inicialState, actions) => {
 
       
     
-    case ADD_FAV:
+    case GET_FAV:
       console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
        favorites: [...state.favorites, actions.payload],
         //favoriteCount: state.favoriteCount + 1,
-      };
+      }; 
      
 
     case REMOVE_FAV:
@@ -61,11 +61,11 @@ const reducer = (state = inicialState, actions) => {
         //favoriteCount: state.favoriteCount - 1,
       };
 
-      case SET_FAVORITES:
+/*       case GET_FAV:
         return {
           ...state,
           favorites: actions.payload,
-        };
+        }; */
     
 
       case GET_TO_CART:

@@ -14,7 +14,7 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   DELETELOGICAL,
-  SET_FAVORITES,
+  GET_FAV,
   ACTUALIZAR_PRODUCTO,
   POSTPURCHARSE,
   ADD_TO_CART2
@@ -74,16 +74,36 @@ export function addFav(product, UserId) {
         `/favorits`,
         {product, UserId}
       );
-      console.log('hola ' + product )
+      console.log('aqui esta el producto Favorito: ' + JSON.stringify(product, null, 2))
       return dispatch({
         type: ADD_FAV,
-        payload:"se agrego Favorito"
+        payload: product, UserId 
       });
     } catch (error) {
       console.log("addFav not found", error);
     }
   };
 }
+
+export function getFav(product, UserId) {
+  console.log(product)
+  return async function (dispatch) {
+    try {
+      await axios.get(
+        `/favorits`,
+        {product, UserId}
+      );
+      console.log('aqui esta el producto Favorito: ' + JSON.stringify(product, null, 2))
+      return dispatch({
+        type: GET_FAV,
+        payload: product, UserId 
+      });
+    } catch (error) {
+      console.log("addFav not found", error);
+    }
+  };
+}
+
 
    export function removeFav(id) {
     return async function (dispatch) {
