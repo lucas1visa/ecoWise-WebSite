@@ -85,24 +85,12 @@ export function addFav(product, UserId) {
   };
 }
 
-export function getFav(product, UserId) {
-  console.log(product)
-  return async function (dispatch) {
-    try {
-      await axios.get(
-        `/favorits`,
-        {product, UserId}
-      );
-      console.log('aqui esta el producto Favorito: ' + JSON.stringify(product, null, 2))
-      return dispatch({
-        type: GET_FAV,
-        payload: product, UserId 
-      });
-    } catch (error) {
-      console.log("addFav not found", error);
-    }
+export const getFav = () => {
+  return async (dispatch) => {
+    const { data } = await axios.get("/favorits");
+    dispatch({ type: GET_FAV, payload: data });
   };
-}
+};
 
 
    export function removeFav(id) {

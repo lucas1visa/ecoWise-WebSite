@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
 import { constants } from "buffer";
+import {getFav } from "../../redux/actions";
 
 
 const Favorites = () => {
@@ -12,6 +13,9 @@ const Favorites = () => {
   const favorites = useSelector((state) => state.favorites);
   console.log('este es favoritos numero2: ' + JSON.stringify(favorites, null, 2))
 
+  useEffect(() => {
+    dispatch(getFav(favorites));
+  }, [dispatch]);
 
 return (
   <div>
@@ -21,7 +25,7 @@ return (
     ) : (
       <ul className="favoritos-lista">
         {favorites.map((product, index) => (
-          <li key={product.name + index} className="favorito-item">
+          <li key={product.id + index} className="favorito-item">
             <Link to={`/product/${product.id}`} className="product-link">
           
               <img className="image-favo" src={product.image} alt={product.name} />

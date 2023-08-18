@@ -47,7 +47,7 @@ const reducer = (state = inicialState, actions) => {
       console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
-       favorites: [...state.favorites, actions.payload],
+       favorites: actions.payload
         //favoriteCount: state.favoriteCount + 1,
       }; 
      
