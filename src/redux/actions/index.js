@@ -100,12 +100,6 @@ export function addFav(product, UserId) {
       }
     };
   }
-
-/*   export const getFavorites = () => ({
-
-  type: SET_FAVORITES,
-  payload: favorites,
-}); */
   
   
   export const addToCart = (id, UserId) => {//cuando esta logueado agrega un solo registrto
