@@ -12,6 +12,7 @@ const ProductDetail = ({ productId}) => {
   const favorites = useSelector((state) => state.favorites);
   const userid = localStorage.getItem("userid");//traemos el usuario
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
+
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid)//tipo numero
     if (userIdAsNumber) {
@@ -28,25 +29,22 @@ const ProductDetail = ({ productId}) => {
       setAddToCartText("Agregado al carrito");
     }
   };
-  const handleAddFavorite = () => {
-    dispatch(addFav(product));
-  
-    const userId = localStorage.getItem('userid');
-    if (userId) {
-      const storedUserFavorites = JSON.parse(localStorage.getItem(`userFavorites_${userId}`)) || [];
-      const updatedUserFavorites = [...storedUserFavorites, product];
-      localStorage.setItem(`userFavorites_${userId}`, JSON.stringify(updatedUserFavorites));
-  
-      // Actualizar los favoritos en el estado global de Redux
-      dispatch(setFavorites(updatedUserFavorites));
-    } else {
-      const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-      const updatedAnonymousFavorites = [...storedAnonymousFavorites, product];
-      localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
-  
 
+  const handleAddFavorite = () => {
+   const userIdNumber = parseInt(userid) // aca lo parseo a numero porque llega en texto plano.
+   if(userIdNumber){
+    dispatch(addFav(product.id, userid)) // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
+   } else{
+    const existingFav = localStorage.getItem("favorito")
+    let fav = [];
+    if(existingFav){
+      fav = JSON.parse(existingFav)
     }
+    fav.push(product);
+    localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
+   } 
   };
+
   const handlerClicks = () => {
     const info = {
       userId: userid,

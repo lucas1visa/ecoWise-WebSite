@@ -66,24 +66,24 @@ export function getId(id) {
   };
 }
 
-export function addFav(product) {
+export function addFav(product, UserId) {
   console.log(product)
   return async function (dispatch) {
     try {
       await axios.post(
         `/favorits`,
-        product
+        {product, UserId}
       );
       console.log('hola ' + product )
       return dispatch({
         type: ADD_FAV,
-        payload: product,
+        payload:"se agrego Favorito"
       });
     } catch (error) {
       console.log("addFav not found", error);
     }
   };
-   }
+}
 
    export function removeFav(id) {
     return async function (dispatch) {
@@ -101,10 +101,11 @@ export function addFav(product) {
     };
   }
 
-  export const setFavorites = (favorites) => ({
+/*   export const getFavorites = () => ({
+
   type: SET_FAVORITES,
   payload: favorites,
-});
+}); */
   
   
   export const addToCart = (id, UserId) => {//cuando esta logueado agrega un solo registrto
