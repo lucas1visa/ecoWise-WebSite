@@ -7,8 +7,8 @@ import MPButton from '../MPButton/MPButton';
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartItems);//estado global de carrito
-  const userid = localStorage.getItem("userid");
-  const carrito = localStorage.getItem("carrito");
+  const userid = localStorage.getItem("userid");//id
+  const carrito = localStorage.getItem("carrito");//carrito 
   const [selectedCantidad, setSelectedCantidad] = useState({});
   const [precioTotal, setPrecioTotal] = useState(0);
 
@@ -27,6 +27,8 @@ const Cart = () => {
   const handleCantidadChange = (event, productId, price) => {
     const newCantidad = parseInt(event.target.value);
 
+
+    cartToShow.filter((e)=>e.UserId == userid)
     setSelectedCantidad(prevSelectedCantidad => {
       const updatedProduct = {
         cantidad: newCantidad,
@@ -40,8 +42,6 @@ const Cart = () => {
       return resultArray;
     });
   };
-
-  
   const calcularPrecioTotal = () => {
     let total = 0;
     selectedCantidad.forEach(element => {
