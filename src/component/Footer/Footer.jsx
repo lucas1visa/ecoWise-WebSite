@@ -35,17 +35,18 @@ const Footer = () => {
             <p className="text-white font-bold mb-2">Contactos</p>
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+      
               >
                 Facebook
               </a>
             </div>
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -55,7 +56,7 @@ const Footer = () => {
             </div>
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href="mailto:info@tudireccion.com"
               >
                 Gmail
@@ -66,7 +67,7 @@ const Footer = () => {
             <p className="text-white font-bold mb-2">Tienda Online</p>
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href="#"
                 onClick={handleFAQShow}
               >
@@ -78,7 +79,7 @@ const Footer = () => {
           <div className="mb-4 md:mb-0 text-center md:text-left text-white">
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href="#"
                 onClick={handlePagosShow}
               >
@@ -88,7 +89,7 @@ const Footer = () => {
             <p className="text-white font-bold mb-2"></p>
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href=""
                 onClick={preventDefault}
               >
@@ -97,7 +98,7 @@ const Footer = () => {
             </div>
             <div>
               <a
-                className="block text-white  no-underline"
+                className={styles.footerEtiquetasA}
                 href=""
                 onClick={preventDefault}
               >
@@ -106,13 +107,12 @@ const Footer = () => {
             </div>
           </div>
           <a
-            className="block text-white  no-underline"
+            className={styles.footerEtiquetasA}
             href="#"
             onClick={handleTermsShow}
           >
             Términos y Condiciones / Devoluciones
           </a>
-
           <div></div>
 
           <Modal show={showFAQModal} onHide={handleFAQClose}>

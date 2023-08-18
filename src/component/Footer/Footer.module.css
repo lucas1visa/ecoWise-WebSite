@@ -51,5 +51,12 @@
  }
 
 
+.footerEtiquetasA{
+  text-decoration: none;
+  color: rgb(228, 228, 224);
+}
+.footerEtiquetasA:hover{
+  color: rgb(155, 155, 155);
+}
 
 
