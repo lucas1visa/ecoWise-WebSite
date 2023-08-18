@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import './StarRating.css';
 
-const StarRating = ({ productId }) => {
-  const [rating, setRating] = useState(() => {
-    const savedRating = localStorage.getItem(`rating_${productId}`);
-    return savedRating ? Number(savedRating) : 0;
-  });
+const StarRating = () => {
+  const [rating, setRating] = useState(0);
+
+  useEffect(() => {
+    const savedRating = localStorage.getItem('rating');
+    if (savedRating) {
+      setRating(Number(savedRating));
+    }
+  }, []);
 
   const handleRatingClick = (value) => {
     setRating(value);
-    localStorage.setItem(`rating_${productId}`, value);
+    localStorage.setItem('rating', value);
   };
 
   return (
