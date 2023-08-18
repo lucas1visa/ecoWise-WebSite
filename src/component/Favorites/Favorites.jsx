@@ -10,7 +10,9 @@ const Favorites = () => {
   const userId = localStorage.getItem('userid');
   const fav = useSelector((state) => state.favorites);
 
-  
+  useEffect(()=>{
+    dispatch(setFavorites())
+  },[dispatch])
 
 
 
