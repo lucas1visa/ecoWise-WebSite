@@ -5,6 +5,7 @@ import {
   GETPRODUCTS,
   POSTPRODUCTS,
   POSTUSER,
+  PUTUSER,
   GET_ID,
   ADD_FAV,
   REMOVE_FAV,
@@ -14,7 +15,7 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   DELETELOGICAL,
-  SET_FAVORITES,
+  GET_FAV,
   ACTUALIZAR_PRODUCTO,
   POSTPURCHARSE,
   ADD_TO_CART2
@@ -57,6 +58,12 @@ export const postUser = (user) => {
     dispatch({ type: POSTUSER, payload: res });
   };
 };
+export const putUser = (user) => {
+  return async (dispatch) => {
+    const res = await axios.put("/users", user);
+    dispatch({ type: PUTUSER, payload: res });
+  };
+};
 
 export function getId(id) {
   return async (dispatch) => {
@@ -66,24 +73,32 @@ export function getId(id) {
   };
 }
 
-export function addFav(product) {
+export function addFav(product, UserId) {
   console.log(product)
   return async function (dispatch) {
     try {
       await axios.post(
         `/favorits`,
-        product
+        {product, UserId}
       );
-      console.log('hola ' + product )
+      console.log('aqui esta el producto Favorito: ' + JSON.stringify(product, null, 2))
       return dispatch({
         type: ADD_FAV,
-        payload: product,
+        payload: product, UserId 
       });
     } catch (error) {
       console.log("addFav not found", error);
     }
   };
-   }
+}
+
+export const getFav = () => {
+  return async (dispatch) => {
+    const { data } = await axios.get("/favorits");
+    dispatch({ type: GET_FAV, payload: data });
+  };
+};
+
 
    export function removeFav(id) {
     return async function (dispatch) {
@@ -100,14 +115,9 @@ export function addFav(product) {
       }
     };
   }
-
-  export const setFavorites = (favorites) => ({
-  type: SET_FAVORITES,
-  payload: favorites,
-});
   
   
-  export const addToCart = (id, UserId) => {
+  export const addToCart = (id, UserId) => {//cuando esta logueado agrega un solo registrto
     return async function(dispatch){
       try {
         const resAddCart = await axios.post(`/cart`, {id, UserId} );
@@ -121,7 +131,7 @@ export function addFav(product) {
       }
     }
   }
-  export const addToCart2 = (carrito,UserId) => {
+  export const addToCart2 = (carrito,UserId) => {//agregar multiplo registro de prodcutos al carrito con relacion de usuario
     return async function(dispatch){
       try {
         const resAddCart = await axios.post(`/cart`, {UserId,carrito} );
@@ -140,7 +150,6 @@ export function addFav(product) {
     return async function(dispatch){
       try {
        const {data} =  await axios.get(`/cart`);
-       console.log('este es mi restcart:', JSON.stringify(data, null, 2))
         return dispatch({
           type: GET_TO_CART,
           payload: data
@@ -151,14 +160,7 @@ export function addFav(product) {
     }
   }
 
-/* export const resetQuantity = (productId) => {
-  console.log('id del producto ' + productId)
-  return {
-    type: RESET_QUANTITY,
-    payload: productId,
-  };
-};
- */
+
 export const removeFromCart = (id) => {
   console.log('este es el id del removeFromCard ' + id);
   return async function (dispatch) {

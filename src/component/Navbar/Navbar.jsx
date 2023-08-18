@@ -168,7 +168,7 @@ const NavbarComponent = () => {
               </select>
             </div>
           )}
-          {admin === 'true' && (
+          {admin == 'true' && (
             <button className="btn-admin">
               <Link className="link-admin" to="/admin">Admin</Link>
             </button>

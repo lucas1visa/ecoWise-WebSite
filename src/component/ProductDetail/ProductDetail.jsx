@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getId, addFav, setFavorites } from "../../redux/actions/index";
+import { addToCart, getId, addFav} from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
+import StarRating from "./StarRating";
 
 const ProductDetail = ({ productId}) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -12,41 +13,39 @@ const ProductDetail = ({ productId}) => {
   const favorites = useSelector((state) => state.favorites);
   const userid = localStorage.getItem("userid");//traemos el usuario
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
+
   const handleAddToCart = () => {
-    const userIdAsNumber = parseInt(userid)
+    const userIdAsNumber = parseInt(userid)//tipo numero
     if (userIdAsNumber) {
-      dispatch(addToCart(product.id,userid));
+      dispatch(addToCart(product.id,userid));//con la info producto y el usuario
       setAddToCartText("Agregado al carrito");
     } else {
       const existingCart = localStorage.getItem("carrito");// me traigo carrito 
       let cart = [];
-      if (existingCart) {//
-        cart = JSON.parse(existingCart);//
+      if (existingCart) {//si tengo carrito
+        cart = JSON.parse(existingCart);
       }
-      cart.push(product);
-      localStorage.setItem("carrito", JSON.stringify(cart));//
+      cart.push(product);//agregar
+      localStorage.setItem("carrito", JSON.stringify(cart));//agrega nueva info al carrito localstorage
       setAddToCartText("Agregado al carrito");
     }
   };
-  const handleAddFavorite = () => {
-    dispatch(addFav(product));
-  
-    const userId = localStorage.getItem('userid');
-    if (userId) {
-      const storedUserFavorites = JSON.parse(localStorage.getItem(`userFavorites_${userId}`)) || [];
-      const updatedUserFavorites = [...storedUserFavorites, product];
-      localStorage.setItem(`userFavorites_${userId}`, JSON.stringify(updatedUserFavorites));
-  
-      // Actualizar los favoritos en el estado global de Redux
-      dispatch(setFavorites(updatedUserFavorites));
-    } else {
-      const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-      const updatedAnonymousFavorites = [...storedAnonymousFavorites, product];
-      localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
-  
 
+  const handleAddFavorite = () => {
+   const userIdNumber = parseInt(userid) // aca lo parseo a numero porque llega en texto plano.
+   if(userIdNumber){
+    dispatch(addFav(product, userid)) // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
+   } else{
+    const existingFav = localStorage.getItem("favorito")
+    let fav = [];
+    if(existingFav){
+      fav = JSON.parse(existingFav)
     }
-  };
+    fav.push(product);
+    localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
+   }
+  }
+
   const handlerClicks = () => {
     const info = {
       userId: userid,
@@ -65,7 +64,7 @@ const ProductDetail = ({ productId}) => {
     setTimeout(() => {
       setState({ ...state, loading: false });
     }, 1000);
-  }, []);
+  }, [dispatch]);
 
   
   return (
@@ -104,12 +103,8 @@ const ProductDetail = ({ productId}) => {
           )}
         </div>
         <div className="col-md-6 d-flex flex-column">
-          <div class="rating">
-            <i class="bi bi-star-fill star"></i>
-            <i class="bi bi-star-fill star"></i>
-            <i class="bi bi-star-fill star"></i>
-            <i class="bi bi-star-fill star"></i>
-            <i class="bi bi-star-fill star"></i>
+          <div>
+          <StarRating/>
           </div>
           {state.loading ? (
             <p></p>
@@ -138,6 +133,6 @@ const ProductDetail = ({ productId}) => {
       </main>
     </div>
   );
-};
+}
 
-export default ProductDetail;
+export default ProductDetail

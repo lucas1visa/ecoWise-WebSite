@@ -1,48 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { removeFav, setFavorites } from "../../redux/actions";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
+import { constants } from "buffer";
+import {getFav } from "../../redux/actions";
 
 
 const Favorites = () => {
   const dispatch = useDispatch();
   const userId = localStorage.getItem('userid');
-  const fav = useSelector((state) => state.favorites);
+  const favoritesStorage = localStorage.getItem('favorito')
+  const favorites = useSelector((state) => state.favorites);
+  console.log('este es favoritos numero2: ' + JSON.stringify(favorites, null, 2))
 
   useEffect(() => {
-    if (userId) {
-      const storedUserFavorites = JSON.parse(localStorage.getItem(`userFavorites_${userId}`)) || [];
-      dispatch(setFavorites(storedUserFavorites));
-    } else {
-      const storedAnonymousFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-      dispatch(setFavorites(storedAnonymousFavorites));
-    }
-  }, [dispatch, userId]);
-
-  const handleRemoveFav = (productId) => {
-    dispatch(removeFav(productId));
-
-    if (userId) {
-      const updatedUserFavorites = fav.filter((product) => product.id !== productId);
-      localStorage.setItem(`userFavorites_${userId}`, JSON.stringify(updatedUserFavorites));
-    } else {
-      const updatedAnonymousFavorites = fav.filter((product) => product.id !== productId);
-      localStorage.setItem('favorites', JSON.stringify(updatedAnonymousFavorites));
-    }
-
-  };
-
+    dispatch(getFav(favorites));
+  }, [dispatch]);
 
 return (
   <div>
     <h2 className="h2-favo">Tus Favoritos</h2>
-    {fav.length === 0 ? (
+    {favorites.length == 0 ? (
       <p>No Tienes Favoritos 🥹</p>
     ) : (
       <ul className="favoritos-lista">
-        {fav.map((product) => (
-          <li key={product.id} className="favorito-item">
+        {favorites.map((product, index) => (
+          <li key={product.id + index} className="favorito-item">
             <Link to={`/product/${product.id}`} className="product-link">
           
               <img className="image-favo" src={product.image} alt={product.name} />
