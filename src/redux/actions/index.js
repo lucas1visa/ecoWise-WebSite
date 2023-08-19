@@ -81,10 +81,26 @@ export function addFav( id, UserId ) {
         `/favorits`,
         { id, UserId}
       );
-      console.log('aqui esta el producto Favorito: ' + JSON.stringify(id, null, 2))
       return dispatch({
         type: ADD_FAV,
         payload: id, UserId 
+      });
+    } catch (error) {
+      console.log("addFav not found", error);
+    }
+  };
+}
+export function addFav2( favorito, UserId ) {
+  console.log()
+  return async function (dispatch) {
+    try {
+      await axios.post(
+        `/favorits`,
+        { favorito, UserId}
+      );
+      return dispatch({
+        type: ADD_FAV,
+        payload: "se agrego el registro"
       });
     } catch (error) {
       console.log("addFav not found", error);

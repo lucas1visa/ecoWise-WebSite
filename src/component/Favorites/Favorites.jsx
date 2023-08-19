@@ -10,25 +10,28 @@ const Favorites = () => {
   const userId = localStorage.getItem('userid');
   const favoritesStorage = localStorage.getItem('favorito')
   const favorites = useSelector((state) => state.favorites);
-  console.log(favorites)
   const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
-
+  
   useEffect(() => {
      dispatch(getFav());
-  }, []);
+    }, []);
+
+    let cartToShow = favorites
 
   if (!parseInt(userId)) {//caso no logueado
-    const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
-    cartToShow = c; }
+    let c = [{ UserId: null, Products: favParse || [] }];//carrito localstorage
+    cartToShow = c; 
+  }
 
-return (
+  console.log(cartToShow)
+  return (
   <div>
     <h2 className="h2-favo">Tus Favoritos</h2>
-    {favorites.length === 0 ? (
+    {cartToShow.length === 0 ? (
       <p>No Tienes Favoritos 🥹</p>
     ) : (
       <ul className="favoritos-lista">
-        {favorites.map((product) => (
+        {cartToShow.map((product) => (
           product.Products.map((Carla )=>{
             return (
               <div key={Carla.id}>

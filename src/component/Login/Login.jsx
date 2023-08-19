@@ -26,8 +26,10 @@ const Login = () => {
     const dispatch = useDispatch();
     const users = useSelector((state)=>state.users);
     const carritoSinUsuario1 = localStorage.getItem("carrito")
+    const favoritosSinUsuario1 = localStorage.getItem("favorito")
+
     const carritoSinUsuario = JSON.parse(carritoSinUsuario1)
-   
+    const favoritosSinUsuario = JSON.parse(favoritosSinUsuario1)
 
     // ====================================== VENTANA EMERGENTE PARA LOOGIN ============================================
     // estado para controlar la sesion
@@ -115,6 +117,8 @@ const Login = () => {
                 let userid = users.find((e)=> e.email === valuesInputs.email);
                 if(userid){
                     localStorage.setItem('userid',userid.id);
+                    await dispatch(addToCart2(carritoSinUsuario,UserId));
+                    await dispatch(addToFav2(favoritosSinUsuario,UserId));
                 }else if(userid.isAdmin){
                     localStorage.setItem('admin',true)
                 }
@@ -131,6 +135,8 @@ const Login = () => {
         localStorage.removeItem('userid');
         localStorage.removeItem('admin');
         localStorage.removeItem('carrito');
+        localStorage.removeItem('favorito');
+
 
         // estado para controlar la sesion
         setSession(false)
@@ -185,6 +191,8 @@ const Login = () => {
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid")
                 await dispatch(addToCart2(carritoSinUsuario,UserId));
+                await dispatch(addToFav2(favoritosSinUsuario,UserId));
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
@@ -216,6 +224,8 @@ const Login = () => {
             const credentialsUser = await signInWithPopup(auth, providerGitHub);
             console.log(credentialsUser);
             localStorage.setItem('token',credentialsUser.user.accessToken);
+            await dispatch(addToCart2(carritoSinUsuario,UserId));
+            await dispatch(addToFav2(favoritosSinUsuario,UserId));
             let name = credentialsUser._tokenResponse.firstName;
             let surname = credentialsUser._tokenResponse.lastName;
             let register = credentialsUser._tokenResponse.providerId;

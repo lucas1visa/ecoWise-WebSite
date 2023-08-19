@@ -41,7 +41,7 @@ const ProductDetail = ({ productId}) => {
     if(existingFav){
       fav = JSON.parse(existingFav)
     }
-    fav.push(product.id);
+    fav.push(product);
     localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
    }
   }
