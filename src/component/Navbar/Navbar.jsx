@@ -1,7 +1,6 @@
 //import React from 'react';
 import CategorySelect from "../Filters/Filter";
 import Cart from "../ShoppingCar/Cart";
-
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
 import plantita from "../../Img/plantita.png";
@@ -26,13 +25,24 @@ const NavbarComponent = () => {
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
   const CartCount = useSelector((state) => state.cartCount);
   const admin = localStorage.getItem("admin")
   console.log(admin)
-  const favoriteCount = favorites.length;
+ 
+  const [favoriteCount, setFavoriteCount] = useState(0); // contador favoritos
+  const userId = localStorage.getItem('userid');
+  const favoritesStorage = localStorage.getItem('favorito');
+  const favParse = JSON.parse(favoritesStorage) || [];
 
+  const favorites = useSelector((state) => state.favorites);
 
+  useEffect(() => {
+    if (parseInt(userId)) {
+      setFavoriteCount(favorites.length);
+    } else {
+      setFavoriteCount(favParse.length);
+    }
+  }, [favorites, favParse, userId]);
 
   // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
@@ -115,10 +125,10 @@ const NavbarComponent = () => {
             </Link>
             <div>{/* DEJEN ESTO ASÍ 🙄 */}
               <Link to="/favorites" className="nav-linkk">
-                {favoriteCount < 1 ? <button className="button-icon-cora">🤍</button> : <button className="button-icon-cora">❤️</button>  }
+              <button className="button-icon-cora">🤍</button>
               </Link>
               {/* esto va afuera para que no agarre los estilos predeterminados de la etiqueta Link, no afecta en nada su funcionamientos */}
-                {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
+              {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>}
             </div>
           </Nav>
 {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}      

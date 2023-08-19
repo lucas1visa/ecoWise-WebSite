@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 import StarRating from "./StarRating";
 
-const ProductDetail = ({ productId}) => {
+const ProductDetail = ({ productId, }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
   const product = useSelector((state) => state.detail[0]);
@@ -13,6 +13,8 @@ const ProductDetail = ({ productId}) => {
   const favorites = useSelector((state) => state.favorites);
   const userid = localStorage.getItem("userid");//traemos el usuario
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
+  const [isFavorited, setIsFavorited] = useState(false);//para favoritos agregados
+
 
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid)//tipo numero
@@ -35,7 +37,7 @@ const ProductDetail = ({ productId}) => {
    const userIdNumber = parseInt(userid) // aca lo parseo a numero porque llega en texto plano.
    if(userIdNumber){
     dispatch(addFav(product.id, userid)) // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
-   } else{
+  } else{
     const existingFav = localStorage.getItem("favorito")
     let fav = [];
     if(existingFav){
@@ -43,7 +45,9 @@ const ProductDetail = ({ productId}) => {
     }
     fav.push(product);
     localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
-   }
+    setIsFavorited(true); 
+  }
+
   }
 
   const [state, setState] = useState({
@@ -108,13 +112,11 @@ const ProductDetail = ({ productId}) => {
               </p>
               <p className="p-description"> {product.category}</p>
               <div className="corazon-red-fav">
-                {/* {favorites.Products.find(
-                  (favProduct) => favProduct.id === product.id
-                ) ? (
-                  <p>❤️</p>
-                ) : ( */}
-                  <button  onClick={handleAddFavorite}>🤍</button>
-                {/* )} */}
+              
+              <button onClick={handleAddFavorite} disabled={isFavorited}>
+  {isFavorited ? '❤️' : '🤍'}
+</button>
+             
               </div>
             </div>
           ) : (
