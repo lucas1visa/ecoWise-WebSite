@@ -39,7 +39,7 @@ const Favorites = () => {
       <p>No Tienes Favoritos 🥹</p>
     ) : (
       <ul className="favoritos-lista">
-        {cartToShow.map((product,index) =>(<div key={index}>
+        {cartToShow.map((product,index) =>(<div className="favorito-item" key={index}>
           {product.Products.map((Carla,index )=>{
             return (
               <div key={index}>
