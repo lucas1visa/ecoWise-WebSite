@@ -117,6 +117,7 @@ const Login = () => {
                 let userid = users.find((e)=> e.email === valuesInputs.email);
                 if(userid){
                     localStorage.setItem('userid',userid.id);
+                    const UserId = await localStorage.getItem("userid")
                     await dispatch(addToCart2(carritoSinUsuario,UserId));
                     await dispatch(addToFav2(favoritosSinUsuario,UserId));
                 }else if(userid.isAdmin){
@@ -174,9 +175,11 @@ const Login = () => {
             }
                 );        
             }
+            // consultamos si el usuario tiene la propiedad admin
             if(userid.isAdmin){
                 localStorage.setItem('admin','true')
             }
+            // consultamos si el usuario no esta bloqueado
             if(userid.isDeleted){
                 Swal.fire({
                     icon: 'info',
@@ -188,16 +191,13 @@ const Login = () => {
                     
                 });
             }
+            // consultamos si el usuario registrado con el correo es coincidente con nuestra DB
             if(userid.register === 'google.com'){
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid")
-                
-                
-
                 await dispatch(addToCart2(carritoSinUsuario,UserId));
                 await dispatch(addToFav2(favoritosSinUsuario,UserId));
-
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
@@ -229,23 +229,45 @@ const Login = () => {
             const credentialsUser = await signInWithPopup(auth, providerGitHub);
             console.log(credentialsUser);
             localStorage.setItem('token',credentialsUser.user.accessToken);
-            await dispatch(addToCart2(carritoSinUsuario,UserId));
-            await dispatch(addToFav2(favoritosSinUsuario,UserId));
-            let name = credentialsUser._tokenResponse.firstName;
-            let surname = credentialsUser._tokenResponse.lastName;
+            let name = credentialsUser._tokenResponse.screenName;
+            let surname = credentialsUser._tokenResponse.screenName;
             let register = credentialsUser._tokenResponse.providerId;
-            console.log(name,surname,register);
-            Swal.fire({
-                icon: 'success',
-                title: 'Inicio con exitó',
-                showConfirmButton: false,
-                timer: 2000
-            });
-            dispatch(postUser({ name, surname,register}));
-            setSession(true);
-            setShow({
-                formlogin: false
-            });
+            // console.log(name,surname,register);
+            // buscamos en nuestro estado global al usuario por nombre
+            let userid = users.find((e)=> e.name === name);
+            // en caso de no estar
+            if(!userid){
+                // lo almacenamos en nuestra DB
+                dispatch(postUser({ name, surname,register}));
+            }
+            if(userid.isDeleted){
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Ooopss...',
+                    text: 'Esta cuenta esta suspendida',
+                    showConfirmButton: false,
+                    timer: 4500,
+                    footer: 'Contactese con un Admin o envie un correo con su consulta',
+                    
+                });
+            }
+            if(userid){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Inicio con exitó',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                setSession(true);
+                setShow({
+                    formlogin: false
+                });
+                localStorage.setItem('userid',userid.id);
+                const UserId = await localStorage.getItem("userid");
+                await dispatch(addToCart2(carritoSinUsuario,UserId));
+                await dispatch(addToFav2(favoritosSinUsuario,UserId));
+            }
+            
         } catch (error) {
             console.log(error);
         }
