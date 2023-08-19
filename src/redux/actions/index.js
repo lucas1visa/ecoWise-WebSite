@@ -21,7 +21,6 @@ import {
   ADD_TO_CART2
  /*  RESET_QUANTITY */
 } from "./Types";
-import { async } from "@firebase/util";
 
 export const getUsers = () => {
   return async (dispatch) => {
@@ -117,21 +116,25 @@ export const getFav = () => {
 };
 
 
-   export function removeFav(id) {
-    return async function (dispatch) {
-      try {
-        await axios.delete(
-          `/favorits`
-        );
-        return dispatch({
-          type: REMOVE_FAV,
-          payload: id, 
-        });
-      } catch (error) {
-        console.log("removeFav not found", error);
-      }
-    };
-  }
+export function removeFav(id, UserId) {
+  console.log(id, UserId);
+  return async function (dispatch) {
+    try {
+      await axios.delete('/favorits', {
+        data: {
+          id: id,
+          UserId: UserId,
+        },
+      });
+      return dispatch({
+        type: REMOVE_FAV,
+        payload: "se Eliminó",
+      });
+    } catch (error) {
+      console.log("removeFav not found", error);
+    }
+  };
+}
   
   
   export const addToCart = (id, UserId) => {//cuando esta logueado agrega un solo registrto

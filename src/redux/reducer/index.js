@@ -1,8 +1,6 @@
 import {
   GETPRODUCTS,
   GET_ID,
-  /* ADD_FAV */
-  REMOVE_FAV,
   GET_TO_CART,
   REMOVE_FROM_CART,
   GET_CATEGORY,

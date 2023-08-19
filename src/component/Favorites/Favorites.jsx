@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
-import {getFav } from "../../redux/actions";
-
+import {getFav ,removeFav} from "../../redux/actions";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -13,17 +12,26 @@ const Favorites = () => {
   const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
   
   useEffect(() => {
-     dispatch(getFav());
-    }, []);
+    dispatch(getFav());
+  }, [dispatch]);
 
-    let cartToShow = favorites
+  let cartToShow = favorites;
 
-  if (!parseInt(userId)) {//caso no logueado
-    let c = [{ UserId: null, Products: favParse || [] }];//carrito localstorage
-    cartToShow = c; 
+  if (!parseInt(userId)) {
+    let c = [{ UserId: null, Products: favParse || [] }];
+    cartToShow = c;
   }
 
-  console.log(cartToShow)
+  const handleRemoveFav = async (idProduct) => {
+    if (parseInt(userId)) {
+      console.log(idProduct, userId);
+      dispatch(removeFav(idProduct, parseInt(userId)));
+    }
+
+    const deleteFav = favParse.filter((e) => e.id !== idProduct);
+    localStorage.setItem('favorito', JSON.stringify(deleteFav));
+    dispatch(getFav());
+  }
   return (
   <div>
     <h2 className="h2-favo">Tus Favoritos</h2>
@@ -31,23 +39,26 @@ const Favorites = () => {
       <p>No Tienes Favoritos 🥹</p>
     ) : (
       <ul className="favoritos-lista">
-        {cartToShow.map((product) => (
-          product.Products.map((Carla )=>{
+        {cartToShow.map((product,index) =>(<div key={index}>
+          {product.Products.map((Carla,index )=>{
             return (
-              <div key={Carla.id}>
+              <div key={index}>
             <Link to={`/product/${Carla.id}`} className="product-link"> 
                 <img className="image-favo" src={Carla.image} alt={Carla.name} />
                 <h3 className="h2-favo">{Carla.name}</h3>
                 <p className=" h2-description">{Carla.description}</p>
                 <p className=" h2-price" >Precio: ${Carla.price}</p>
+           </Link> 
             <button onClick={() => handleRemoveFav(Carla.id)} className="button-delete-fav">
             ❎
             </button>
-           </Link> 
               </div>
             )
-          })
-        ))}
+          }
+          )
+}</div>)
+        )
+        }
       </ul>
     )}
      <Link to="/" className="home-link">
