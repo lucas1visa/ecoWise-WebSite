@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import styles from"./SearchBar.module.css"
 import { searchPrducts,getProducts } from "../../redux/actions";
 import { useState } from "react";
@@ -13,6 +14,11 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false); 
   const [productNotFound, setProductNotFound] = useState(false);
 
+  useEffect(() => {
+    // Restablecer el estado de productNotFound cuando cambie el valor de productName
+    setProductNotFound(false);
+  }, [productName]);
+
   const handleChange = () => {
      setProductNotFound(false); 
   
@@ -26,6 +32,7 @@ const Search = () => {
     }
   
     setIsLoading(true);
+    
   
     // Simular una carga de 1 segundo antes de completar la búsqueda
     setTimeout(() => {
