@@ -62,21 +62,35 @@ const Cart = () => {
     selectedCantidad.forEach(element => {
       total += element.precio
     });
+    const  handleDelete=(productId)=>{
+      console.log(productId,userid)
+      if (parseInt(userid)) {
+        dispatch(removeFromCart(productId, parseInt(userid)));
+      }
   
-  console.log(selectedCantidad)
+      const deleteCarrito = carritoParse.filter((e) => e.id !== productId);
+      localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
 
-//   const totalPrecio = calcularPrecioTotal();
- 
-console.log(selectedCantidad)
+    }
   
 
 
   return (
-    <div>
-      <h1>Carrito De Compras</h1>
+    <div className="min-h-80 max-w-2xl my-4 sm:my-2 mx-auto">
+        <thead>
+          <tr className="uppercase  sm:text-sm  border-b border-palette-light">
+            <th className="font-normal px-5">Producto</th>
+            <th className="font-primary font-normal px-4 py-2">cantidad</th>
+            <th className="font-primary font-normal px-4 py-4 hidden sm:table-cell">Precio</th>
+            <th className="font-primary font-normal px-2 py-4">eliminar</th>
+          </tr>
+        </thead>
+        <hr></hr> 
       {cartToShow.map(item => (
         <div key={item.Products.id}>
+          <hr />
           {item.Products.map(product => (
+        
             <CartItem
               key={product.id}
               product={product}
@@ -84,14 +98,14 @@ console.log(selectedCantidad)
               cantidad={product.quantityAvailable}
               handleCantidadChange={handleCantidadChange}
               selectedCantidad={selectedCantidad}
+              handleDelete={handleDelete}
             />
           ))}
         </div>
       ))}
       <p>Precio Total: ${total}</p>
       <MPButton titul={"ecoWise"} precio={total} cantidad={1} />
-    </div>
+      </div>
   );
 };
-
 export default Cart;

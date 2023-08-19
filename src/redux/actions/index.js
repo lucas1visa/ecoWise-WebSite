@@ -181,12 +181,16 @@ export function removeFav(id, UserId) {
   }
 
 
-export const removeFromCart = (id) => {
+export const removeFromCart = (id,UserId) => {
   console.log('este es el id del removeFromCard ' + id);
   return async function (dispatch) {
     try {
       await axios.delete(
-        `/cart/delete/${id}`
+        "/cart/delete",{
+        data: {
+          id: id,
+          UserId: UserId,
+        }}
       );
       return dispatch({
         type: REMOVE_FROM_CART,

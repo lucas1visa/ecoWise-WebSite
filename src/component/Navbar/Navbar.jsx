@@ -137,17 +137,17 @@ const NavbarComponent = () => {
         <ion-icon name="cart-outline"></ion-icon>
         {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
         </button>}
-            <Modal isOpen={showCartForm.open}>
+   
+            <Modal isOpen={showCartForm.open} className="mx-auto">
+
               <ModalHeader>
               <Button onClick={HandleCartOpen}>Cerrar</Button>
               </ModalHeader>
-              <ModalBody>
+
                <Cart/>
-              </ModalBody>
-              <ModalFooter>
-              
-              </ModalFooter>
               </Modal>
+          
+
 {/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */} 
           {isHomePage && <Search/>}
 
