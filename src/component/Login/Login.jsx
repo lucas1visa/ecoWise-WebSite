@@ -192,6 +192,9 @@ const Login = () => {
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid")
+                
+                
+
                 await dispatch(addToCart2(carritoSinUsuario,UserId));
                 await dispatch(addToFav2(favoritosSinUsuario,UserId));
 
