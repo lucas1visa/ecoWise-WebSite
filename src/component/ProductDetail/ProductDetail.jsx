@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getId, addFav} from "../../redux/actions/index";
+import { addToCart, getId,addFav} from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 import StarRating from "./StarRating";
@@ -45,15 +45,6 @@ const ProductDetail = ({ productId}) => {
     localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
    }
   }
-
-  const handlerClicks = () => {
-    const info = {
-      userId: userid,
-      idProduct: product.id,
-      quantity: 3,
-    };
-    localStorage.setItem("cart", JSON.stringify(info));
-  };
 
   const [state, setState] = useState({
     loading: true,
@@ -117,13 +108,13 @@ const ProductDetail = ({ productId}) => {
               </p>
               <p className="p-description"> {product.category}</p>
               <div className="corazon-red-fav">
-                {favorites.find(
+                {/* {favorites.Products.find(
                   (favProduct) => favProduct.id === product.id
                 ) ? (
                   <p>❤️</p>
-                ) : (
+                ) : ( */}
                   <button  onClick={handleAddFavorite}>🤍</button>
-                )}
+                {/* )} */}
               </div>
             </div>
           ) : (

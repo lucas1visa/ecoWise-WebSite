@@ -10,7 +10,6 @@ import {
   GET_FAV,
   RESET_QUANTITY,
   GETUSERS,
-  ACTUALIZAR_PRODUCTO
 } from "../actions/Types";
 
 const inicialState = {
@@ -19,7 +18,6 @@ const inicialState = {
   favorites: [],
   cartItems: [],
   filtered: [],
-  //favoriteCount: 0,
   cartCount: 0,
   users:[],
   productoActualizado: []
@@ -40,34 +38,11 @@ const reducer = (state = inicialState, actions) => {
         ...state,
         detail: actions.payload,
       };
-
-      
-    
     case GET_FAV:
-      console.log("Adding to favorites:", actions.payload);
       return {
         ...state,
        favorites: actions.payload
-        //favoriteCount: state.favoriteCount + 1,
       }; 
-     
-
-    case REMOVE_FAV:
-      return {
-        ...state,
-        favorites: state.favorites.filter(
-          (product) => product.id !== actions.payload
-        ),
-        //favoriteCount: state.favoriteCount - 1,
-      };
-
-/*       case GET_FAV:
-        return {
-          ...state,
-          favorites: actions.payload,
-        }; */
-    
-
       case GET_TO_CART:
         return{
           ...state,
@@ -120,11 +95,6 @@ const reducer = (state = inicialState, actions) => {
           ...state,
           users: actions.payload
         };
-/*         case ACTUALIZAR_PRODUCTO:
-          return{
-            ...state,
-          } */
-
     default:
       return {
         ...state,

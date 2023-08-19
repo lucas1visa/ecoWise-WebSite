@@ -95,8 +95,8 @@ export function addFav( id, UserId ) {
 export const getFav = () => {
   return async (dispatch) => {
     const { data } = await axios.get("/favorits");
-    console.log("elmo sabe donde vives!!: " + JSON.stringify(data, null, 2))
-    dispatch({ type: GET_FAV, payload: data });
+    console.log(data,"soy este culiao")
+    dispatch({ type: GET_FAV, payload: data});
   };
 };
 

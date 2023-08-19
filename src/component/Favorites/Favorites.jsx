@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
-import { constants } from "buffer";
 import {getFav } from "../../redux/actions";
 
 
@@ -11,19 +10,16 @@ const Favorites = () => {
   const userId = localStorage.getItem('userid');
   const favoritesStorage = localStorage.getItem('favorito')
   const favorites = useSelector((state) => state.favorites);
-  console.log('este es favoritos numero2: ' + JSON.stringify(favorites, null, 2))
-
+  console.log(favorites)
   const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
 
   useEffect(() => {
-    dispatch(getFav());
-  }, [dispatch]);
+     dispatch(getFav());
+  }, []);
 
-/*   let favToShow = favorites; // let para sobrescribir
-
-  if (!parseInt(UserId)) {//caso no logueado
+  if (!parseInt(userId)) {//caso no logueado
     const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
-    cartToShow = c; */
+    cartToShow = c; }
 
 return (
   <div>
@@ -47,8 +43,6 @@ return (
            </Link> 
               </div>
             )
-/*           <li key={Carla.id } className="favorito-item">
-          </li> */
           })
         ))}
       </ul>
