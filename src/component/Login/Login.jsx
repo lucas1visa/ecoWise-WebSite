@@ -155,10 +155,12 @@ const Login = () => {
             let phone = credentialsUser.user.phoneNumber;
             let register = credentialsUser._tokenResponse.providerId;
             console.log(name,surname,email,phone,register);
-            // buscamos si el usuario se encuentra registrando en nuestra DB
+            // realizamos una busqueda en nuestro estado global, trayendo informacion de todos los usuarios
+            // desde la DB 
             let userid = users.find((e)=> e.email === email);
-            // en caso de no estar lo almacenamos y lo guardamos en nuestro Estado Global
+            // en caso de no estar lo almacenamos en DB 
             if(!userid){
+                // despachamos el registro del nuevo usuario
                 dispatch(postUser({name, surname, email, phone, register}));
                 Swal.fire({
                     icon: 'info',
