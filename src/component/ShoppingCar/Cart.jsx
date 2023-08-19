@@ -103,7 +103,7 @@ const Cart = () => {
           ))}
         </div>
       ))}
-      <p>Precio Total: ${total}</p>
+      <p className="font-normal px-3"> Precio Total: ${total}</p>
       <MPButton titul={"ecoWise"} precio={total} cantidad={1} />
       </div>
   );

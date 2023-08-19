@@ -7,14 +7,15 @@ const UserControl = () => {
   const [initialLoad, setInitialLoad] = useState(false);
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getUsers());
   }, []);
 
   const handleToggleLock = async (userId) => {
     await dispatch(deletLogical(userId));
+    setInitialLoad(true)
     dispatch(getUsers()); // Actualizamos la lista después de la acción
   };
-
+  
   return (
     <div>
       <h1>Panel de control de usuario</h1>
