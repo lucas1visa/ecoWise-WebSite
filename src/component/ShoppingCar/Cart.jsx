@@ -18,6 +18,8 @@ const Cart = () => {
     dispatch(getCarrito());
   }, [dispatch]);
 
+
+  
   let cartToShow = cartItems; // let para sobrescribir
 
   if (!parseInt(userid)) {//caso no logueado
@@ -31,7 +33,6 @@ const Cart = () => {
     setSelectedCantidad(prevSelectedCantidad => {
       // Buscar el índice del producto en el array
       const index = prevSelectedCantidad.findIndex(producto => producto.productId === productId);
-  
       if (index !== -1) {
         // Si el producto ya existe, actualiza su cantidad y precio
         const updatedProduct = {
@@ -62,6 +63,10 @@ const Cart = () => {
     selectedCantidad.forEach(element => {
       total += element.precio
     });
+
+    //Handler para eliminar tanto ala bd como asi tambien al localStorage
+
+
     const  handleDelete=(productId)=>{
       console.log(productId,userid)
       if (parseInt(userid)) {
