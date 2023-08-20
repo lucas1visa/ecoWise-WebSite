@@ -19,6 +19,7 @@ import LoadingScreen from './component/Loading/Loading';
 import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
 import RoutesProtected from './component/RoutesProtected/RoutesProtected';
+import FormularioPRO from './component/FormUser/FormUser';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function App() {
             <Route path="/admin" element={<DashboardAdmin/>} />
           </Route>
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/account/register/" element={<UserProfile />} />
+          <Route path="/account/register/" element={<FormularioPRO/>} />
           <Route path="/Cart" element={<Cart />} />
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
