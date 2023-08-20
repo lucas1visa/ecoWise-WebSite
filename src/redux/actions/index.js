@@ -90,7 +90,6 @@ export function addFav( id, UserId ) {
   };
 }
 export function addToFav2( favorito, UserId ) {
-  console.log()
   return async function (dispatch) {
     try {
       await axios.post(
