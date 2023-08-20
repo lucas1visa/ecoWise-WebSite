@@ -117,9 +117,9 @@ const Login = () => {
                 let userid = users.find((e)=> e.email === valuesInputs.email);
                 if(userid){
                     localStorage.setItem('userid',userid.id);
-                    const UserId = await localStorage.getItem("userid")
-                    if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
-                    if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                    const UserId = localStorage.getItem("userid")
+                    if(carritoSinUsuario){ dispatch(addToCart2(carritoSinUsuario,UserId))}
+                    if(favoritosSinUsuario){ dispatch(addToFav2(favoritosSinUsuario,UserId))}
                 }else if(userid.isAdmin){
                     localStorage.setItem('admin',true)
                 }
@@ -196,8 +196,8 @@ const Login = () => {
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid")
-                if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
-                if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                if(carritoSinUsuario)dispatch(addToCart2(carritoSinUsuario,UserId));
+                if(favoritosSinUsuario)dispatch(addToFav2(favoritosSinUsuario,UserId));
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
