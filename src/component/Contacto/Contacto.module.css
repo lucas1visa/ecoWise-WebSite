@@ -7,9 +7,9 @@
   background:  url("");
 }
 
-.form{
-  width: 670px;
-  height: 500px;
+/* .form{
+  width: 900px;
+  height: 450px;
   display: flex;
   justify-content: center;
   box-shadow: 20px 20px 70px rgba(85, 204, 16, 0.5);
@@ -17,7 +17,7 @@
   background: rgba(26, 23, 23, 0.1);
   backdrop-filter: blur(10px);
   flex-wrap: wrap;
-}
+} */
 
 .h1{
   color: rgb(57, 88, 53);
