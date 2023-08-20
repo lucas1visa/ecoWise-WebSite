@@ -100,6 +100,12 @@ const Login = () => {
                     title: 'Inicio con exitó',
                     showConfirmButton: false,
                     timer: 2000
+                }).then(() => {
+                    if(userid.isAdmin){
+                        localStorage.setItem('admin','true');
+                        window.location.reload();
+                    }                  
+                   // Recarga la página después de cerrar la notificación
                 });
                 // almacenamos la informacion en localstorage del navegador
                 localStorage.setItem("token", infotoken.newToken);
@@ -118,8 +124,8 @@ const Login = () => {
                 if(userid){
                     localStorage.setItem('userid',userid.id);
                     const UserId = await localStorage.getItem("userid")
-                    if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
-                    if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                    if(carritoSinUsuario)dispatch(addToCart2(carritoSinUsuario,UserId));
+                    if(favoritosSinUsuario)dispatch(addToFav2(favoritosSinUsuario,UserId));
                 }else if(userid.isAdmin){
                     localStorage.setItem('admin',true)
                 }
@@ -141,7 +147,7 @@ const Login = () => {
 
         // estado para controlar la sesion
         setSession(false)
-        // window.location.reload();
+        window.location.reload();
 
     }
     const handleGoogleLogin = async (event) => {
@@ -175,10 +181,6 @@ const Login = () => {
             }
                 );        
             }
-            // consultamos si el usuario tiene la propiedad admin
-            if(userid.isAdmin){
-                localStorage.setItem('admin','true')
-            }
             // consultamos si el usuario no esta bloqueado
             if(userid.isDeleted){
                 Swal.fire({
@@ -196,16 +198,21 @@ const Login = () => {
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid")
-                if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
-                if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                if(carritoSinUsuario)dispatch(addToCart2(carritoSinUsuario,UserId));
+                if(favoritosSinUsuario)dispatch(addToFav2(favoritosSinUsuario,UserId));
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
                     showConfirmButton: false,
                     timer: 2000,
-                //   }).then(() => {
-                //     window.location.reload(); // Recarga la página después de cerrar la notificación
-                  });                  
+                }).then(() => {
+                      if(userid.isAdmin){
+                          localStorage.setItem('admin','true');
+                          window.location.reload();
+                      }                  
+                     // Recarga la página después de cerrar la notificación
+                });
+                // consultamos si el usuario tiene la propiedad admin
                 setSession(true);
                 setShow({
                     formlogin: false
@@ -257,6 +264,12 @@ const Login = () => {
                     title: 'Inicio con exitó',
                     showConfirmButton: false,
                     timer: 2000
+                }).then(() => {
+                    if(userid.isAdmin){
+                        localStorage.setItem('admin','true');
+                        window.location.reload();
+                    }                  
+                   // Recarga la página después de cerrar la notificación
                 });
                 setSession(true);
                 setShow({
@@ -264,8 +277,8 @@ const Login = () => {
                 });
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid");
-                if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
-                if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                if(carritoSinUsuario) dispatch(addToCart2(carritoSinUsuario,UserId));
+                if(favoritosSinUsuario) dispatch(addToFav2(favoritosSinUsuario,UserId));
             }
             
         } catch (error) {
