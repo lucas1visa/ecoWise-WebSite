@@ -89,7 +89,7 @@ export function addFav( id, UserId ) {
     }
   };
 }
-export function addFav2( favorito, UserId ) {
+export function addToFav2( favorito, UserId ) {
   console.log()
   return async function (dispatch) {
     try {

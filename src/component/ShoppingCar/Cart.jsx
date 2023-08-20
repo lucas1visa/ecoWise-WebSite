@@ -93,7 +93,6 @@ const Cart = () => {
         <hr></hr> 
       {cartToShow.map(item => (
         <div key={item.Products.id}>
-          <hr />
           {item.Products.map(product => (
         
             <CartItem

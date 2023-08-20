@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import {FcGoogle} from "react-icons/fc"
 import { AiOutlineGithub } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
-import { getUsers, postUser, addToCart2 } from "../../redux/actions";
+import { getUsers, postUser, addToCart2,addToFav2 } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import "./Login.css"
@@ -118,8 +118,8 @@ const Login = () => {
                 if(userid){
                     localStorage.setItem('userid',userid.id);
                     const UserId = await localStorage.getItem("userid")
-                    await dispatch(addToCart2(carritoSinUsuario,UserId));
-                    await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                    if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
+                    if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
                 }else if(userid.isAdmin){
                     localStorage.setItem('admin',true)
                 }
@@ -196,8 +196,8 @@ const Login = () => {
                 localStorage.setItem('token',credentialsUser.user.accessToken);
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid")
-                await dispatch(addToCart2(carritoSinUsuario,UserId));
-                await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
+                if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
                 Swal.fire({
                     icon: 'success',
                     title: 'Inicio con éxito',
@@ -264,8 +264,8 @@ const Login = () => {
                 });
                 localStorage.setItem('userid',userid.id);
                 const UserId = await localStorage.getItem("userid");
-                await dispatch(addToCart2(carritoSinUsuario,UserId));
-                await dispatch(addToFav2(favoritosSinUsuario,UserId));
+                if(carritoSinUsuario.length > 0) await dispatch(addToCart2(carritoSinUsuario,UserId));
+                if(favoritosSinUsuario.length > 0)await dispatch(addToFav2(favoritosSinUsuario,UserId));
             }
             
         } catch (error) {
