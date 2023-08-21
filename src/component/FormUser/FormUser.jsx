@@ -8,38 +8,36 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import validateinput from "./validate";
 
 const FormularioPRO = () => {
-  const [form, setForm] = useState({
+  // objeto de referencia para setear los inputs y para el caso de limpiarlos
+  const initialstate = {
     name: "",
     surname: "",
     email: "",
     phone: "",
     password: "",
-
-  });
+    confirmpassword:""
+  }
+  // estado para capturar la informacion de los inputs
+  const [form, setForm] = useState({initialstate});
+  // estado para almacenar los errores
   const [errors, setErrors] = useState({
-    name: "",
-    surname: "",
+    name: "Debe tener mas de 3 letras",
+    surname: "Debe tener mas de 3 letras",
     email: "",
     phone: "",
-    password: "",
+    password: "Debe tener entre (6-16) caracteres, contener una Mayuscula y un numero",
   });
-
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-
-    validate({ ...form, [property]: value });
-
     setForm({ ...form, [property]: value });
+    let err = validateinput(form);
+    setErrors({...errors,})
   };
-
-  const validate = (form) => {
-    const newErrors = { ...errors };
-
-    setErrors(newErrors);
-  }
+  console.log('email',form.email,'password',form.password);
   const submitHandler = async (event) => {
     event.preventDefault();
 
