@@ -5,6 +5,7 @@ import { postUser } from "../../redux/actions/index";
 import styles from "../UserProfile/UserProfile.module.css";
 import { FormGroup } from "reactstrap";
 
+
 const UserProfile = () => {
   // Dispatch para enviar acciones de Redux
   const dispatch = useDispatch();
