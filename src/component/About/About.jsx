@@ -1,34 +1,24 @@
 import React from "react";
-import styles from "./About.module.css";
+
 
 const About = () => {
   return (
-    <div className={styles.container}>
-      <section className={styles.section}>
-        <h1>ecoWise</h1>
-      </section>
-      <section className={styles.section}>
-        <div className={styles.aboutMe}>
-          <h2 className={styles.title}>Objetivos de la App</h2>
-          <p className={styles.text}>
-            Los objetivos de la aplicación son ayudar y concientizar a las
-            personas para que utilicen productos de origen sustentable. En la
-            aplicación, los usuarios pueden comprar los productos que aparecen y
-            crear una cuenta de usuario. Otras funcionalidades incluyen la
-            posibilidad de buscar por preferencias, como filtrar productos y
-            ordenarlos alfabéticamente o por precios.
-          </p>
+    <div className="flex bg-gray-100">
+      <section class="bg-white dark:bg-gray-900 mx-auto">
+    <div class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-primary-201 dark:text-primary-201">Acerca de nosotros</h2>
+            <p class="mb-4"> Nuestra misión es ayudar y concientizar a las personas para que utilicen productos de origen sustentable. Te damos la bienvenida a nuestra causa transformadora: inspirar y educar a todos sobre la importancia crucial de optar por productos con origen sostenible. En este mundo dinámico, cada elección que hacemos tiene un impacto, y nuestra pasión radica en fomentar la toma de decisiones conscientes y amigables con el medio ambiente. Nuestro propósito es guiarte en un viaje hacia una vida más responsable y respetuosa con el planeta, donde tus elecciones diarias reflejen un compromiso genuino con la conservación de los recursos y el bienestar global.</p>
+            <p></p>
         </div>
-      </section>
-      <section className={styles.section}>
-        <div className={styles.aboutMe}>
-          <h2 className={styles.title}>Integrantes</h2>
-          <p className={styles.text}>
-          Daniel Ardila, Alex Bris, Carla Colom, Jonathan Jaramillo, Javier Penacca, Jose Soria, Sebastian Simón, Lucas Visa.
-          </p>
+        <div class="grid grid-cols-2 gap-4 mt-8">
+            <img class="w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-2.png" alt="office content 1"/>
+            <img class="mt-4 w-full lg:mt-10 rounded-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/office-long-1.png" alt="office content 2"/>
         </div>
-      </section>
+    </div>
+</section>
     </div>
   );
 };
+
 export default About;

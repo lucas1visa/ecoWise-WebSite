@@ -1,4 +1,5 @@
 import axios from "axios";
+import Login from "../Login/Login";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import {
@@ -83,28 +84,43 @@ const FormularioPRO = () => {
 
   return (
     <Card className="mx-auto" color="transparent" shadow={false}>
-      <Typography variant="h4" color="blue-gray">
-        ¡CREAR TU CUENTA!
+      <Typography variant="h4" color="blue-gray" className="mt-5">
+        ¡CREA TU CUENTA!
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
         Ingresa tus datos en los campos del formulario
       </Typography>
-      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 mx-auto" onSubmit={submitHandler}>
+      <form className=" w-80 max-w-screen-lg sm:w-96 mx-auto" onSubmit={submitHandler}>
         <div className="mb-4 flex flex-col gap-6">
-          <Input type="text"size="lg" label="Name" value={form.name} onChange={changeHandler} name="name" />
-          <Input type="text"size="lg" label="Surname" value={form.surname} onChange={changeHandler} name="surname" />
-          <Input type="text"size="lg" label="Phone" value={form.phone} onChange={changeHandler}  name="phone"/>
-          <Input type="text"size="lg" label="Email" value={form.email} onChange={changeHandler} name="email"/>
-          <Input type="text" size="lg" label="Password" value={form.password} onChange={changeHandler}  name="password"/>
-        </div>
+  <div> 
+    <p className="mr-2">Nombre</p> 
+    <Input type="text" size="lg" value={form.name} onChange={changeHandler} name="name" className=" border-black"/>
+  </div>
+  <div className=""> 
+    <p className="mr-2">Apellido</p>
+    <Input type="text" size="lg" value={form.surname} onChange={changeHandler} name="surname" className=" border-black" />
+  </div>
+  <div className="">
+    <p className="mr-2">Telefono</p>
+    <Input type="text" size="lg" value={form.phone} onChange={changeHandler} name="phone" className=" border-black"/>
+  </div>
+  <div className="">
+    <p className="mr-2">E-mail</p>
+    <Input type="text" size="lg" value={form.email} onChange={changeHandler} name="email" className=" border-black"/>
+  </div>
+  <div className="">
+    <p className="mr-2">Contraseña</p>
+    <Input type="text" size="lg" value={form.password} onChange={changeHandler} name="password" className=" border-black"/>
+  </div>
+</div>
        
         <Button className="mt-6 bg-primary-202 text-black" fullWidth type="submit">
           REGISTRATE
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
-          Already have an account?{" "}
+          Ya tienes una cuenta ?{" "}
           <a href="#" className="font-medium text-gray-900">
-            Sign In
+            <Login></Login>
           </a>
         </Typography>
          <Checkbox
