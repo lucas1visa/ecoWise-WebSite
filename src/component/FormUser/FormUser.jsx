@@ -3,13 +3,15 @@ import Login from "../Login/Login";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import {
-  validateFieldPresence,
+  
   validateEmail,
   validatePhoneNumber,
   validateSingleSpace,
   validatePassword,
   validateName,
-  validateSurname
+  validateMaxNameLength,
+  validateConfirmPassword
+  
 } from "./Validaciones";
 import {
   Card,
@@ -46,10 +48,11 @@ const FormularioPRO = () => {
     switch (property) {
       case "name":
       case "surname":
-        errorMessage = validateFieldPresence(value, property);
-        errorMessage = validateSingleSpace(value, property);
-        errorMessage = validateSurname(value);
-        errorMessage = validateName(value);
+        
+        errorMessage += validateSingleSpace(value, property); 
+        errorMessage += validateName(value); 
+        errorMessage += validateMaxNameLength(value);
+        
         break;
       case "email":
         errorMessage = validateEmail(value);
@@ -60,6 +63,9 @@ const FormularioPRO = () => {
         case "password":
         errorMessage = validatePassword(value);
         break;
+        case "confirmPassword":
+      errorMessage = validateConfirmPassword(value, form.password);
+      break;
         
       default:
         break;
@@ -70,45 +76,56 @@ const FormularioPRO = () => {
   };
   const submitHandler = async (event) => {
     event.preventDefault();
-
-    const requiredFields = ["name", "surname", "email", "phone", "password"];
+  
+    const requiredFields = ["name", "surname", "email", "phone", "password", "confirmPassword"];
     const hasMissingFields = requiredFields.some((field) => form[field] === "");
+    
     if (hasMissingFields) {
+      alert("Por favor, complete todos los campos obligatorios");
+      return;
+    }
+  
+    try {
+      // Check if email is already registered
+      const response = await axios.get(`https://ecowise-server01.onrender.com/users?email=${form.email}`);
+      
+      if (response.data.length > 0) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Este correo electronico ya fue registrado anteriormente',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        return;
+      }
+  
+      // Continue with registration if email is not registered
+      const registerResponse = await axios.post("https://ecowise-server01.onrender.com/users", form);
+      
+      if (registerResponse.status === 200) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Creado con éxito',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Hubo un error en la solicitud',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    } catch (error) {
       Swal.fire({
-        icon: 'warning',
-        title: 'TODOS LOS CAMPOS SON OBLIGATORIOS',
+        icon: 'error',
+        title: 'Revise los datos ingresados',
         showConfirmButton: false,
         timer: 2000,
-    });
-        return;
+      });
     }
-
-    try {
-        const response = await axios.post("https://ecowise-server01.onrender.com/users", form);
-        if (response.status === 200) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Creado con éxito',
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Hubo un error en la solicitud',
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        }
-    } catch (error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Revise los datos ingresados',
-            showConfirmButton: false,
-            timer: 2000,
-        });
-    }
-};
+  };
 
 
 
@@ -130,27 +147,32 @@ const FormularioPRO = () => {
    <div>
             <p className="mr-2">Nombre</p>
             <Input type="text" size="lg" value={form.name} onChange={changeHandler} name="name" className="border-black bg-slate-600" />
-            <span className="text-red-500 text-xs">{errors.name}</span> {/* Render the error message */}
+            <span className="text-red-500 text-xs">{errors.name}</span> 
           </div>
           <div className="">
             <p className="mr-2">Apellido</p>
             <Input type="text" size="lg" value={form.surname} onChange={changeHandler} name="surname" className="border-black" />
-            <span className="text-red-500 text-xs">{errors.surname}</span> {/* Render the error message */}
+            <span className="text-red-500 text-xs">{errors.surname}</span> 
           </div>
           <div>
             <p className="mr-2">Telefono</p>
             <Input type="text" size="lg" value={form.phone} onChange={changeHandler} name="phone" className="border-black bg-slate-600" />
-            <span className="text-red-500 text-xs">{errors.phone}</span> {/* Render the error message */}
+            <span className="text-red-500 text-xs">{errors.phone}</span> 
           </div>
           <div className="">
             <p className="mr-2">Correo Electronico</p>
             <Input type="text" size="lg" value={form.email} onChange={changeHandler} name="email" className="border-black" />
-            <span className="text-red-500 text-xs">{errors.email}</span> {/* Render the error message */}
+            <span className="text-red-500 text-xs">{errors.email}</span>
           </div>
           <div className="">
             <p className="mr-2">Contraseña</p>
             <Input type="password" size="lg" value={form.password} onChange={changeHandler} name="password" className="border-black" />
-            <span className="text-red-500 text-xs">{errors.password}</span> {/* Render the error message */}
+            <span className="text-red-500 text-xs">{errors.password}</span>
+          </div>
+          <div className="">
+            <p className="mr-2">Confirmar Contraseña</p>
+            <Input type="password" size="lg" value={form.confirmPassword} onChange={changeHandler} name="confirmPassword" className="border-black" />
+            {errors.confirmPassword && <span className="text-red-500 ml-2 text-xs">{errors.confirmPassword}</span>} 
           </div>
 </div>
        

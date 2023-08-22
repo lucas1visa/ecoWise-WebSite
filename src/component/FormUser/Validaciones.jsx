@@ -1,9 +1,4 @@
-export const validateFieldPresence = (fieldValue, fieldName) => {
-    if (!fieldValue || fieldValue.trim() === "") {
-      return `${fieldName} is required.`;
-    }
-    return "";
-  };
+
   
   export const validateEmail = (email) => {
     if (!email) {
@@ -67,14 +62,27 @@ export const validateFieldPresence = (fieldValue, fieldName) => {
     return "";
   };
   
-  export const validateSurname = (surname) => {
-    if (!surname) {
+  export const validateMaxNameLength = (name) => {
+    if (!name) {
       return ""; // No error message for empty field
     }
   
-    const numberRegex = /\d/;
-    if (numberRegex.test(surname)) {
-      return "No debe contener números.";
+    const maxLength = 18;
+    if (name.length > maxLength) {
+      return "Excediste el limite de caracteres";
+    }
+  
+    return "";
+  };
+
+
+  export const validateConfirmPassword = (confirmPassword, originalPassword) => {
+    if (!confirmPassword) {
+      return ""; // No error message for empty field
+    }
+  
+    if (confirmPassword !== originalPassword) {
+      return "Las contraseñas no coinciden.";
     }
   
     return "";
