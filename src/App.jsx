@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import axios from "axios";
-// axios.defaults.baseURL = "http://localhost:3001"
-axios.defaults.baseURL = "https://ecowise-server01.onrender.com"
+axios.defaults.baseURL = "http://localhost:3001"
+// axios.defaults.baseURL = "https://ecowise-server01.onrender.com"
 
 import Home from './component/Home/Home';
 import { getProducts } from './redux/actions';
