@@ -17,6 +17,7 @@ import {
   DELETELOGICAL,
   GET_FAV,
   ACTUALIZAR_PRODUCTO,
+  GET_REVIEW,
   POSTPURCHARSE,
   ADD_TO_CART2
  /*  RESET_QUANTITY */
@@ -71,6 +72,55 @@ export function getId(id) {
     console.log(data)
   };
 }
+
+export function addReview( id, UserId ) {
+  console.log()
+  return async function (dispatch) {
+    try {
+      await axios.post(
+        `/review`,
+        { id, UserId}
+      );
+      return dispatch({
+        type: ADD_REVIEW,
+        payload: id, UserId 
+      });
+    } catch (error) {
+      console.log("addRev not found", error);
+    }
+  };
+}
+
+export const getReview = () => {
+  return async (dispatch) => {
+    const { data } = await axios.get("/review");
+    console.log(data,"soy el review")
+    dispatch({ type:  GET_REVIEW, payload: data});
+  };
+};
+
+
+export function removeRev(id, UserId) {
+  console.log(id, UserId);
+  return async function (dispatch) {
+    try {
+      await axios.delete('/review', {
+        data: {
+          id: id,
+          UserId: UserId,
+        },
+      });
+      return dispatch({
+        type: REMOVE_REV,
+        payload: "se Eliminó",
+      });
+    } catch (error) {
+      console.log("removeRev not found", error);
+    }
+  };
+}
+  
+
 
 export function addFav( id, UserId ) {
   console.log()

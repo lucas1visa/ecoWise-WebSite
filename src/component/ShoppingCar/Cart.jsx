@@ -93,6 +93,7 @@ const Cart = () => {
         <hr></hr> 
       {cartToShow.map(item => (
         <div key={item.Products.id}>
+          <hr/>
           {item.Products.map(product => (
         
             <CartItem
@@ -107,6 +108,7 @@ const Cart = () => {
           ))}
         </div>
       ))}
+      <hr />
       <p className="font-normal px-3"> Precio Total: ${total}</p>
       <MPButton titul={"ecoWise"} precio={total} cantidad={1} />
       </div>

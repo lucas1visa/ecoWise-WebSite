@@ -7,6 +7,7 @@ import {
   SEARCH_PRODUCTS,
   GET_FAV,
   RESET_QUANTITY,
+  GET_REVIEW,
   GETUSERS,
 } from "../actions/Types";
 
@@ -14,6 +15,7 @@ const inicialState = {
   products: [],
   detail: {},
   favorites: [],
+  reviews: [],
   cartItems: [],
   filtered: [],
   cartCount: 0,
@@ -36,18 +38,25 @@ const reducer = (state = inicialState, actions) => {
         ...state,
         detail: actions.payload,
       };
+
+      case GET_REVIEW:
+        return {
+          ...state,
+         favorites: actions.payload,
+        }; 
+      
     case GET_FAV:
       return {
         ...state,
-       favorites: actions.payload
+       favorites: actions.payload,
       }; 
+
       case GET_TO_CART:
         return{
           ...state,
           cartItems: actions.payload,
-          cartCount: [...state.cartItems + 1]
-        }
-
+          cartCount: actions.payload.length,
+        }       
 
     case RESET_QUANTITY: {
       const itemToReset = state.cartItems.find(
@@ -68,6 +77,7 @@ const reducer = (state = inicialState, actions) => {
       };
     }
 
+ 
     case REMOVE_FROM_CART: {
       return{
         ...state,

@@ -43,7 +43,7 @@ const CartItem = ( {product,handleCantidadChange,selectedCantidad,cartId,handleD
   {product.price}
 </td>
 <td className="font-primary font-medium px-4 sm:px-6 py-4">
-  <button onClick={() => handleDelete(product.id)}>
+  <button onClick={() => handleDelete(product.id)} className=' hover:text-red-500'>
     Eliminar
   </button>
 </td>
