@@ -16,6 +16,9 @@ const ProductDetail = ({ productId }) => {
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
   const [isFavorited, setIsFavorited] = useState(false);//para favoritos agregados
 
+  const existingFav1 = localStorage.getItem("favorito");
+  const existingFav2 = JSON.parse(existingFav1);
+
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid)//tipo numero
     if (userIdAsNumber) {
@@ -53,23 +56,21 @@ const ProductDetail = ({ productId }) => {
   }
 }
 
-  const [state, setState] = useState({
-    loading: true,
-  });
+const [state, setState] = useState({
+  loading: true,
+});
+  const favoritoAgregado = () => {
+  if (existingFav2 && existingFav2.length) {
+    if(existingFav2.find(e => e.id == product.id))setIsFavorited(true);
+  }
+};
 
   useEffect(() => {
     dispatch(getId(productId || id));
+    favoritoAgregado()
     setTimeout(() => {
       setState({ ...state, loading: false });
     }, 1000);
-  const existingFav1 = localStorage.getItem("favorito")
-  const itsFavorite = JSON.parse(existingFav1)
-  if(isFavorited.length > 0){
-    itsFavorite.find((e)=>e.id == product.id)
-      if(itsFavorite.length > 0){
-        setIsFavorited(true);
-      }
-  }
   }, [dispatch]);
 
   

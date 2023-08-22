@@ -32,6 +32,7 @@ const CartItem = ( {product,handleCantidadChange,selectedCantidad,cartId,handleD
     value={selectedCantidad.forEach(element => {})}
     className="text-gray-900 form-select border border-gray-300 w-16 rounded-sm focus:border-palette-light focus:ring-palette-light"
     >
+    <option>0</option>
     {[...Array(product.quantityAvailable)].map((_, index) => (
       <option key={index + 1} value={index + 1}>
         {index + 1}
