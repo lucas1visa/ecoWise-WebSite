@@ -67,15 +67,15 @@ const Cart = () => {
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
 
-    const  handleDelete=(productId)=>{
+    const  handleDelete= async(productId)=>{
       console.log(productId,userid)
       if (parseInt(userid)) {
-        dispatch(removeFromCart(productId, parseInt(userid)));
+       await dispatch(removeFromCart(productId, parseInt(userid)));
       }
   
       const deleteCarrito = carritoParse.filter((e) => e.id !== productId);
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
-
+      await dispatch(getCarrito());
     }
   
 
