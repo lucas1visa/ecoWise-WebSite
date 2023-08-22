@@ -25,12 +25,26 @@ const NavbarComponent = () => {
   const location = useLocation();
   const productListRedux = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const CartCount = useSelector((state) => state.cartCount);
+  //const CartCount = useSelector((state) => state.cartCount);
+  //console.log(CartCount)
   const admin = localStorage.getItem("admin")
   console.log(admin)
+  const userId = localStorage.getItem('userid');
+  const [cartCount, setCartCount] = useState(0);
+  const cartStorage = localStorage.getItem('carrito');
+  const cartParse = JSON.parse(cartStorage) || [];
+  
+  useEffect(() => {
+    if (parseInt(userId)) {
+      setCartCount(cartParse.reduce((total, product) => total + product.cantidad, 0));
+    } else {
+      setCartCount(cartParse.length);
+    }
+  }, [cartParse, userId]);
+
  
   const [favoriteCount, setFavoriteCount] = useState(0); // contador favoritos
-  const userId = localStorage.getItem('userid');
+ 
   const favoritesStorage = localStorage.getItem('favorito');
   const favParse = JSON.parse(favoritesStorage) || [];
 
@@ -135,7 +149,7 @@ const NavbarComponent = () => {
         {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
         {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
         <ion-icon name="cart-outline"></ion-icon>
-        {CartCount > 0 && <span className="favorite-count">{CartCount}</span>}
+        {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </button>}
    
             <Modal isOpen={showCartForm.open} className="mx-auto">
