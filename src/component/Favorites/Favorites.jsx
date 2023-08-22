@@ -33,38 +33,36 @@ const Favorites = () => {
     dispatch(getFav());
   }
   return (
-  <div>
-    <h2 className="h2-favo">Tus Favoritos</h2>
-    {cartToShow.length === 0 ? (
-      <p>No Tienes Favoritos 🥹</p>
-    ) : (
-      <ul className="favoritos-lista">
-        {cartToShow.map((product,index) =>(<div className="favorito-item" key={index}>
-          {product.Products.map((Carla,index )=>{
-            return (
-              <div key={index}>
-            <Link to={`/product/${Carla.id}`} className="product-link"> 
+<div >
+  <h2 className="h2-favo">Tus Favoritos</h2>
+  {cartToShow.length === 0 ? (
+    <p>No Tienes Favoritos 🥹</p>
+  ) : (
+    <ul className="favoritos-lista">
+      {cartToShow.map((product, index) => (
+        <li key={index}>
+          {product.Products.map((Carla, index) => (
+            <div className="favorito-item" key={index} >
+              <Link to={`/product/${Carla.id}`} className="product-link">
                 <img className="image-favo" src={Carla.image} alt={Carla.name} />
                 <h3 className="h2-favo">{Carla.name}</h3>
-                <p className=" h2-description">{Carla.description}</p>
-                <p className=" h2-price" >Precio: ${Carla.price}</p>
-           </Link> 
-            <button onClick={() => handleRemoveFav(Carla.id)} className="button-delete-fav">
-            ❎
-            </button>
-              </div>
-            )
-          }
-          )
-}</div>)
-        )
-        }
-      </ul>
-    )}
-     <Link to="/" className="home-link">
-        Volver a la Página de Inicio
-      </Link>
-  </div>
+                <p className="h2-description">{Carla.description}</p>
+                <p className="h2-price">Precio: ${Carla.price}</p>
+              </Link>
+              <div className="button-delete-fav">
+              <button onClick={() => handleRemoveFav(Carla.id)} >
+                ❎
+              </button></div>
+            </div>
+          ))}
+        </li>
+      ))}
+    </ul>
+  )}
+  <Link to="/" className="home-link">
+    Volver a la Página de Inicio
+  </Link>
+</div>
 );
 };
 
