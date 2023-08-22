@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RiLineChartLine } from "react-icons/ri";
-import HeaderAdmin from "./HeaderAdmin";
-import NavbarAdmin from "./NavbarAdmin";
+import HeaderAdmin from "./HeaderAdmin/HeaderAdmin";
+import NavbarAdmin from "./NavBarAdmin/NavbarAdmin"
 import UserControl from "./UsersControl/UserControl";
 import NewProduct from "../NewProduct/NewProduct";
 import VentanaDeProductos from "./VentanaEmergente/VentanaDeProductos";
