@@ -70,6 +70,14 @@ const NavbarComponent = () => {
 
   const isHomePage = location.pathname === "/";
 
+  const handleHomeLinkClick = () => {
+    // Comprueba si ya estás en la página de inicio antes de hacer algo
+    if (location.pathname === "/") {
+      // Ejecuta la acción para obtener todos los productos nuevamente
+      dispatch(getProducts(productListRedux));
+    }
+  };
+
 
   const handleOrderChange = (e) => {
     const selectedOrder = e.target.value;
@@ -106,9 +114,8 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="violet" variant="dark" expand="lg" id="Navbar">
       <Container>
-        <Link to="/" className="navbar-brand">
+      <Link to="/" className="navbar-brand" onClick={handleHomeLinkClick}>
           <img src={plantita} alt="final" className="final ml-10" />
-
         </Link>
         <h3 className=" font-bold pr-12 pt-3 text-primary-900 mx-auto">ecoWise</h3>
         <Navbar.Toggle aria-controls="navbar" />
@@ -157,9 +164,9 @@ const NavbarComponent = () => {
               onClick={handleOrderChange}
               value="clean"
             >
-            <ion-icon name="refresh-outline">↻</ion-icon>   
-           </button> //NO PONERLE ICONOS AL BOTON XD <<<<--------------------------------------------------------------------
-            //LISTO NI PARA VOS NI PARA MI 
+            ↻   
+           </button> //NO PONERLE ICONOS AL BOTON. Se rompe <<<<--------------------------------------------------------------------
+            
           )}
 
           <div className="ml-auto m-2">
