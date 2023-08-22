@@ -3,6 +3,15 @@ import Login from "../Login/Login";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import {
+  validateFieldPresence,
+  validateEmail,
+  validatePhoneNumber,
+  validateSingleSpace,
+  validatePassword,
+  validateName,
+  validateSurname
+} from "./Validaciones";
+import {
   Card,
   Input,
   Checkbox,
@@ -31,23 +40,46 @@ const FormularioPRO = () => {
     const property = event.target.name;
     const value = event.target.value;
 
-    validate({ ...form, [property]: value });
+    let errorMessage = "";
 
+    // Apply specific validation for each field
+    switch (property) {
+      case "name":
+      case "surname":
+        errorMessage = validateFieldPresence(value, property);
+        errorMessage = validateSingleSpace(value, property);
+        errorMessage = validateSurname(value);
+        errorMessage = validateName(value);
+        break;
+      case "email":
+        errorMessage = validateEmail(value);
+        break;
+      case "phone":
+        errorMessage = validatePhoneNumber(value);
+        break;
+        case "password":
+        errorMessage = validatePassword(value);
+        break;
+        
+      default:
+        break;
+    }
+
+    setErrors({ ...errors, [property]: errorMessage });
     setForm({ ...form, [property]: value });
   };
-
-  const validate = (form) => {
-    const newErrors = { ...errors };
-
-    setErrors(newErrors);
-  }
   const submitHandler = async (event) => {
     event.preventDefault();
 
     const requiredFields = ["name", "surname", "email", "phone", "password"];
     const hasMissingFields = requiredFields.some((field) => form[field] === "");
     if (hasMissingFields) {
-        alert("Por favor, complete todos los campos obligatorios");
+      Swal.fire({
+        icon: 'warning',
+        title: 'TODOS LOS CAMPOS SON OBLIGATORIOS',
+        showConfirmButton: false,
+        timer: 2000,
+    });
         return;
     }
 
@@ -90,31 +122,39 @@ const FormularioPRO = () => {
       <Typography color="gray" className="mt-1 font-normal">
         Ingresa tus datos en los campos del formulario
       </Typography>
+      <Typography color="gray" className=" font-normal">
+        ¡TODOS LOS CAMPOS SON OBLIGATORIOS!
+      </Typography>
       <form className=" w-80 max-w-screen-lg sm:w-96 mx-auto" onSubmit={submitHandler}>
         <div className="mb-4 flex flex-col gap-6">
-  <div> 
-    <p className="mr-2">Nombre</p> 
-    <Input type="text" size="lg" value={form.name} onChange={changeHandler} name="name" className=" border-black"/>
-  </div>
-  <div className=""> 
-    <p className="mr-2">Apellido</p>
-    <Input type="text" size="lg" value={form.surname} onChange={changeHandler} name="surname" className=" border-black" />
-  </div>
-  <div className="">
-    <p className="mr-2">Telefono</p>
-    <Input type="text" size="lg" value={form.phone} onChange={changeHandler} name="phone" className=" border-black"/>
-  </div>
-  <div className="">
-    <p className="mr-2">E-mail</p>
-    <Input type="text" size="lg" value={form.email} onChange={changeHandler} name="email" className=" border-black"/>
-  </div>
-  <div className="">
-    <p className="mr-2">Contraseña</p>
-    <Input type="text" size="lg" value={form.password} onChange={changeHandler} name="password" className=" border-black"/>
-  </div>
+   <div>
+            <p className="mr-2">Nombre</p>
+            <Input type="text" size="lg" value={form.name} onChange={changeHandler} name="name" className="border-black bg-slate-600" />
+            <span className="text-red-500 text-xs">{errors.name}</span> {/* Render the error message */}
+          </div>
+          <div className="">
+            <p className="mr-2">Apellido</p>
+            <Input type="text" size="lg" value={form.surname} onChange={changeHandler} name="surname" className="border-black" />
+            <span className="text-red-500 text-xs">{errors.surname}</span> {/* Render the error message */}
+          </div>
+          <div>
+            <p className="mr-2">Telefono</p>
+            <Input type="text" size="lg" value={form.phone} onChange={changeHandler} name="phone" className="border-black bg-slate-600" />
+            <span className="text-red-500 text-xs">{errors.phone}</span> {/* Render the error message */}
+          </div>
+          <div className="">
+            <p className="mr-2">Correo Electronico</p>
+            <Input type="text" size="lg" value={form.email} onChange={changeHandler} name="email" className="border-black" />
+            <span className="text-red-500 text-xs">{errors.email}</span> {/* Render the error message */}
+          </div>
+          <div className="">
+            <p className="mr-2">Contraseña</p>
+            <Input type="password" size="lg" value={form.password} onChange={changeHandler} name="password" className="border-black" />
+            <span className="text-red-500 text-xs">{errors.password}</span> {/* Render the error message */}
+          </div>
 </div>
        
-        <Button className="mt-6 bg-primary-202 text-black" fullWidth type="submit">
+        <Button className={`mt-6 text-black ${Object.values(errors).some((error) => error !== "") ? "bg-gray-400 cursor-not-allowed" : "bg-primary-202"}`} fullWidth type="submit" disabled={Object.values(errors).some(error => error !== "")}>
           REGISTRATE
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
@@ -123,24 +163,7 @@ const FormularioPRO = () => {
             <Login></Login>
           </a>
         </Typography>
-         <Checkbox
-          label={
-            <Typography
-              variant="small"
-              color="gray"
-              className="flex items-center font-normal"
-            >
-              I agree the
-              <a
-                href="#"
-                className="font-medium transition-colors hover:text-gray-900"
-              >
-                &nbsp;Terms and Conditions
-              </a>
-            </Typography>
-          }
-          containerProps={{ className: "-ml-2.5" }}
-        />
+         
       </form>
     </Card>
   );
