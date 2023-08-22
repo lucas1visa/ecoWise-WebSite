@@ -7,6 +7,7 @@ import queryString from "query-string";
 import { postPurcharse } from "../../redux/actions";
 import Swal from "sweetalert2";
 import { FcApproval } from "react-icons/fc";
+import Presentation from "./presentation/Presentation";
 
 const Home = () => {
   
@@ -35,17 +36,17 @@ if(payment_id){
   }, [dispatch, payment_id, payment_type, status]);
 }
   return (
-    <div className="container">
+    <div>
+      {/* <Presentation/> */}
       <div className="text-center m-4 title-container">
         <img
           src="https://cdn-icons-png.flaticon.com/512/743/743007.png"
           alt=""
           className="title-icon"
         />
-        <h6 className="font-weight-bold"></h6>
       </div>
       <CardProducts />
-    </div>
+      </div>
   );
 };
 
