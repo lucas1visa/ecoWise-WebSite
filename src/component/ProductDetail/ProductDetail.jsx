@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getId,addFav} from "../../redux/actions/index";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
-import StarRating from "./StarRating";
+import Review from "../Review/Review";
+
 
 const ProductDetail = ({ productId, }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -98,9 +99,7 @@ const ProductDetail = ({ productId, }) => {
           )}
         </div>
         <div className="col-md-6 d-flex flex-column">
-          <div>
-          <StarRating/>
-          </div>
+          
           {state.loading ? (
             <p></p>
           ) : product ? (
@@ -122,6 +121,7 @@ const ProductDetail = ({ productId, }) => {
           ) : (
             <p>No se encontró el producto</p>
           )}
+          <Review />
         </div>
       </main>
     </div>

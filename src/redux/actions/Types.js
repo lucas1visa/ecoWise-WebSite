@@ -19,3 +19,5 @@ export const ACTUALIZAR_PRODUCTO = "ACTUALIZAR_PRODUCTO"
 export const POSTPURCHARSE = "POSTPURCHARSE"
 export const GET_FAV = "GET_FAV"
 export const ADD_TO_CART2 = "ADD_TO_CART2"
+export const  GET_REVIEW = " GET_REVIEW"
+
