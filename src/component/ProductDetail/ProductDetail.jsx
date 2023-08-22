@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 import StarRating from "./StarRating";
 
-const ProductDetail = ({ productId, }) => {
+const ProductDetail = ({ productId }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
   const product = useSelector((state) => state.detail[0]);
@@ -14,7 +14,6 @@ const ProductDetail = ({ productId, }) => {
   const userid = localStorage.getItem("userid");//traemos el usuario
   const [addToCartText, setAddToCartText] = useState("Agregar al carrito");
   const [isFavorited, setIsFavorited] = useState(false);//para favoritos agregados
-
 
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid)//tipo numero
@@ -34,6 +33,7 @@ const ProductDetail = ({ productId, }) => {
   };
 
   const handleAddFavorite = () => {
+  console.log("handleAddFavorite called: " + userid);
    const userIdNumber = parseInt(userid) // aca lo parseo a numero porque llega en texto plano.
    if(userIdNumber){
     dispatch(addFav(product.id, userid)) // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
@@ -43,12 +43,14 @@ const ProductDetail = ({ productId, }) => {
     if(existingFav){
       fav = JSON.parse(existingFav)
     }
-    fav.push(product);
-    localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
-    setIsFavorited(true); 
+    if(!fav.some((favProduct)=> favProduct.id === product.id)){
+      fav.push(product);
+      localStorage.setItem("favorito", JSON.stringify(fav));// se vuelve a parsear a texto plano para que se setee en el localstorage.
+      setIsFavorited(true);
+      console.log("isFavorited set to true: " + setIsFavorited) 
+    }
   }
-
-  }
+}
 
   const [state, setState] = useState({
     loading: true,
@@ -59,6 +61,14 @@ const ProductDetail = ({ productId, }) => {
     setTimeout(() => {
       setState({ ...state, loading: false });
     }, 1000);
+  const existingFav1 = localStorage.getItem("favorito")
+  const itsFavorite = JSON.parse(existingFav1)
+  if(isFavorited.length > 0){
+    itsFavorite.find((e)=>e.id == product.id)
+      if(itsFavorite.length > 0){
+        setIsFavorited(true);
+      }
+  }
   }, [dispatch]);
 
   
@@ -113,10 +123,12 @@ const ProductDetail = ({ productId, }) => {
               <p className="p-description"> {product.category}</p>
               <div className="corazon-red-fav">
               
-              <button onClick={handleAddFavorite} disabled={isFavorited}>
+              <button onClick={() => {
+                console.log("Button clicked: " + isFavorited)
+                handleAddFavorite()
+                }}  disabled={isFavorited} >
   {isFavorited ? '❤️' : '🤍'}
 </button>
-             
               </div>
             </div>
           ) : (
