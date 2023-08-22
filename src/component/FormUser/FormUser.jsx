@@ -3,7 +3,7 @@ import Login from "../Login/Login";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import {
-  
+
   validateEmail,
   validatePhoneNumber,
   validateSingleSpace,
@@ -11,7 +11,7 @@ import {
   validateName,
   validateMaxNameLength,
   validateConfirmPassword
-  
+
 } from "./Validaciones";
 import {
   Card,
@@ -21,7 +21,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import validateinput from "./validate";
-import { BsFillEyeFill,BsFillEyeSlashFill } from "react-icons/bs";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 const FormularioPRO = () => {
   // objeto de referencia para setear los inputs y para el caso de limpiarlos
@@ -31,31 +31,42 @@ const FormularioPRO = () => {
     email: "",
     phone: "",
     password: "",
-
   };
+  const [form, setForm] = useState({ initialstate })
   const [errors, setErrors] = useState({
     name: "",
     surname: "",
     email: "",
     phone: "",
     password: "",
+    confirmPassword: ""
   });
+  const [showPass, setShowPass] = useState(true);
+  const [showConfPass, setShowConfPass] = useState(true);
+
+  const handleShowPass = (props) => {
+    if (props === "btpass") {
+      setShowPass(!showPass);
+    }
+    if (props === "btconfpass") {
+      setShowConfPass(!showConfPass);
+    }
+  }
 
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-
     let errorMessage = "";
 
     // Apply specific validation for each field
     switch (property) {
       case "name":
       case "surname":
-        
-        errorMessage += validateSingleSpace(value, property); 
-        errorMessage += validateName(value); 
+
+        errorMessage += validateSingleSpace(value, property);
+        errorMessage += validateName(value);
         errorMessage += validateMaxNameLength(value);
-        
+
         break;
       case "email":
         errorMessage = validateEmail(value);
@@ -63,13 +74,13 @@ const FormularioPRO = () => {
       case "phone":
         errorMessage = validatePhoneNumber(value);
         break;
-        case "password":
+      case "password":
         errorMessage = validatePassword(value);
         break;
-        case "confirmPassword":
-      errorMessage = validateConfirmPassword(value, form.password);
-      break;
-        
+      case "confirmPassword":
+        errorMessage = validateConfirmPassword(value, form.password);
+        break;
+
       default:
         break;
     }
@@ -79,60 +90,50 @@ const FormularioPRO = () => {
   };
   const submitHandler = async (event) => {
     event.preventDefault();
-  
+
     const requiredFields = ["name", "surname", "email", "phone", "password", "confirmPassword"];
     const hasMissingFields = requiredFields.some((field) => form[field] === "");
-    
+
     if (hasMissingFields) {
       alert("Por favor, complete todos los campos obligatorios");
       return;
     }
-  
     try {
-      // Check if email is already registered
-      const response = await axios.get(`https://ecowise-server01.onrender.com/users?email=${form.email}`);
-      
-      if (response.data.length > 0) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Este correo electronico ya fue registrado anteriormente',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        return;
-      }
-  
-      // Continue with registration if email is not registered
-      const registerResponse = await axios.post("https://ecowise-server01.onrender.com/users", form);
-      
-      if (registerResponse.status === 200) {
+      // Chequeamos el eMail desde la DB
+      const response = await axios.post("/users/email", { email: form.email })
+        .then((res) => {
+          console.log('el Email se encuentra en uso');
+          Swal.fire({
+            icon: 'warning',
+            title: 'Este correo electronico ya fue registrado anteriormente',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        })
+    } catch (error) {
+      console.log('creamos usuario lado catch');
+      await axios.post("/users", form).then((res) => {
+        console.log('creando usuario',res.data);
         Swal.fire({
           icon: 'success',
           title: 'Creado con éxito',
           showConfirmButton: false,
-          timer: 2000,
+          timer: 2500,
         });
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Hubo un error en la solicitud',
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      }
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Revise los datos ingresados',
-        showConfirmButton: false,
-        timer: 2000,
-      });
+        // reiniciamos los inputs
+        setForm(initialstate);
+      })
+        .catch(() => {
+          console.log('error en la creacion');
+          Swal.fire({
+            icon: 'warning',
+            title: 'El telefono esta en uso',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        })
     }
   };
-
-
-
-
 
   return (
     <Card className="mx-auto" color="transparent" shadow={false}>
@@ -149,46 +150,46 @@ const FormularioPRO = () => {
         <div className="mb-4 flex flex-col gap-6">
           <div className="">
             <p className="mr-2">Nombre</p>
-            <Input Color="red" type="text" size="lg" value={form.name} onChange={changeHandler} name="name" className="bg-white border-black" maxLength="40" />
-            <span className="text-red-500 text-xs">{errors.name}</span> 
+            <Input type="text" size="lg" value={form.name} onChange={changeHandler} name="name" className="bg-white border-black" maxLength="40" />
+            <span className="text-red-500 text-xs">{errors.name}</span>
           </div>
           <div className="">
             <p className="mr-2">Apellido</p>
             <Input type="text" size="lg" value={form.surname} onChange={changeHandler} name="surname" className=" border-black" maxLength="40" />
-            <span className="text-red-500 text-xs">{errors.surname}</span> 
+            <span className="text-red-500 text-xs">{errors.surname}</span>
           </div>
           <div className="">
             <p className="mr-2">Telefono</p>
-            <Input type="text" size="lg" value={form.phone} onChange={changeHandler} name="phone" className=" border-black" placeholder="387mañerito" />
-            <span className="text-red-500 text-xs">{errors.phone}</span> 
+            <Input type="number" size="lg" value={form.phone} onChange={changeHandler} name="phone" className=" border-black" min="0" />
+            <span className="text-red-500 text-xs">{errors.phone}</span>
           </div>
           <div className="">
             <p className="mr-2">E-mail</p>
-            <Input type="email" size="lg" value={form.email} onChange={changeHandler} name="email" className=" border-black" placeholder="abc123@hotmail.com" required />
-            <span className="text-red-500 text-xs">{errors.password}</span>
+            <Input type="email" size="lg" value={form.email} onChange={changeHandler} name="email" className=" border-black" />
+            <span className="text-red-500 text-xs">{errors.email}</span>
           </div>
           <div className="">
             <p className="mr-2"> Contraseña</p>
             <div className="relative flex">
-              <Input type={showPass? "password" : "text"} size="lg" value={form.password} onChange={changeHandler} name="password" className="border-black pr-10" minLength="3" maxLength="16" required/>
-              <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={()=>handleShowPass("btpass")} >
-                {showPass? <BsFillEyeSlashFill className="text-xl" /> : <BsFillEyeFill className="text-xl"/>}
+              <Input type={showPass ? "password" : "text"} size="lg" value={form.password} onChange={changeHandler} name="password" className="border-black pr-10" minLength="3" maxLength="16" />
+              <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={() => handleShowPass("btpass")} >
+                {showPass ? <BsFillEyeSlashFill className="text-xl" /> : <BsFillEyeFill className="text-xl" />}
               </button>
             </div>
-            <p>{errors.password}</p>
+            <span className="text-red-500 text-xs">{errors.password}</span>
           </div>
           <div className="">
             <p className="mr-2"> Confirmar Contraseña</p>
             <div className="relative flex">
-              <Input type={showConfPass? "password" : "text"} size="lg" value={form.confirmpassword} onChange={changeHandler} name="confirmpassword" className="border-black pr-10" minLength="3" maxLength="16" required/>
-              <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={()=>handleShowPass("btconfpass")} >
-                {showConfPass? <BsFillEyeSlashFill className="text-xl" /> : <BsFillEyeFill className="text-xl"/>}
+              <Input type={showConfPass ? "password" : "text"} size="lg" value={form.confirmPassword} onChange={changeHandler} name="confirmPassword" className="border-black pr-10" minLength="3" maxLength="16" />
+              <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={() => handleShowPass("btconfpass")} >
+                {showConfPass ? <BsFillEyeSlashFill className="text-xl" /> : <BsFillEyeFill className="text-xl" />}
               </button>
             </div>
-            {errors.confirmPassword && <span className="text-red-500 ml-2 text-xs">{errors.confirmPassword}</span>} 
+            {errors.confirmPassword && <span className="text-red-500 ml-2 text-xs">{errors.confirmPassword}</span>}
           </div>
         </div>
-        <Button className="mt-6 bg-primary-202 text-black" fullWidth type="submit">
+        <Button className={`mt-6 text-black ${Object.values(errors).some((error) => error !== "") ? "bg-gray-400 cursor-not-allowed" : "bg-primary-202"}`} fullWidth type="submit" disabled={Object.values(errors).some(error => error !== "")}>
           REGISTRATE
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
@@ -196,7 +197,7 @@ const FormularioPRO = () => {
           <a href="#" className="font-medium text-gray-900">
             <Login></Login>
           </a>
-        </Typography> 
+        </Typography>
       </form>
     </Card>
   );
