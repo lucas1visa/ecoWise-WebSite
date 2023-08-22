@@ -57,7 +57,7 @@ const FormularioPRO = () => {
     const property = event.target.name;
     const value = event.target.value;
     let errorMessage = "";
-
+    console.log(property,value);
     // Apply specific validation for each field
     switch (property) {
       case "name":

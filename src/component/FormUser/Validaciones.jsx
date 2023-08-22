@@ -53,7 +53,9 @@
     if (!name) {
       return ""; // No error message for empty field
     }
-  
+    if(name[0]===' '){
+      return "No puede tener un espacio en blanco al inicio"
+    }
     const numberRegex = /\d/;
     if (numberRegex.test(name)) {
       return "No debe contener números.";
