@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.1.0",
     "@mercadopago/sdk-react": "^0.0.13",
     "@types/node": "^20.4.7",
@@ -19,6 +20,7 @@
     "chart.js": "^4.3.3",
     "env": "^0.0.2",
     "firebase": "^10.1.0",
+    "heroicons": "^2.0.18",
     "mercadopago": "^1.5.17",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
