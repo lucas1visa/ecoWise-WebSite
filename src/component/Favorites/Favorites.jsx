@@ -39,10 +39,13 @@ const Favorites = () => {
 let favoritoToShow = favoritoItems // let para sobrescribir
 
   if (!parseInt(UserId)) {//caso no logueado
+    if(FavoritoParse){
+    const favoritoLocalStorage = [{ UserId: null, Products: FavoritoParse  }]
+    favoritoToShow = favoritoLocalStorage
+  }//carrito localstorage
+  else{favoritoToShow = []}
 
-    const favoritoLocalStorage = [{ UserId: null, Products: FavoritoParse  }];//carrito localstorage
-
-    favoritoToShow = favoritoLocalStorage;
+    
   }
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
