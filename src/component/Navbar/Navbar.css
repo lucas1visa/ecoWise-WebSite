@@ -136,17 +136,20 @@
 }
 
 .btn-admin{
-    color: aliceblue;
-    margin-top: 13px;
-    font-size: 18px;
-    margin: 0px 5px 0px 5px;
+    background-color: rgba(235, 233, 207, 0.541) !important;
+    height: 40px;
+    margin-right: 3px !important;
+    text-align: center !important;
+    text-decoration: rgb(11, 80, 5);;
+
+
 }
 
 .link-admin{
     text-decoration: none;
     color: #29CE8A;
 }
-
+ 
 #form-control{
    width: 120px;
    border-radius: 5px;

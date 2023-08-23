@@ -12,25 +12,26 @@ const Cart = () => {
   const [selectedCantidad, setSelectedCantidad] = useState([]);
   const [precioTotal, setPrecioTotal] = useState(0);
 
-  const carritoParse = JSON.parse(carrito) || [];//parcear a json
+  const carritoParse = JSON.parse(carrito) || //parcear a json
 
   useEffect(() => {
     dispatch(getCarrito());
-  }, [dispatch]);
+  }, [cartItems]);
 
 
-  
-  let cartToShow = cartItems; // let para sobrescribir
+let cartToShow = cartItems // let para sobrescribir
 
   if (!parseInt(userid)) {//caso no logueado
-    const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
+    const c = [{ UserId: null, Products: carritoParse  }];//carrito localstorage
     cartToShow = c;
   }
-  cartToShow.filter((e)=>e.UserId == userid)
+  cartToShow.filter((e)=>parseInt(e.UserId) == parseInt(userid))
   const handleCantidadChange = (event, productId, price) => {
     const newCantidad = parseInt(event.target.value);
   
     setSelectedCantidad(prevSelectedCantidad => {
+
+
       // Buscar el índice del producto en el array
       const index = prevSelectedCantidad.findIndex(producto => producto.productId === productId);
       if (index !== -1) {
@@ -40,7 +41,6 @@ const Cart = () => {
           productId: productId,
           precio: newCantidad * price,
           userId : userid
-
         };
   
         // Crear una copia del array y actualizar el producto en el índice correspondiente
@@ -61,25 +61,24 @@ const Cart = () => {
       }
     });
   };
-  console.log(selectedCantidad)
 
   const handlersCantidadPrecio=()=>{
   const selectedCantidadJSON = JSON.stringify(selectedCantidad);
   localStorage.setItem('Compra', selectedCantidadJSON);
   }
-    let total = 0;
+    let total = 0;                        
     selectedCantidad.forEach(element => {
       total += element.precio
     });
 
 
-    console.log()
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
 
+
+
     const  handleDelete= async(productId)=>{
-      console.log(productId,userid)
       if (parseInt(userid)) {
        await dispatch(removeFromCart(productId, parseInt(userid)));
       }
@@ -102,7 +101,7 @@ const Cart = () => {
           </tr>
         </thead>
         <hr></hr> 
-        {cartToShow.length > 0 ? (
+        {cartToShow.length >0 ? (
   cartToShow.map((item) => (
     <div key={item.Products.id}>
       <hr />
