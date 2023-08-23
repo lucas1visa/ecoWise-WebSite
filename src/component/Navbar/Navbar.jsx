@@ -135,7 +135,7 @@ const NavbarComponent = () => {
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
           <Nav className="ml-auto ">
-            <Link to="/" className="nav-link text-black">
+            <Link to="/" className="nav-link text-black" onClick={handleHomeLinkClick}>
               Inicio
             </Link>
             <Link to="/about" className="nav-link text-black">

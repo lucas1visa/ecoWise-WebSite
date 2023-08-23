@@ -317,7 +317,7 @@ const Login = () => {
                 <ModalFooter>
                     <Button color="secondary" onClick={handleLogin}>Cerrar</Button>
                     <Link to="/account/register/">Registrate</Link>
-                    <Link>Recuperar Password</Link>
+                    {/* <Link>Recuperar Password</Link> */}
                 </ModalFooter>
             </Modal>
             {/* ============================================= TERMINACION DE LOGIN ====================================================== */}

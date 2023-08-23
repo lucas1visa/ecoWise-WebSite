@@ -10,6 +10,7 @@ const Favorites = () => {
   const favoritesStorage = localStorage.getItem('favorito')
   const favorites = useSelector((state) => state.favorites);
   const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
+
   
   useEffect(() => {
     dispatch(getFav());

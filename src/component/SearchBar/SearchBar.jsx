@@ -20,8 +20,8 @@ const Search = () => {
   }, [productName]);
 
   const handleChange = () => {
-     setProductNotFound(false); 
-  
+    setProductNotFound(false); 
+    setProductName('')
     if (productName === '') {
       dispatch(getProducts())
         .then(() => {
@@ -65,7 +65,7 @@ const Search = () => {
         placeholder="Buscar prod..."
         value={productName}
         onChange={(event) => setProductName(event.target.value)}
-        className={styles.inputSearch}
+        id={styles.inputSearch}
       />
       <Button onClick={handleChange} id={styles.buttonsearchBar}>
         <ion-icon name="search-outline"></ion-icon>

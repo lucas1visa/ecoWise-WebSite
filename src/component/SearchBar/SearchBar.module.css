@@ -25,9 +25,9 @@
 }
 
 
-.inputSearch{
+#inputSearch{
   height: 30px;
-  
+  color: rgb(81, 81, 81);
 }
 
 #buttonsearchBar{
