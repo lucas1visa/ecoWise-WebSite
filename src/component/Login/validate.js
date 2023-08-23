@@ -9,7 +9,7 @@ const validate = (inputs) => {
     const isContainsLowercase = /^(?=.*[a-z]).*$/;
     const isContainsNumber = /^(?=.*[0-9]).*$/;
     const isContainsSymbol = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
-    const isValidLength = /^.{10,16}$/;
+    const isValidLength = /^.{5,16}$/;
     // testeo del email
     if (!emailRegex.test(inputs.email)) {
         errors.email = "Email tiene un formato erroneo";
@@ -27,9 +27,9 @@ const validate = (inputs) => {
     if (!isContainsNumber.test(inputs.password)) {
         errors.password = "La contraseña debe contener al menos un número. ";
     }
-    if (!isContainsSymbol.test(inputs.password)) {
-        errors.password = "La contraseña debe contener al menos un símbolo especial. ";
-    }
+    // if (!isContainsSymbol.test(inputs.password)) {
+    //     errors.password = "La contraseña debe contener al menos un símbolo especial. ";
+    // }
     if (!isValidLength.test(inputs.password)) {
         errors.password = "La contraseña debe tener entre 10 y 16 caracteres. ";
     }

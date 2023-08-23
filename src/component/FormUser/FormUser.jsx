@@ -31,6 +31,7 @@ const FormularioPRO = () => {
     email: "",
     phone: "",
     password: "",
+    confirmPassword:""
   };
   const [form, setForm] = useState({ initialstate })
   const [errors, setErrors] = useState({
@@ -41,8 +42,8 @@ const FormularioPRO = () => {
     password: "",
     confirmPassword: ""
   });
-  const [showPass, setShowPass] = useState(true);
-  const [showConfPass, setShowConfPass] = useState(true);
+  let [showPass, setShowPass] = useState(true);
+  let [showConfPass, setShowConfPass] = useState(true);
 
   const handleShowPass = (props) => {
     if (props === "btpass") {
