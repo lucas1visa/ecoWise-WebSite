@@ -60,7 +60,6 @@ let cartToShow = cartItems // let para sobrescribir
       }
     });
   };
-  console.log(selectedCantidad)
 
   const handlersCantidadPrecio=()=>{
   const selectedCantidadJSON = JSON.stringify(selectedCantidad);
@@ -70,9 +69,6 @@ let cartToShow = cartItems // let para sobrescribir
     selectedCantidad.forEach(element => {
       total += element.precio
     });
-
-
-    console.log()
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
