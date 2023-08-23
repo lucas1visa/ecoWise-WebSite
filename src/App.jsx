@@ -20,6 +20,8 @@ import Contacto from './component/Contacto/Contacto';
 import DashboardAdmin from './component/DashboardAdmin/DashboardAdmin';
 import RoutesProtected from './component/RoutesProtected/RoutesProtected';
 import FormularioPRO from './component/FormUser/FormUser';
+import RecoverPass from './component/RecoverPass/RecoverPass';
+import ChangePass from './component/PasswordRecovery/ChangePass';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +57,8 @@ function App() {
           <Route path='product/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contacto/>} />
+          <Route path='/recoverpassword' element={<RecoverPass/>}/>
+          <Route path='/changepassword' element={<ChangePass/>}/>
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>

@@ -9,12 +9,14 @@ import Swal from "sweetalert2";
 import { FcApproval } from "react-icons/fc";
 import Presentation from "./presentation/Presentation";
 
-const Home = () => {
-  
+
+
+const Home = () => { 
   const dispatch = useDispatch()
   const location = useLocation()
   const queryParams = queryString.parse(location.search); 
-  const { payment_id, payment_type, status } = queryParams;
+  const { payment_id, payment_type, status , token} = queryParams;
+  console.log(token);
 if(payment_id){
   useEffect(() => {
     if (payment_id !== null) {
@@ -33,7 +35,23 @@ if(payment_id){
       const { userId, idProduct, quantity } = JSON.parse(x);
       dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
     }
+    
   }, [dispatch, payment_id, payment_type, status]);
+}
+if(token){
+  Swal.fire({
+    icon: 'info',
+    title: 'Solicito Cambio de Password',
+    text: 'Oprima el boton OK',
+    footer: 'Cualquier inconveniente envíe un correo con su consulta',
+    showConfirmButton: true,
+    confirmButtonText: 'OK'  
+  }).then(() => {
+    localStorage.setItem('idpass',token);
+    window.location.href = "https://ecowise-web-site.vercel.app/changepassword"; // Redirige a la página especificada
+  });
+  // localStorage.setItem('idpass',token);
+  // window.location.href = "https://ecowise-web-site.vercel.app/changepassword"
 }
   return (
     <div>
