@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCarrito, removeFromCart } from '../../redux/actions/index';
+import { removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
 import MPButton from '../MPButton/MPButton';
 import axios from 'axios';
@@ -17,25 +17,22 @@ const Cart = () => {
 
   const [selectedCantidad, setSelectedCantidad] = useState([])
 
-  const carritoParse = JSON.parse(carrito) || //parcear a json
+  const carritoParse = JSON.parse(carrito) //parcear a json
 
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get("/cart/");
+      if (data) {
+        setCartItems(data);
+      }
+    } catch (error) {
+      console.error("Error al obtener datos del carrito:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get("/cart/"); // Obtener información de la db
-        if (data) {
-          setCartItems(data); // Actualizar el estado local con los datos obtenidos
-        }
-      } catch (error) {
-        // Manejar errores, por ejemplo, mostrar un mensaje de error al usuario
-        console.error("Error al obtener datos del carrito:", error);
-      }
-    };
-  
-    fetchData(); // Llama a la función asincrónica
+    fetchData();
   }, []);
-  
 
 
 let cartToShow = cartItems // let para sobrescribir
@@ -100,17 +97,18 @@ let cartToShow = cartItems // let para sobrescribir
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
-    const  handleDelete= (productId)=>{
+    const  handleDelete= async(productId)=>{
 
       if (parseInt(userid)) {
 
-        dispatch(removeFromCart(productId, parseInt(userid)))
-       dispatch(getCarrito());
+        await dispatch(removeFromCart(productId, parseInt(userid)))
+
+       await fetchData();
 
       }
       const deleteCarrito = carritoParse.filter((e) => e.id !== productId);
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
-       dispatch(getCarrito());
+     await fetchData();
     }
   
 
