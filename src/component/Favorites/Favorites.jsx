@@ -42,7 +42,7 @@ const Favorites = () => {
    await dispatch(getFav());
   }
 
-  cartToShow.find((e)=>parseInt(e.UserId) === parseInt(userId))
+  cartToShow.filter((e)=>parseInt(e.UserId) === parseInt(userId))
 
 
   return (
