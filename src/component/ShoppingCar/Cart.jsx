@@ -22,7 +22,7 @@ const Cart = () => {
 let cartToShow = cartItems // let para sobrescribir
 
   if (!parseInt(userid)) {//caso no logueado
-    const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
+    const c = [{ UserId: null, Products: carritoParse  }];//carrito localstorage
     cartToShow = c;
   }
   cartToShow.filter((e)=>e.UserId == userid)
@@ -65,16 +65,19 @@ let cartToShow = cartItems // let para sobrescribir
   const selectedCantidadJSON = JSON.stringify(selectedCantidad);
   localStorage.setItem('Compra', selectedCantidadJSON);
   }
-    let total = 0;
+    let total = 0;                        
     selectedCantidad.forEach(element => {
       total += element.precio
     });
 
+
+
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
 
+
+
     const  handleDelete= async(productId)=>{
-      console.log(productId,userid)
       if (parseInt(userid)) {
        await dispatch(removeFromCart(productId, parseInt(userid)));
       }
