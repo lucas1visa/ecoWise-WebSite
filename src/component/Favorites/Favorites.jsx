@@ -6,15 +6,21 @@ import {getFav ,removeFav} from "../../redux/actions";
 
 const Favorites = () => {
   const dispatch = useDispatch();
+
   const userId = localStorage.getItem('userid');
+
   const favoritesStorage = localStorage.getItem('favorito')
+
   const favorites = useSelector((state) => state.favorites);
-  const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
+
+  const favParse = JSON.parse(favoritesStorage)
 
   
   useEffect(() => {
+
     dispatch(getFav());
-  }, [dispatch]);
+
+  }, []);
 
   let cartToShow = favorites;
 
@@ -25,14 +31,20 @@ const Favorites = () => {
 
   const handleRemoveFav = async (idProduct) => {
     if (parseInt(userId)) {
-      console.log(idProduct, userId);
-      dispatch(removeFav(idProduct, parseInt(userId)));
+     
+      await dispatch(removeFav(idProduct, parseInt(userId)));
+   await dispatch(getFav());
+
     }
 
     const deleteFav = favParse.filter((e) => e.id !== idProduct);
     localStorage.setItem('favorito', JSON.stringify(deleteFav));
-    dispatch(getFav());
+   await dispatch(getFav());
   }
+
+  cartToShow.find((e)=>parseInt(e.UserId) === parseInt(userId))
+
+
   return (
 <div >
   <h2 className="h2-favo">Tus Favoritos</h2>

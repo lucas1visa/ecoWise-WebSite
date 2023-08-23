@@ -52,6 +52,8 @@ const ProductDetail = ({ productId }) => {
     const userIdNumber = parseInt(userid); // aca lo parseo a numero porque llega en texto plano.
     if (userIdNumber) {
       dispatch(addFav(product.id, userid)); // aca despacho a la funcion addfav la informacion parseada de userid y la informacion del producto.
+      setIsFavorited(true);
+
     } else {
       const existingFav = localStorage.getItem("favorito");
       let fav = [];
