@@ -78,32 +78,28 @@ const Footer = () => {
 
           <div className="mb-4 md:mb-0 text-center md:text-left text-white">
             <div>
-              <a
-                className={styles.footerEtiquetasA}
-                href="#"
-                onClick={handlePagosShow}
+              <p className="text-white font-bold mb-2"
+                
               >
                 Métodos de Pago
-              </a>
+              </p>
             </div>
             <p className="text-white font-bold mb-2"></p>
             <div>
               <a
                 className={styles.footerEtiquetasA}
-                href=""
-                onClick={preventDefault}
+                href="#"
+                onClick={handlePagosShow}
               >
                 Mercado Pago
               </a>
             </div>
             <div>
-              <a
-                className={styles.footerEtiquetasA}
-                href=""
-                onClick={preventDefault}
+              <p
+               
               >
                 Tarjetas debito/credito
-              </a>
+              </p>
             </div>
           </div>
           <a
