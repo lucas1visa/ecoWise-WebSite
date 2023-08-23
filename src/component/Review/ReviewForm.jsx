@@ -13,16 +13,22 @@ const ReviewForm = ({id}) => {
   
 const UserId = localStorage.getItem("userid")
 
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
+const handleRatingChange = (newRating) => {
+  setRating(newRating);
+  if (UserId) {
     setModalOpen(true);
-  };
+  }
+};
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
 
   const handleSubmitReview = () => {
+    if (!UserId) {
+      return;
+    }
+
     dispatch(addReview(id, UserId, rating, comment));
 
     setRating(0);
@@ -44,10 +50,10 @@ const UserId = localStorage.getItem("userid")
             />
           ))}
         </div>
-        <span className="ml-2 text-yellow-500">{rating} estrellas</span>
+       
       </div>
 
-      
+      {UserId && (
       <Modal show={modalOpen} onHide={() => setModalOpen(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Deja un comentario</Modal.Title>
@@ -70,6 +76,7 @@ const UserId = localStorage.getItem("userid")
           </Button>
         </Modal.Footer>
       </Modal>
+      )}
     </div>
   );
 };
