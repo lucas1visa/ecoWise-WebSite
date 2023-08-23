@@ -38,7 +38,9 @@ const Cart = () => {
         const updatedProduct = {
           cantidad: newCantidad,
           productId: productId,
-          precio: newCantidad * price
+          precio: newCantidad * price,
+          userId : userid
+
         };
   
         // Crear una copia del array y actualizar el producto en el índice correspondiente
@@ -51,18 +53,27 @@ const Cart = () => {
         const newProduct = {
           cantidad: newCantidad,
           productId: productId,
-          precio: newCantidad * price
+          precio: newCantidad * price,
+          userId : userid
         };
   
         return [...prevSelectedCantidad, newProduct];
       }
     });
   };
-  
+  console.log(selectedCantidad)
+
+  const handlersCantidadPrecio=()=>{
+  const selectedCantidadJSON = JSON.stringify(selectedCantidad);
+  localStorage.setItem('Compra', selectedCantidadJSON);
+  }
     let total = 0;
     selectedCantidad.forEach(element => {
       total += element.precio
     });
+
+
+    console.log()
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
@@ -91,26 +102,29 @@ const Cart = () => {
           </tr>
         </thead>
         <hr></hr> 
-      {cartToShow.map(item => (
-        <div key={item.Products.id}>
-          <hr/>
-          {item.Products.map(product => (
-        
-            <CartItem
-              key={product.id}
-              product={product}
-              cartId={product.id}
-              cantidad={product.quantityAvailable}
-              handleCantidadChange={handleCantidadChange}
-              selectedCantidad={selectedCantidad}
-              handleDelete={handleDelete}
-            />
-          ))}
-        </div>
+        {cartToShow.length > 0 ? (
+  cartToShow.map((item) => (
+    <div key={item.Products.id}>
+      <hr />
+      {item.Products.map((product) => (
+        <CartItem
+          key={product.id}
+          product={product}
+          cartId={product.id}
+          cantidad={product.quantityAvailable}
+          handleCantidadChange={handleCantidadChange}
+          selectedCantidad={selectedCantidad}
+          handleDelete={handleDelete}
+        />
       ))}
+    </div>
+  ))
+) : (
+  <div>No hay productos agregados</div>
+)}
       <hr />
       <p className="font-normal px-3"> Precio Total: ${total}</p>
-      <MPButton titul={"ecoWise"} precio={total} cantidad={1} />
+      <MPButton titul={"ecoWise"} precio={total} cantidad={1} handlersCantidadPrecio={handlersCantidadPrecio}/>
       </div>
   );
 };

@@ -354,14 +354,9 @@ export function actualizarProducto(id, quantityAvailable, price) {
   };
 }
 
-export const postPurcharse =  (payment_id,payment_type,status,userId,idProduct,quantity)=>{
+export const postPurcharse =  (payment_id, payment_type, status, compras)=>{
   const data = {
-    payment_id: payment_id,
-    payment_type: payment_type,
-    status: status,
-    userId: userId,
-    quantity: quantity,
-    idProduct: idProduct
+    payment_id, payment_type, status, compras
   };
   return async (dispatch)=>{
     try {

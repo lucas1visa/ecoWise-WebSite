@@ -4,7 +4,7 @@ import axios from "axios";
 import "./MPButton.css"
 
 const publicKey = import.meta.env.VITE_PublicKey;
-const MPButton = ({titul,precio,cantidad}) => {
+const MPButton = ({titul,precio,cantidad,handlersCantidadPrecio}) => {
 
 
 
@@ -47,7 +47,7 @@ const MPButton = ({titul,precio,cantidad}) => {
     <div>
       <div>
         <div>
-          <button className="buttons" onClick={handleBuy} disabled={loading}>
+          <button className="buttons" onClick={() => { handleBuy(); handlersCantidadPrecio(); }} disabled={loading || precio === 0}>
             {loading ? 'Cargando...' : 'Comprar'}
           </button>
           {preferenceId && <Wallet initialization={{ preferenceId }}  />}

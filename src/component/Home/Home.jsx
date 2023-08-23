@@ -6,8 +6,6 @@ import { useLocation } from "react-router-dom";
 import queryString from "query-string"; 
 import { postPurcharse } from "../../redux/actions";
 import Swal from "sweetalert2";
-import { FcApproval } from "react-icons/fc";
-import Presentation from "./presentation/Presentation";
 
 
 
@@ -31,12 +29,12 @@ if(payment_id){
         window.location.href = "https://ecowise-web-site.vercel.app"; // Redirige a la página especificada
       });
       
-      const x = localStorage.getItem("cart");
-      const { userId, idProduct, quantity } = JSON.parse(x);
-      dispatch(postPurcharse(payment_id, payment_type, status, userId, idProduct, quantity));
+      const x = localStorage.getItem("Compra");
+      const compras = JSON.parse(x);
+      dispatch(postPurcharse(payment_id, payment_type, status, compras));
     }
     
-  }, [dispatch, payment_id, payment_type, status]);
+  }, [payment_id, token]);
 }
 if(token){
   Swal.fire({
