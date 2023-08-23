@@ -62,12 +62,12 @@ const [state, setState] = useState({
   const favoritoAgregado = () => {
   if (existingFav2 && existingFav2.length) {
     if(existingFav2.find(e => e.id == product.id))setIsFavorited(true);
+    return setIsFavorited(false)
   }
 };
 
   useEffect(() => {
     dispatch(getId(productId || id));
-    favoritoAgregado()
     setTimeout(() => {
       setState({ ...state, loading: false });
     }, 1000);

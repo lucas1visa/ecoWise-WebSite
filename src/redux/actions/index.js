@@ -69,7 +69,6 @@ export function getId(id) {
   return async (dispatch) => {
     const { data } = await axios.get(`/products/search/${id}`);
     dispatch({ type: GET_ID, payload: data });
-    console.log(data)
   };
 }
 
@@ -159,10 +158,14 @@ export function addToFav2( favorito, UserId ) {
 export const getFav = () => {
   return async (dispatch) => {
     const { data } = await axios.get("/favorits");
-    console.log(data,"soy este culiao")
     dispatch({ type: GET_FAV, payload: data});
   };
 };
+
+
+
+
+
 
 
 export function removeFav(id, UserId) {
