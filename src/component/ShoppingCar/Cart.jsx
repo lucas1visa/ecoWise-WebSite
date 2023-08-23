@@ -25,11 +25,13 @@ let cartToShow = cartItems // let para sobrescribir
     const c = [{ UserId: null, Products: carritoParse  }];//carrito localstorage
     cartToShow = c;
   }
-  cartToShow.filter((e)=>e.UserId == userid)
+  cartToShow.filter((e)=>parseInt(e.UserId) == parseInt(userid))
   const handleCantidadChange = (event, productId, price) => {
     const newCantidad = parseInt(event.target.value);
   
     setSelectedCantidad(prevSelectedCantidad => {
+
+
       // Buscar el índice del producto en el array
       const index = prevSelectedCantidad.findIndex(producto => producto.productId === productId);
       if (index !== -1) {
@@ -39,8 +41,12 @@ let cartToShow = cartItems // let para sobrescribir
           productId: productId,
           precio: newCantidad * price,
           userId : userid
-
         };
+
+
+
+
+        
   
         // Crear una copia del array y actualizar el producto en el índice correspondiente
         const updatedArray = [...prevSelectedCantidad];
