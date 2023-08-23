@@ -48,9 +48,10 @@ if(token){
     confirmButtonText: 'OK'  
   }).then(() => {
     localStorage.setItem('idpass',token);
-    window.location.href = "http://localhost:5173/changepassword"; // Redirige a la página especificada
+    window.location.href = "https://ecowise-web-site.vercel.app/changepassword"; // Redirige a la página especificada
   });
-  // window.location.href = "http://localhost:5173/changepassword"
+  // localStorage.setItem('idpass',token);
+  // window.location.href = "https://ecowise-web-site.vercel.app/changepassword"
 }
   return (
     <div>

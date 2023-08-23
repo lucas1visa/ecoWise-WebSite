@@ -15,6 +15,18 @@ const ChangePass = () => {
     let [showConfPass, setShowConfPass] = useState(true);
     // estado para mostrar contraseña
     let [showPass, setShowPass] = useState(true);
+    // 
+    let [pass,setPass] = useState({
+        password:"",
+        confirmpassword:""
+    })
+    let handleChangePass = (event) =>{
+        let prop = event.target.name;
+        let val = event.target.value;
+        console.log(prop,val);
+        setPass({...pass,[prop]:val});
+    }
+    // funcion para mostrar los inputs
     let handleShow = (props)=>{
         if(props==="btpass"){
             setShowPass(!showPass)
@@ -23,15 +35,18 @@ const ChangePass = () => {
             setShowConfPass(!showConfPass)
         }
     };
-    let submitHandlerCP = () =>{
-        console.log('se envio man');
+    // funcion para enviar info al back
+    let submitHandlerCP = async () =>{
         try {
-           
+            let id = localStorage.getItem('idpass');
+            await axios.put("/users/updatepass",{id:id,password:pass.password})
+            .then(()=>{
+                console.log('se cambio pass bro');
+            })
         } catch (error) {
-            
+            console.log(error);
         }
     }
-
 
     return (
         <Card className="mx-auto" color="transparent" shadow={false}>
@@ -46,7 +61,7 @@ const ChangePass = () => {
                     <div className="">
                         <p className="mr-2"> Contraseña</p>
                         <div className="relative flex">
-                            <Input type={showPass ? "password" : "text"} size="lg"  name="password" className="border-black pr-10" minLength="3" maxLength="16" />
+                            <Input type={showPass ? "password" : "text"} size="lg"  name="password" value={pass.password} onChange={handleChangePass} className="border-black pr-10" minLength="3" maxLength="16" />
                             <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={() => handleShow("btpass")} >
                                 {showPass ? <BsFillEyeSlashFill className="text-xl" /> : <BsFillEyeFill className="text-xl" />}
                             </button>
@@ -56,7 +71,7 @@ const ChangePass = () => {
                     <div className="">
                         <p className="mr-2"> Confirmar Contraseña</p>
                         <div className="relative flex">
-                            <Input type={showConfPass ? "password" : "text"} size="lg" name="confirmPassword" className="border-black pr-10" minLength="3" maxLength="16" />
+                            <Input type={showConfPass ? "password" : "text"} size="lg" name="confirmpassword" value={pass.confirmpassword} onChange={handleChangePass} className="border-black pr-10" minLength="3" maxLength="16" />
                             <button type="button" className="absolute inset-y-0 right-0 px-3 flex items-center" onClick={() => handleShow("btconfpass")} >
                                 {showConfPass ? <BsFillEyeSlashFill className="text-xl" /> : <BsFillEyeFill className="text-xl" />}
                             </button>
