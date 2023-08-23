@@ -1,0 +1,21 @@
+.modo-oscuro .section-admin{
+    background-color: #353b57;
+}
+
+.modo-oscuro .users-admin{
+    background-color: #4c5270
+}
+
+.modo-oscuro .name-user-admin{
+    color: rgb(218, 218, 218);
+}
+
+.modo-oscuro .container-user-admin{
+    background-color: #353b57;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.modo-oscuro .h1-title{
+    color: white;
+}

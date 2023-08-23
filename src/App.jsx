@@ -22,6 +22,7 @@ import RoutesProtected from './component/RoutesProtected/RoutesProtected';
 import FormularioPRO from './component/FormUser/FormUser';
 import RecoverPass from './component/RecoverPass/RecoverPass';
 import ChangePass from './component/PasswordRecovery/ChangePass';
+import { DarkModeProvider } from './component/DarkModeContext/DarkMode';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,9 @@ function App() {
   const location = useLocation();
   const isDashboardAdmin = location.pathname.includes("/admin");
   const tokenadmin = localStorage.getItem('admin');
-  
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  console.log(isDarkMode)
+
   useEffect(() => {
     dispatch(getProducts())
       .then(() => {
@@ -41,9 +44,18 @@ function App() {
       });
   }, []);
 
+
+  const changeMode = () => {
+    setIsDarkMode(!isDarkMode)
+   
+  }
+
   return (
-      
-      <div>
+      <DarkModeProvider >
+      <div className={isDarkMode ? 'modo-oscuro' : 'modo-normal'}>
+        <div className='iconos-modo-dark'>
+        <button className="mode-darkk" onClick={changeMode}>{isDarkMode ? <ion-icon id="icon-sunny" name="sunny-outline" /> : <ion-icon id="icon-moon" name="moon-outline" />}</button>
+        </div>
         {!isDashboardAdmin && <NavbarComponent />}
       {isLoading && <LoadingScreen />}{/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
@@ -62,6 +74,7 @@ function App() {
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>
+      </DarkModeProvider>
   );
 }
 

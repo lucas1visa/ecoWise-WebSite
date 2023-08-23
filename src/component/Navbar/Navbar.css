@@ -154,3 +154,23 @@
    padding-left: 10px;
    appearance: none;
 }
+
+.text-white{
+    color: rgb(255, 255, 255);
+}
+
+.modo-oscuro .navabr-color{
+    background-color: #3e445e;
+}
+
+.modo-oscuro .text-navbar{
+    color: white;
+}
+
+.texto-mode-light{
+    color: rgb(152, 190, 130);
+}
+
+.text-ecowise{
+    font-size: 22px;
+}

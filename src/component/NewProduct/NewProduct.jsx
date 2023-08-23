@@ -1,8 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+import '../../App.css'
+import './NewProduct.css'
+import { useDarkMode } from "../../component/DarkModeContext/DarkMode";
 
 const NewProduct = () => {
+
+    const { isDarkMode } = useDarkMode();
+
     const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
 
     const [imagePreview, setImagePreview] = useState(null); // To show a preview of the selected image
@@ -152,15 +157,15 @@ const NewProduct = () => {
         }
     };
     return (
-        
-        <div class=" w-2/5 mx-auto">
-            <h1>Agregar Producto</h1>
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={submitHandler}>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" >NOMBRE : </label>
+    <div className={isDarkMode ? 'modo-oscuro' : 'cart-modo-normal'}>
+        <div className=" w-2/5 mx-auto add-product-container">
+            <h1 className="h1-product">Agregar Producto</h1>
+            <form className="shadow-md rounded px-8 pt-6 pb-8 mb-4 form-admin " onSubmit={submitHandler}>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm font-bold mb-2 label-form" >NOMBRE : </label>
                     <input
                         placeholder="Nombre Del Producto"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         value={form.name}
                         onChange={changeHandler}
@@ -173,10 +178,10 @@ const NewProduct = () => {
                 <span>{errors.name}</span>
                 <h1></h1>
 
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">DESCRIPCION : </label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2 label-form">DESCRIPCION : </label>
                     <input
-                        class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descripcion Del Producto"
+                        className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descripcion Del Producto"
                         type="text"
                         value={form.description}
                         onChange={changeHandler}
@@ -186,11 +191,11 @@ const NewProduct = () => {
 
                 <h1></h1>
 
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">PRECIO : </label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2 label-form">PRECIO : </label>
                     <input
                         placeholder="Precio Del Producto"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         value={form.price}
                         onChange={changeHandler}
@@ -201,11 +206,11 @@ const NewProduct = () => {
                 <span>{errors.price}</span>
                 <h1></h1>
 
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">CANTIDAD : </label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2 label-form">CANTIDAD : </label>
                     <input
                         placeholder="Cantidad del Producto"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         value={form.quantityAvailable}
                         onChange={changeHandler}
@@ -215,11 +220,11 @@ const NewProduct = () => {
                 <span>{errors.quantityAvailable}</span>
                 <h1></h1>
 
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">CATEGORIA : </label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-bold mb-2 label-form">CATEGORIA : </label>
                     <input
                         placeholder="Hogar, Cocina, Cuidado Personal"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         value={form.category}
                         onChange={changeHandler}
@@ -228,10 +233,10 @@ const NewProduct = () => {
                 </div>
                 <h1></h1>
 
-                <div class="mb-6">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">IMAGEN : </label>
+                <div className="mb-6">
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white label-form" for="file_input">IMAGEN : </label>
                     <input
-                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input"
+                        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input"
                         type="file"
                         accept="image/*"
 
@@ -241,7 +246,7 @@ const NewProduct = () => {
                         }}
                         name="image"
                     />
-                    <p class="mt-1 text-sm text-gray-500 dark:text-black-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                    <p className="mt-1 text-sm text-gray-500 dark:text-black-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
                     {imagePreview && (
                         <img src={imagePreview} alt="Preview" style={{ maxWidth: "100px" }} />
                     )}
@@ -265,6 +270,7 @@ const NewProduct = () => {
                 </div>
             </form>
         </div>
+    </div>
     )
 
 }

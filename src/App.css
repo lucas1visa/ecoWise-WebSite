@@ -6,8 +6,33 @@
   text-align: center;
 }
 
-body{
+.modo-normal{
   background-image: url('../src/Img/Screenshot_253.png');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+
+.modo-oscuro{
+  background-image: url('../src/Img/ecoWise.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mode-darkk{
+  font-size: 30px;
+  background-color: none;
+}
+
+#icon-sunny{
+  color: yellow;
+}
+
+#icon-moon{
+  color: rgb(0, 35, 100);
+}
+
+.iconos-modo-dark{
+  text-align: right;
+  margin-right: 10px;
 }

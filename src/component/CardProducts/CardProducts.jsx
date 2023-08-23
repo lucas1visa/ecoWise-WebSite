@@ -4,11 +4,13 @@ import { Card, Container, Row, Col, Modal, Button } from "react-bootstrap";
 import "./CardProducts.css";
 import Paginado from "../Paginado/Paginado";
 import ProductDetail from "../ProductDetail/ProductDetail";
+import '../../App.css'
+import { useDarkMode } from "../DarkModeContext/DarkMode";
 
 const CardProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
-
+  const { isDarkMode } = useDarkMode();
   const products = useSelector((state) => state.products) || [];
 
   const totalProducts = products.length;
@@ -52,12 +54,13 @@ const CardProducts = () => {
     setShowModal(false);
   };
   return (
-    <div className="p-8 rounded-xl flex flex-col items-center gap-2 text-center text-gray-300">
+    <div className={isDarkMode ? 'modo-oscuro' : 'cart-modo-normal'}>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center p-8 ">
       {currentProducts.map((product) => (
+        
         <div
           key={product.id}
-          className=" shadow-md rounded-lg p-4 transition transform hover:scale-105 cursor-pointer m-4 bg-green-200"
+          className={ "shadow-md rounded-lg p-4 transition transform hover:scale-105 cursor-pointer m-4 bg-green-200 mode-dark" }
           onMouseEnter={() => handleMouseEnter(product.id)}
           onMouseLeave={handleMouseLeave}
           onClick={() => handleBuyClick(product.id)}
@@ -69,9 +72,9 @@ const CardProducts = () => {
         className="w-40 h-40 object-cover -mt-20 shadow-2xl rounded-full"
 
           />
-          <h3 className="text-lg font-bold mb-2 text-start  text-primary-200">{product.name}</h3>
-          <p className="font-bold text-start text-black">${product.price}</p>
-          <p className=" font-bold text-primary-204">{product.category}</p>
+          <h3 className="text-lg font-bold mb-2 text-start  text-primary-200 text-product">{product.name}</h3>
+          <p className="font-bold text-start text-product">${product.price}</p>
+          <p className=" font-bold text-primary-204 text-product">{product.category}</p>
         </div>
       ))}
     </div>

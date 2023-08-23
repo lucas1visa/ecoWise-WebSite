@@ -24,8 +24,11 @@ import {
   IconButton,
   Button,
 } from "@material-tailwind/react";
+import { useDarkMode } from "../DarkModeContext/DarkMode";
+
 
 const NavbarComponent = () => {
+  const { isDarkMode } = useDarkMode();
   const [selectedOrder, setSelectedOrder] = useState(""); // Estado para el select de ordenamiento
   const [selectedCategory, setSelectedCategory] = useState(""); // Estado para el select de categoría
   const location = useLocation();
@@ -131,19 +134,20 @@ const NavbarComponent = () => {
     setSelectedCategory("");
   };
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-4 py-3 bg-primary-202">
-      <div className="flex flex-wrap items-center justify-between gap-y-4 text-blue-gray-900">
+   <Navbar className="mx-auto max-w-screen-xl px-4 py-3 bg-primary-202 navabr-color">
+    <div className={isDarkMode ? 'modo-oscuro' : 'cart-modo-normal'}>
+      <div className="flex flex-wrap items-center justify-between gap-y-4 text-blue-gray-900 ">
         <Typography className="mr-4 ml-2 cursor-pointer py-1.5 text-green-500  flex">
         <Link to="/" className="navbar-brand" onClick={handleHomeLinkClick}>
           <img src={plantita} pathname="/" alt="final" className="final ml-10"  />
           </Link>
-          <p className="mt-2 ml-2 font-bold pr-12  text-primary-900">ecoWise</p>
+          <p className="mt-2.5 ml-3 font-bold pr-18 text-navbar texto-mode-light text-ecowise">ecoWise</p>
         </Typography>
         <div className="ml-auto flex gap-1 md:mr-4">
           <IconButton variant="text" color="blue-gray" className=" mr-5">
             <Link to="/favorites">
-              <button className="button-icon-cora">
-                <ion-icon name="heart-outline"></ion-icon>{" "}
+              <button className="button-icon-cora text-navbar">
+                <ion-icon name="heart-outline"></ion-icon>{" "}{/*INCON DE CORAZON*/}
                 {favoriteCount > 0 && (
                   <span className="favorite-count">{favoriteCount}</span>
                 )}{" "}
@@ -155,7 +159,7 @@ const NavbarComponent = () => {
 
             <div className="ml-auto flex gap-1 md:mr-4">
               {showCart && (
-                <button className="button-icon-cora" onClick={HandleCartOpen}>
+                <button className="button-icon-cora text-navbar" onClick={HandleCartOpen}>
                   <ion-icon name="cart-outline"></ion-icon>
                   {cartCount > 0 && (
                     <span className="favorite-count">{cartCount}</span>
@@ -174,7 +178,7 @@ const NavbarComponent = () => {
 
           {admin == "true" && (
             <button className="btn-admin">
-              <Link className="link-admin" to="/admin">
+              <Link className="link-admin text-navbar " to="/admin">
                 Admin
               </Link>
             </button>
@@ -188,7 +192,7 @@ const NavbarComponent = () => {
             >
               <a
                 href="/"
-                className="flex items-center  text-black no-underline hover:bg-red font-bold text-xl"
+                className="flex items-center no-underline hover:bg-red font-bold text-xl text-navbar  texto-mode-light"
               >
                 Inicio
               </a>
@@ -201,7 +205,7 @@ const NavbarComponent = () => {
             >
               <a
                 href="/contact"
-                className="flex items-center  text-black no-underline hover:bg-red font-bold text-xl"
+                className="flex items-center no-underline hover:bg-red font-bold text-xl text-navbar texto-mode-light"
               >
                 Contacto
               </a>
@@ -210,11 +214,11 @@ const NavbarComponent = () => {
               as="li"
               variant="small"
               color="red"
-              className="flex items-center  text-black no-underline hover:bg-red font-bold text-xl"
+              className="flex items-center no-underline hover:bg-red font-bold text-xl text-navbar texto-mode-light"
             >
               <a
                 href="/about"
-                className="flex items-center  text-black no-underline hover:bg-red font-bold"
+                className="flex items-center no-underline hover:bg-red font-bold text-navbar texto-mode-light"
               >
                 Acerca
               </a>
@@ -234,7 +238,7 @@ const NavbarComponent = () => {
                 className="form-control"
                 onChange={handleOrderChange}
                 value={selectedOrder}
-              >
+                >
                 <option value="">Orden</option>
                 <option value="upward">Orden A-Z</option>
                 <option value="falling">Orden Z-A</option>
@@ -247,6 +251,7 @@ const NavbarComponent = () => {
         <Login />
       </div>
 
+      </div>
       <Search></Search>
     </Navbar>
   );

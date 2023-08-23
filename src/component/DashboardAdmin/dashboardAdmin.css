@@ -1,0 +1,20 @@
+.modo-oscuro .admin-container{
+    background-color: #353b57;
+}
+
+.modo-oscuro .info-product-admin{
+  /*   background-color: #4c5270; */
+  background-color: #353b57;
+}
+
+.modo-oscuro .mini-container-admin{
+    background-color: #4c5270; ;
+}
+
+.modo-oscuro .info-reseñas{
+    color: white;
+}
+
+.modo-oscuro .estrellas-admin{
+    color: yellow;
+}

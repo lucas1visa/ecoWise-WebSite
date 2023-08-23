@@ -58,3 +58,11 @@
   transform: translateY(-5px); /* Desplaza la carta ligeramente hacia arriba */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra sutil */
 }
+
+.modo-oscuro .mode-dark{
+  background-color: #3e445e;
+}
+
+.modo-oscuro .text-product{
+  color: rgb(238, 225, 225);
+}

@@ -1,0 +1,17 @@
+.modo-oscuro .header-container{
+    background-color: #353b57;
+    border-radius: 13px;
+}
+.modo-oscuro .h1-text{
+    color: rgb(238, 238, 238);
+    padding: 5px 0px 0px 10px;
+}
+
+.modo-oscuro .input-header{
+    background-color: #353b57;
+    color: white;
+}
+
+.modo-oscuro .lupa-header{
+    color: #ffffff;
+}
