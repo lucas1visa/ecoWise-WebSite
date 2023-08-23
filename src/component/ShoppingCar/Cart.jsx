@@ -127,7 +127,7 @@ let cartToShow = cartItems // let para sobrescribir
         <hr></hr> 
         {cartToShow.length > 0 ? (
   cartToShow.map((item) => (
-    <div key={item.Products.id}>
+    <div key={item.Products[0].id}>
       <hr />
       {item.Products.map((product) => (
         <CartItem
