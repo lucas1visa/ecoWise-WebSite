@@ -209,6 +209,7 @@ const Login = () => {
                       if(userid.isAdmin){
                           localStorage.setItem('admin','true');
                           window.location.reload();
+
                       }                  
                      // Recarga la página después de cerrar la notificación
                 });
@@ -316,7 +317,7 @@ const Login = () => {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={handleLogin}>Cerrar</Button>
-                    <Link to="/account/register/">Registrate</Link>
+                    <Link to="/account/register/" onClick={handleLogin}>Registrate</Link>
                     {/* <Link>Recuperar Password</Link> */}
                 </ModalFooter>
             </Modal>
