@@ -19,7 +19,7 @@ const Cart = () => {
   }, [dispatch]);
 
 
-let cartToShow = cartItems || []// let para sobrescribir
+let cartToShow = cartItems // let para sobrescribir
 
   if (!parseInt(userid)) {//caso no logueado
     const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
