@@ -1,46 +1,81 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./Favorites.css"
-import {getFav ,removeFav} from "../../redux/actions";
+import {removeFav} from "../../redux/actions";
+import axios from "axios";
 
 const Favorites = () => {
-  const dispatch = useDispatch();
-  const userId = localStorage.getItem('userid');
-  const favoritesStorage = localStorage.getItem('favorito')
-  const favorites = useSelector((state) => state.favorites);
-  const favParse = JSON.parse(favoritesStorage) || [];//parcear a json
+  const dispatch = useDispatch()
 
+  const [favoritoItems,setFavoritoItems] = useState([])// info que me llega de carrito 
   
-  useEffect(() => {
-    dispatch(getFav());
-  }, [dispatch]);
+  const UserId = localStorage.getItem("userid");//id
 
-  let cartToShow = favorites;
+  const favorito = localStorage.getItem("favorito");//carrito 
 
-  if (!parseInt(userId)) {
-    let c = [{ UserId: null, Products: favParse || [] }];
-    cartToShow = c;
-  }
+  const FavoritoParse = JSON.parse(favorito) //parcear a json
 
-  const handleRemoveFav = async (idProduct) => {
-    if (parseInt(userId)) {
-      console.log(idProduct, userId);
-      dispatch(removeFav(idProduct, parseInt(userId)));
+  const fetchData = async () => {
+    try {
+      if (UserId) {
+        const { data } = await axios.get(`/favorits/?UserId=${UserId}`);
+        if (data) {
+          setFavoritoItems(data);
+        }
+      }
+    } catch (error) {
+      console.error("Error al obtener datos del carrito:", error);
     }
-
-    const deleteFav = favParse.filter((e) => e.id !== idProduct);
-    localStorage.setItem('favorito', JSON.stringify(deleteFav));
-    dispatch(getFav());
   }
+
+
+  useEffect(() => {
+
+    fetchData();
+
+  }, []);
+
+let favoritoToShow = favoritoItems // let para sobrescribir
+
+  if (!parseInt(UserId)) {//caso no logueado
+    if(FavoritoParse){
+    const favoritoLocalStorage = [{ UserId: null, Products: FavoritoParse  }]
+    favoritoToShow = favoritoLocalStorage
+  }//carrito localstorage
+  else{favoritoToShow = []}
+
+    
+  }
+
+    //Handler para eliminar tanto ala bd como asi tambien al localStorage
+
+    const  handleDelete= async(productId)=>{
+
+      if (parseInt(UserId)) {
+
+        await dispatch(removeFav(productId, parseInt(UserId)))
+
+       await fetchData();
+
+      }
+      const deleteFavorito = FavoritoParse.filter((e) => e.id !== productId);
+
+      localStorage.setItem('favorito', JSON.stringify(deleteFavorito));
+
+     await fetchData();
+    }
+  
+
+
   return (
 <div >
   <h2 className="h2-favo">Tus Favoritos</h2>
-  {cartToShow.length === 0 ? (
+  {favoritoToShow.length  === 0  ? (
     <p>No Tienes Favoritos 🥹</p>
   ) : (
     <ul className="favoritos-lista">
-      {cartToShow.map((product, index) => (
+      {favoritoToShow.map((product, index) => (
         <li key={index}>
           {product.Products.map((Carla, index) => (
             <div className="favorito-item" key={index} >
@@ -51,7 +86,7 @@ const Favorites = () => {
                 <p className="h2-price">Precio: ${Carla.price}</p>
               </Link>
               <div className="button-delete-fav">
-              <button onClick={() => handleRemoveFav(Carla.id)} >
+              <button onClick={() => handleDelete(Carla.id)} >
                 ❎
               </button></div>
             </div>

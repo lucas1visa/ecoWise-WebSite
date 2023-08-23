@@ -1,36 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCarrito, removeFromCart } from '../../redux/actions/index';
+import { removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
 import MPButton from '../MPButton/MPButton';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const Cart = () => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cartItems);//estado global de carrito
-  const userid = localStorage.getItem("userid");//id
-  const carrito = localStorage.getItem("carrito");//carrito 
-  const [selectedCantidad, setSelectedCantidad] = useState([]);
-  const [precioTotal, setPrecioTotal] = useState(0);
 
-  const carritoParse = JSON.parse(carrito) || [];//parcear a json
+  const dispatch = useDispatch()
+
+  const [cartItems,setCartItems] = useState([])// info que me llega de carrito 
+  
+  const UserId = localStorage.getItem("userid");//id
+
+  const carrito = localStorage.getItem("carrito");//carrito 
+
+  const [selectedCantidad, setSelectedCantidad] = useState([])
+
+  const carritoParse = JSON.parse(carrito) //parcear a json
+
+  const fetchData = async () => {
+    try {
+      if (UserId) {
+        const { data } = await axios.get(`/cart/?UserId=${UserId}`);
+        if (data) {
+          setCartItems(data);
+        }
+      }
+    } catch (error) {
+      console.error("Error al obtener datos del carrito:", error);
+    }
+  };
 
   useEffect(() => {
-    dispatch(getCarrito());
-  }, [dispatch]);
+    fetchData();
+  }, []);
+  console.log(cartItems)
 
+let cartToShow = cartItems // let para sobrescribir
 
-  
-  let cartToShow = cartItems; // let para sobrescribir
-
-  if (!parseInt(userid)) {//caso no logueado
-    const c = [{ UserId: null, Products: carritoParse || [] }];//carrito localstorage
-    cartToShow = c;
+  if (!parseInt(UserId)) {//caso no logueado
+    if(carritoParse){
+    const carritoLocalStorage = [{ UserId: null, Products: carritoParse}]
+    cartToShow =  carritoLocalStorage
+  } //carrito localstorage
+  else{
+    cartToShow = []}
   }
-  cartToShow.filter((e)=>e.UserId == userid)
+
   const handleCantidadChange = (event, productId, price) => {
+
     const newCantidad = parseInt(event.target.value);
   
     setSelectedCantidad(prevSelectedCantidad => {
+
+
       // Buscar el índice del producto en el array
       const index = prevSelectedCantidad.findIndex(producto => producto.productId === productId);
       if (index !== -1) {
@@ -39,8 +63,7 @@ const Cart = () => {
           cantidad: newCantidad,
           productId: productId,
           precio: newCantidad * price,
-          userId : userid
-
+          userId : UserId
         };
   
         // Crear una copia del array y actualizar el producto en el índice correspondiente
@@ -54,39 +77,41 @@ const Cart = () => {
           cantidad: newCantidad,
           productId: productId,
           precio: newCantidad * price,
-          userId : userid
+          userId : UserId
         };
   
         return [...prevSelectedCantidad, newProduct];
       }
     });
   };
-  console.log(selectedCantidad)
 
   const handlersCantidadPrecio=()=>{
   const selectedCantidadJSON = JSON.stringify(selectedCantidad);
   localStorage.setItem('Compra', selectedCantidadJSON);
   }
-    let total = 0;
+    let total = 0;                        
     selectedCantidad.forEach(element => {
       total += element.precio
     });
 
 
-    console.log()
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
-
     const  handleDelete= async(productId)=>{
-      console.log(productId,userid)
-      if (parseInt(userid)) {
-       await dispatch(removeFromCart(productId, parseInt(userid)));
+
+      if (parseInt(UserId)) {
+
+        await dispatch(removeFromCart(productId, parseInt(UserId)))
+
+       await fetchData();
+
       }
-  
       const deleteCarrito = carritoParse.filter((e) => e.id !== productId);
+
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
-      await dispatch(getCarrito());
+
+     await fetchData();
     }
   
 
@@ -104,7 +129,7 @@ const Cart = () => {
         <hr></hr> 
         {cartToShow.length > 0 ? (
   cartToShow.map((item) => (
-    <div key={item.Products.id}>
+    <div key={item.Products[0].id}>
       <hr />
       {item.Products.map((product) => (
         <CartItem

@@ -143,6 +143,13 @@ const NavbarComponent = () => {
           </Link>
           <p className="mt-2.5 ml-3 font-bold pr-18 text-navbar texto-mode-light text-ecowise">ecoWise</p>
         </Typography>
+          {admin == "true" && (
+            <Button className="btn-admin">
+              <Link className="link-admin" to="/admin">
+                Admin
+              </Link>
+            </Button>
+          )}
         <div className="ml-auto flex gap-1 md:mr-4">
           <IconButton variant="text" color="blue-gray" className=" mr-5">
             <Link to="/favorites">

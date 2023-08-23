@@ -14,7 +14,6 @@ const Home = () => {
   const location = useLocation()
   const queryParams = queryString.parse(location.search); 
   const { payment_id, payment_type, status , token} = queryParams;
-  console.log(token);
 if(payment_id){
   useEffect(() => {
     if (payment_id !== null) {
