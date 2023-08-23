@@ -3,23 +3,30 @@ import { useEffect } from "react";
 import { getReview } from "../../redux/actions/index";
 import ReviewForm from "./ReviewForm";
 
-const Review = () => {
+const Review = ({idreview, UserId}) => {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews);
+  console.log(reviews)
 
   useEffect(() => {
     dispatch(getReview());
   }, [dispatch]);
 
+  const rev = reviews.find((el)=>console.log(el.Products.Review_Producto.ProductId)) || [];
+  console.log(rev)
+  console.log(idreview)
+
+
   return (
     <div>
-      <h2 className="h2-review">Reseñas</h2>
-      <ReviewForm />
-      {reviews.length === 0 ? (
-        <p>No hay reseñas disponibles.</p>
+      <h4 className="h2-review">Reseñas</h4>
+      <ReviewForm id = {idreview} UserId = {UserId} />
+      {rev.length === 0 ? (
+        <p>No hay reseñas</p>
       ) : (
         <ul className="reviews-list">
-          {reviews.map((review, index) => (
+
+          {rev.map((review, index) => (
             <li key={index}>
               <div className="review-item" key={index}>
                 <h3 className="h3-review">Review {index + 1}</h3>

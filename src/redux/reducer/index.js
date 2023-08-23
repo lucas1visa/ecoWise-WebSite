@@ -6,6 +6,7 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   GET_FAV,
+  ADD_REVIEW,
   RESET_QUANTITY,
   GET_REVIEW,
   GETUSERS,
@@ -42,8 +43,14 @@ const reducer = (state = inicialState, actions) => {
       case GET_REVIEW:
         return {
           ...state,
-         favorites: actions.payload,
+         reviews: actions.payload,
         }; 
+
+        case ADD_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, actions.payload]
+      };
       
     case GET_FAV:
       return {

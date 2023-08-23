@@ -15,9 +15,11 @@ import {
   GET_CATEGORY,
   SEARCH_PRODUCTS,
   DELETELOGICAL,
+  REMOVE_REV,
   GET_FAV,
   ACTUALIZAR_PRODUCTO,
   GET_REVIEW,
+  ADD_REVIEW,
   POSTPURCHARSE,
   ADD_TO_CART2
  /*  RESET_QUANTITY */
@@ -72,23 +74,23 @@ export function getId(id) {
   };
 }
 
-export function addReview( id, UserId ) {
-  console.log()
+export function addReview(id, UserId, rating, comment) {
   return async function (dispatch) {
     try {
       await axios.post(
         `/review`,
-        { id, UserId}
+        { id, UserId, rating, comment }
       );
       return dispatch({
         type: ADD_REVIEW,
-        payload: id, UserId 
+        payload: { id, UserId, rating, comment } 
       });
     } catch (error) {
       console.log("addRev not found", error);
     }
   };
 }
+
 
 export const getReview = () => {
   return async (dispatch) => {

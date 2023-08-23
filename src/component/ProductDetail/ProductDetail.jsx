@@ -6,6 +6,8 @@ import "./ProductDetail.css";
 import Review from "../Review/Review";
 
 
+
+
 const ProductDetail = ({ productId }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const { id } = useParams();
@@ -134,7 +136,8 @@ const [state, setState] = useState({
           ) : (
             <p>No se encontró el producto</p>
           )}
-          <Review />
+          <Review idreview= {productId}/>
+          
         </div>
       </main>
     </div>
