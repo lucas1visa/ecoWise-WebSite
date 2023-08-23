@@ -7,7 +7,7 @@ import {
     Typography,
   } from "@material-tailwind/react";
 import { useState } from "react";
-
+import axios from "axios";
 
 
 const ChangePass = () => {
@@ -25,6 +25,11 @@ const ChangePass = () => {
     };
     let submitHandlerCP = () =>{
         console.log('se envio man');
+        try {
+           
+        } catch (error) {
+            
+        }
     }
 
 
@@ -60,7 +65,7 @@ const ChangePass = () => {
                     </div>
                 </div>
                 <Button className="" type="submit">
-                    CAMBIAR
+                    CAMBIAR PASSWORD
                 </Button>
             </form>
         </Card>

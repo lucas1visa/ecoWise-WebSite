@@ -6,7 +6,7 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-
+import axios from "axios";
 
 const RecoverPass = () => {
     // estado para almacenar el correo
@@ -21,8 +21,16 @@ const RecoverPass = () => {
         setEmailInput({...emailInput,[property]:valor});
     }
     // funcion que despacha la informacion al back para que envie el correo
-    let handleSubmitMail = ()=>{
+    let handleSubmitMail = async ()=>{
         console.log('se envio chamo');
+        try {
+            await axios.post("/users/sendmail",{email:emailInput.email})
+            .then(()=>{
+                console.log('se envio el mail');
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>
