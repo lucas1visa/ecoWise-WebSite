@@ -11,7 +11,7 @@ const Cart = () => {
 
   const [cartItems,setCartItems] = useState([])// info que me llega de carrito 
   
-  const userid = localStorage.getItem("userid");//id
+  const UserId = localStorage.getItem("userid");//id
 
   const carrito = localStorage.getItem("carrito");//carrito 
 
@@ -21,9 +21,11 @@ const Cart = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get("/cart/");
-      if (data) {
-        setCartItems(data);
+      if (UserId) {
+        const { data } = await axios.get(`/cart/?UserId=${UserId}`);
+        if (data) {
+          setCartItems(data);
+        }
       }
     } catch (error) {
       console.error("Error al obtener datos del carrito:", error);
@@ -33,23 +35,16 @@ const Cart = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  console.log(cartItems)
 
 let cartToShow = cartItems // let para sobrescribir
 
-  if (!parseInt(userid)) {//caso no logueado
+  if (!parseInt(UserId)) {//caso no logueado
 
     const carritoLocalStorage = [{ UserId: null, Products: carritoParse  }];//carrito localstorage
 
     cartToShow = carritoLocalStorage;
   }
-
-
-  const filteredCart = cartToShow.filter((item) => item.UserId === userid);
-  
-  cartToShow = filteredCart
-
-
 
   const handleCantidadChange = (event, productId, price) => {
 
@@ -66,7 +61,7 @@ let cartToShow = cartItems // let para sobrescribir
           cantidad: newCantidad,
           productId: productId,
           precio: newCantidad * price,
-          userId : userid
+          userId : UserId
         };
   
         // Crear una copia del array y actualizar el producto en el índice correspondiente
@@ -80,7 +75,7 @@ let cartToShow = cartItems // let para sobrescribir
           cantidad: newCantidad,
           productId: productId,
           precio: newCantidad * price,
-          userId : userid
+          userId : UserId
         };
   
         return [...prevSelectedCantidad, newProduct];
@@ -103,15 +98,17 @@ let cartToShow = cartItems // let para sobrescribir
 
     const  handleDelete= async(productId)=>{
 
-      if (parseInt(userid)) {
+      if (parseInt(UserId)) {
 
-        await dispatch(removeFromCart(productId, parseInt(userid)))
+        await dispatch(removeFromCart(productId, parseInt(UserId)))
 
        await fetchData();
 
       }
       const deleteCarrito = carritoParse.filter((e) => e.id !== productId);
+
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
+
      await fetchData();
     }
   
@@ -128,7 +125,7 @@ let cartToShow = cartItems // let para sobrescribir
           </tr>
         </thead>
         <hr></hr> 
-        {cartToShow.length >0 ? (
+        {cartToShow.length > 0 ? (
   cartToShow.map((item) => (
     <div key={item.Products.id}>
       <hr />
