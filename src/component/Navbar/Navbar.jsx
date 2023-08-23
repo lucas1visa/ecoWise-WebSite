@@ -16,7 +16,7 @@ import {
 import Search from "../SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 // importamos todos los componentes de para el formulario de login
-// import { FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Login from "../Login/Login";
 
 // const NavbarComponent = () => {
@@ -98,7 +98,6 @@ import {
   Button,
   Input,
 } from "@material-tailwind/react";
-import { heart, Cog6ToothIcon } from "@heroicons/react/24/solid";
 
 const NavbarComponent = () => {
   const [selectedOrder, setSelectedOrder] = useState(""); // Estado para el select de ordenamiento
