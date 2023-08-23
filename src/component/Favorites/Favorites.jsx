@@ -41,18 +41,18 @@ const Favorites = () => {
     localStorage.setItem('favorito', JSON.stringify(deleteFav));
    await dispatch(getFav());
   }
-
-  cartToShow.filter((e)=>parseInt(e.UserId) === parseInt(userId))
-
+  console.log(cartToShow)
+  
+  filteredCart = cartToShow.filter((item) => item.UserId === userId);
 
   return (
 <div >
   <h2 className="h2-favo">Tus Favoritos</h2>
-  {cartToShow.length === 0 ? (
+  {filteredCart === 0 ? (
     <p>No Tienes Favoritos 🥹</p>
   ) : (
     <ul className="favoritos-lista">
-      {cartToShow.map((product, index) => (
+      {filteredCart.map((product, index) => (
         <li key={index}>
           {product.Products.map((Carla, index) => (
             <div className="favorito-item" key={index} >

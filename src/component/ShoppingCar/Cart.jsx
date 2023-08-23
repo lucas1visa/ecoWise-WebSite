@@ -45,7 +45,11 @@ let cartToShow = cartItems // let para sobrescribir
   }
 
 
-  cartToShow.find((e)=>parseInt(e.UserId) === parseInt(userid))// retorna el carrito relacionado con el usuario de localStorage 
+  const filteredCart = cartToShow.filter((item) => item.UserId === userid);
+  
+  cartToShow = filteredCart
+
+
 
   const handleCantidadChange = (event, productId, price) => {
 
