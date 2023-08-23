@@ -12,7 +12,7 @@ const Review = ({idreview, UserId}) => {
     dispatch(getReview());
   }, [dispatch]);
 
-  const rev = reviews.find((el)=>console.log(el.Products.Review_Producto.ProductId)) || [];
+  const rev = reviews.filter((el)=>el.Products.find((e)=> e.id == idreview))|| [];
   console.log(rev)
   console.log(idreview)
 

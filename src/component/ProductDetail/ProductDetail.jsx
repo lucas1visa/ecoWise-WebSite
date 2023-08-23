@@ -79,7 +79,7 @@ const ProductDetail = ({ productId }) => {
   });
   const favoritoAgregado = () => {
     if (existingFav2 && existingFav2.length) {
-      if (existingFav2.find((e) => e.id == product.id)) setIsFavorited(true);
+      if (existingFav2.find((e) => e.id == productId)) setIsFavorited(true);
     }
   };
 
