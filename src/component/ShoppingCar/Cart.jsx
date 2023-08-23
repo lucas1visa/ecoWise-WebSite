@@ -12,7 +12,7 @@ const Cart = () => {
   const [selectedCantidad, setSelectedCantidad] = useState([]);
   const [precioTotal, setPrecioTotal] = useState(0);
 
-  const carritoParse = JSON.parse(carrito) || [];//parcear a json
+  const carritoParse = JSON.parse(carrito) || //parcear a json
 
   useEffect(() => {
     dispatch(getCarrito());
