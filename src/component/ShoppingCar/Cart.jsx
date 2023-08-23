@@ -16,7 +16,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getCarrito());
-  }, [dispatch]);
+  }, [cartItems]);
 
 
 let cartToShow = cartItems // let para sobrescribir
@@ -42,11 +42,6 @@ let cartToShow = cartItems // let para sobrescribir
           precio: newCantidad * price,
           userId : userid
         };
-
-
-
-
-        
   
         // Crear una copia del array y actualizar el producto en el índice correspondiente
         const updatedArray = [...prevSelectedCantidad];
