@@ -197,8 +197,7 @@ export function removeFav(id, UserId) {
         const resAddCart = await axios.post(`/cart`, {id, UserId} );
         return dispatch({
         type: ADD_TO_CART,
-         payload: 
-         resAddCart
+         payload: "se Creo Con exito"
         })
       } catch (error) {
         console.log('error al crear el producto en el carrito:'+ error)

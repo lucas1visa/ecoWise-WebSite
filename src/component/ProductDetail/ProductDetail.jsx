@@ -24,13 +24,9 @@ const ProductDetail = ({ productId }) => {
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid); //tipo numero
     if (userIdAsNumber) {
-      if (product.quantityAvailable > 1) {
-        // Cambiado a mayor o igual que 1
+
         dispatch(addToCart(product.id, userid)); // Pasa la cantidad a agregar
         setAddToCartText("Agregado al carrito");
-      } else {
-        alert("Este producto se encuentra fuera de stock");
-      }
     } else {
       const existingCart = localStorage.getItem("carrito"); // me traigo carrito
       let cart = [];
@@ -111,7 +107,6 @@ const ProductDetail = ({ productId }) => {
                       className="btn-button-green mx-auto"
                       onClick={() => {
                         handleAddToCart();
-                        setIsButtonDisabled(true);
                       }}
                       disabled={isButtonDisabled}
                     >

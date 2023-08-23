@@ -1,32 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito, removeFromCart } from '../../redux/actions/index';
 import CartItem from './CartItem';
 import MPButton from '../MPButton/MPButton';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const Cart = () => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cartItems);//estado global de carrito
+
+  const dispatch = useDispatch()
+
+  const [cartItems,setCartItems] = useState([])// info que me llega de carrito 
+  
   const userid = localStorage.getItem("userid");//id
+
   const carrito = localStorage.getItem("carrito");//carrito 
-  const [selectedCantidad, setSelectedCantidad] = useState([]);
-  const [precioTotal, setPrecioTotal] = useState(0);
+
+  const [selectedCantidad, setSelectedCantidad] = useState([])
 
   const carritoParse = JSON.parse(carrito) || //parcear a json
 
+
   useEffect(() => {
-    dispatch(getCarrito());
-  }, [cartItems]);
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get("/cart/"); // Obtener información de la db
+        if (data) {
+          setCartItems(data); // Actualizar el estado local con los datos obtenidos
+        }
+      } catch (error) {
+        // Manejar errores, por ejemplo, mostrar un mensaje de error al usuario
+        console.error("Error al obtener datos del carrito:", error);
+      }
+    };
+  
+    fetchData(); // Llama a la función asincrónica
+  }, []);
+  
 
 
 let cartToShow = cartItems // let para sobrescribir
 
   if (!parseInt(userid)) {//caso no logueado
-    const c = [{ UserId: null, Products: carritoParse  }];//carrito localstorage
-    cartToShow = c;
+
+    const carritoLocalStorage = [{ UserId: null, Products: carritoParse  }];//carrito localstorage
+
+    cartToShow = carritoLocalStorage;
   }
-  cartToShow.filter((e)=>parseInt(e.UserId) == parseInt(userid))
+
+
+  cartToShow.find((e)=>parseInt(e.UserId) === parseInt(userid))// retorna el carrito relacionado con el usuario de localStorage 
+
   const handleCantidadChange = (event, productId, price) => {
+
     const newCantidad = parseInt(event.target.value);
   
     setSelectedCantidad(prevSelectedCantidad => {
@@ -75,17 +100,17 @@ let cartToShow = cartItems // let para sobrescribir
 
     //Handler para eliminar tanto ala bd como asi tambien al localStorage
 
+    const  handleDelete= (productId)=>{
 
-
-
-    const  handleDelete= async(productId)=>{
       if (parseInt(userid)) {
-       await dispatch(removeFromCart(productId, parseInt(userid)));
+
+        dispatch(removeFromCart(productId, parseInt(userid)))
+       dispatch(getCarrito());
+
       }
-  
       const deleteCarrito = carritoParse.filter((e) => e.id !== productId);
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
-      await dispatch(getCarrito());
+       dispatch(getCarrito());
     }
   
 
