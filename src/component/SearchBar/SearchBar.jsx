@@ -3,9 +3,12 @@ import { useEffect } from "react";
 import styles from"./SearchBar.module.css"
 import { searchPrducts,getProducts } from "../../redux/actions";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import LoadingScreen from "../Loading/Loading"; 
 import ProductNotFound from "./ProductNotFound";
+import {
+  Button,
+  Input,
+} from "@material-tailwind/react";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -59,22 +62,21 @@ const Search = () => {
   
 
   return (
-    <div className={styles.containerSearch}>
-      <input 
-        type="text"
-        placeholder="Buscar prod..."
-        value={productName}
-        onChange={(event) => setProductName(event.target.value)}
-        id={styles.inputSearch}
-      />
-      <Button onClick={handleChange} id={styles.buttonsearchBar}>
-        <ion-icon name="search-outline"></ion-icon>
-      </Button>
+    <div className="relative  w-full gap-2 md:w-max">
+          <div className="w-72">
+            <Input  value={productName} id={styles.inputst}  onChange={(event=>setProductName(event.target.value))} label="Producto" className="bg-primary"   />
+          </div>
+          <Button onClick={handleChange} id={styles.buttonsearchBar} size="sm" className="!absolute right-1 top-1 rounded ">
+            Buscar
+          </Button>
+          <div>
        {isLoading && <LoadingScreen />}
-       <div className="div-">
+       <div className="">
        {productNotFound && <ProductNotFound/>}
       </div> 
-    </div>
+      </div> 
+      
+        </div>
   );
 };
 

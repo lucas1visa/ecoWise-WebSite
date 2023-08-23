@@ -24,12 +24,10 @@ const ProductDetail = ({ productId }) => {
   const handleAddToCart = () => {
     const userIdAsNumber = parseInt(userid); //tipo numero
     if (userIdAsNumber) {
-      if (product.stock >= 1) {
+      if (product.quantityAvailable > 1) {
         // Cambiado a mayor o igual que 1
-        const quantityToAdd = Math.min(1, product.stock); // Asegura que no se agreguen más unidades que el stock disponible
-        dispatch(addToCart(product.id, userid, quantityToAdd)); // Pasa la cantidad a agregar
+        dispatch(addToCart(product.id, userid)); // Pasa la cantidad a agregar
         setAddToCartText("Agregado al carrito");
-        product.stock -= quantityToAdd; // Resta la cantidad agregada al stock
       } else {
         alert("Este producto se encuentra fuera de stock");
       }
@@ -41,13 +39,12 @@ const ProductDetail = ({ productId }) => {
         cart = JSON.parse(existingCart);
       }
 
-      if (product.stock >= 1) {
+      if (product.quantityAvailable >= 1) {
         // Cambiado a mayor o igual que 1
-        const quantityToAdd = Math.min(1, product.stock); // Asegura que no se agreguen más unidades que el stock disponible
+        const quantityToAdd = Math.min(1, product.quantityAvailable); // Asegura que no se agreguen más unidades que el stock disponible
         cart.push(product); //agregar
         localStorage.setItem("carrito", JSON.stringify(cart)); //agrega nueva info al carrito localstorage
         setAddToCartText("Agregado al carrito");
-        product.stock -= quantityToAdd; // Resta la cantidad agregada al stock
       } else {
         alert("Este producto se encuentra fuera de stock");
       }

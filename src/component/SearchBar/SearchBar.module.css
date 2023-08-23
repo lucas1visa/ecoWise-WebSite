@@ -1,45 +1,25 @@
 
-.containerSearch{
-    padding: 5px;
-    border-radius: 5px;
-    margin: 55px ;
-    display: flex;
-    align-items: center;
-}
-.containerSearch input {
-    background-color: #948181;
-    border: none;
-    border-radius: 4px;
-    padding: 17px;
-    width: 100%;
-    font-size: 18px;
-    color: #eeecec;
-    box-shadow: 0 2px 4px rgba(2, 2, 2, 0.1);
-    transition: box-shadow 0.3s ease;
-    background: linear-gradient(to left,rgb(255, 255, 255),rgb(255, 255, 255));
-  }
-  
-.containerSearch input:focus {
-    outline: none;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-}
-
-
-#inputSearch{
-  height: 30px;
+#inputst{
   color: rgb(81, 81, 81);
+  padding: 10px;
+  border-color: rgb(2, 53, 5) !important; 
+  border-color: transparent transparent rgb(2, 53, 5) transparent !important;
+  border-width: 2px !important;
+  border-style: solid;
+  border-radius: 10px; /* Ajusta el valor de acuerdo a tus preferencias */
+  padding: 21px !important
 }
 
 #buttonsearchBar{
-  background-color: rgb(202, 247, 170);
-  color: rgb(145, 140, 140);
-  border: white solid 1px;
+  background-color: rgb(11, 80, 5);
   height: 37px;
-  padding-top: 8px;
+  size: 0cqmin;
+  margin-right: 7px !important;
 }
 
 #buttonsearchBar:hover{
-  background-color: rgb(197, 255, 159);
+  background-color: rgb(86, 167, 10);
+  
 }
 
 

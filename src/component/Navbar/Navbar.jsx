@@ -16,87 +16,13 @@ import {
 import Search from "../SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 // importamos todos los componentes de para el formulario de login
-import { Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Modal, ModalHeader } from "reactstrap";
 import Login from "../Login/Login";
-
-// const NavbarComponent = () => {
-
-//   return (
-//
-//
-//
-//
-//
-//             <div>{/* DEJEN ESTO ASÍ 🙄 */}
-//               
-//               </Link>
-
-//             </div>
-//           </Nav>
-// {/* ///////////////////////////// MODAL CARRITO//////////////////////////////////////////////     */}
-        // {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
-        // {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
-        // <ion-icon name="cart-outline"></ion-icon>
-        // {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-        // </button>}
-
-        //     <Modal isOpen={showCartForm.open} className="mx-auto">
-
-        //       <ModalHeader>
-        //       <Button onClick={HandleCartOpen}>Cerrar</Button>
-        //       </ModalHeader>
-
-        //        <Cart/>
-        //       </Modal>
-
-// {/* ///////////////////////////// TERMINA MODAL CARRITO//////////////////////////////////////////////     */}
-//           {isHomePage && <Search/>}
-
-//           {isHomePage && (
-//             <button
-//               className="prolijo-button"
-//               onClick={handleOrderChange}
-//               value="clean"
-//             >
-//             ↻
-//            </button> //NO PONERLE ICONOS AL BOTON. Se rompe <<<<--------------------------------------------------------------------
-
-//           )}
-
-//           <div className="ml-auto m-2">
-//             {isHomePage && <CategorySelect selectedCategory={selectedCategory}
-//               onCategoryChange={setSelectedCategory} />}
-//           </div>
-
-//           {isHomePage && (
-//             <div className="">
-//               <select className="form-control" onChange={handleOrderChange} value={selectedOrder}>
-//                 <option value="">Orden</option>
-//                 <option value="upward">Orden A-Z</option>
-//                 <option value="falling">Orden Z-A</option>
-//                 <option value="price">Mas Caros</option>
-//                 <option value="pricent">Mas Baratos</option>
-//               </select>
-//             </div>
-//           )}
-//           {admin == 'true' && (
-//             <button className="btn-admin">
-//               <Link className="link-admin" to="/admin">Admin</Link>
-//             </button>
-//           )}
-//           <Login />
-//         </Navbar.Collapse>
-//       </Container>
-//     </Navbar>
-
-//   );
-// };
 import {
   Navbar,
   Typography,
   IconButton,
   Button,
-  Input,
 } from "@material-tailwind/react";
 
 const NavbarComponent = () => {
@@ -208,34 +134,51 @@ const NavbarComponent = () => {
     <Navbar className="mx-auto max-w-screen-xl px-4 py-3 bg-primary-202">
       <div className="flex flex-wrap items-center justify-between gap-y-4 text-blue-gray-900">
         <Typography className="mr-4 ml-2 cursor-pointer py-1.5 text-green-500  flex">
-          <img src={plantita} alt="final" className="final ml-10" />
+        <Link to="/" className="navbar-brand" onClick={handleHomeLinkClick}>
+          <img src={plantita} pathname="/" alt="final" className="final ml-10"  />
+          </Link>
           <p className="mt-2 ml-2 font-bold pr-12  text-primary-900">ecoWise</p>
         </Typography>
         <div className="ml-auto flex gap-1 md:mr-4">
-          <IconButton variant="text" color="blue-gray">
-          <Link to="/favorites" >
-             <button className="button-icon-cora">
-  <ion-icon name="heart-outline"></ion-icon>   {favoriteCount > 0 && <span className="favorite-count">{favoriteCount}</span>} </button>
-  </Link>
+          <IconButton variant="text" color="blue-gray" className=" mr-5">
+            <Link to="/favorites">
+              <button className="button-icon-cora">
+                <ion-icon name="heart-outline"></ion-icon>{" "}
+                {favoriteCount > 0 && (
+                  <span className="favorite-count">{favoriteCount}</span>
+                )}{" "}
+              </button>
+            </Link>
           </IconButton>
-          <IconButton variant="text" color="blue-gray">
+          <IconButton variant="text" color="blue-gray" className=" ">
+            {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
 
-          {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
-        {showCart && <button className="button-icon-car" onClick={HandleCartOpen}>
-        <ion-icon name="cart-outline"></ion-icon>
-        {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-        </button>}
-
+            <div className="ml-auto flex gap-1 md:mr-4">
+              {showCart && (
+                <button className="button-icon-cora" onClick={HandleCartOpen}>
+                  <ion-icon name="cart-outline"></ion-icon>
+                  {cartCount > 0 && (
+                    <span className="favorite-count">{cartCount}</span>
+                  )}
+                </button>
+              )}
+            </div>
             <Modal isOpen={showCartForm.open} className="mx-auto">
-
               <ModalHeader>
-              <Button onClick={HandleCartOpen}>Cerrar</Button>
+                <Button onClick={HandleCartOpen}>Cerrar</Button>
               </ModalHeader>
 
-               <Cart/>
-              </Modal>
+              <Cart />
+            </Modal>
           </IconButton>
 
+          {admin == "true" && (
+            <button className="btn-admin">
+              <Link className="link-admin" to="/admin">
+                Admin
+              </Link>
+            </button>
+          )}
           <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
             <Typography
               as="li"
@@ -244,10 +187,10 @@ const NavbarComponent = () => {
               className="p-1 font-medium"
             >
               <a
-                href="/contact"
-                className="flex items-center  text-black no-underline hover:bg-red font-bold"
+                href="/"
+                className="flex items-center  text-black no-underline hover:bg-red font-bold text-xl"
               >
-                Contacto
+                Inicio
               </a>
             </Typography>
             <Typography
@@ -257,37 +200,54 @@ const NavbarComponent = () => {
               className="p-1 font-medium "
             >
               <a
-                href="/about"
-                className="flex items-center  text-black no-underline hover:bg-red font-bold"
+                href="/contact"
+                className="flex items-center  text-black no-underline hover:bg-red font-bold text-xl"
               >
-                Acerca
+                Contacto
               </a>
             </Typography>
             <Typography
               as="li"
               variant="small"
               color="red"
-              className="p-1 font-medium"
+              className="flex items-center  text-black no-underline hover:bg-red font-bold text-xl"
             >
               <a
-                href="/"
+                href="/about"
                 className="flex items-center  text-black no-underline hover:bg-red font-bold"
               >
-                Inicio
+                Acerca
               </a>
             </Typography>
           </ul>
-        </div>
-        <div className="relative flex w-full gap-2 md:w-max">
-          <div className="w-72">
-            <Input label="Producto" className="bg-primary" />
+          <div className="ml-auto m-2">
+            {isHomePage && (
+              <CategorySelect
+                selectedCategory={selectedCategory}
+                onCategoryChange={setSelectedCategory}
+              />
+            )}
           </div>
-
-          <Button size="sm" className="!absolute right-1 top-1 rounded ">
-            Buscar
-          </Button>
+          {isHomePage && (
+            <div className="ml-auto m-2">
+              <select
+                className="form-control"
+                onChange={handleOrderChange}
+                value={selectedOrder}
+              >
+                <option value="">Orden</option>
+                <option value="upward">Orden A-Z</option>
+                <option value="falling">Orden Z-A</option>
+                <option value="price">Mas Caros</option>
+                <option value="pricent">Mas Baratos</option>
+              </select>
+            </div>
+          )}
         </div>
+        <Login />
       </div>
+
+      <Search></Search>
     </Navbar>
   );
 };
