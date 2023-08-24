@@ -40,12 +40,13 @@ const Cart = () => {
 let cartToShow = cartItems // let para sobrescribir
 
   if (!parseInt(UserId)) {//caso no logueado
-    if(carritoParse){
+    if(carritoParse.length){
     const carritoLocalStorage = [{ UserId: null, Products: carritoParse}]
     cartToShow =  carritoLocalStorage
-  } //carrito localstorage
+  }
   else{
-    cartToShow = []}
+    cartToShow = []
+  }
   }
 
   const handleCantidadChange = (event, productId, price) => {

@@ -4,7 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import axios from "axios";
 axios.defaults.baseURL = "https://ecowise-server01.onrender.com"
-import Home from './component/Home/Home';
+import Home from './component/Home/Home'; 
 import { getProducts } from './redux/actions';
 import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
