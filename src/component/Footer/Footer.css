@@ -59,4 +59,19 @@
   color: rgb(155, 155, 155);
 }
 
+.modo-oscuro .color-footer-dark {
+  background-color: #353b57;
+}
 
+.color-footer-light {
+  background-color: rgb(72, 107, 69);
+}
+
+.planta-footer{
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border-radius: 400px; 
+}
+
+.planta-footer:hover{
+  transform: scale(1.3);
+}

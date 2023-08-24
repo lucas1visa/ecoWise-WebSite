@@ -64,7 +64,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route element={<RoutesProtected tokenadmin={tokenadmin}/>}>
-            <Route path="/admin" element={<DashboardAdmin/>} />
+          <Route path="/admin" element={<DashboardAdmin/>} />
           </Route>
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<FormularioPRO/>} />
