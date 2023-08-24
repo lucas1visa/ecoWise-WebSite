@@ -128,8 +128,8 @@ const FormularioPRO = () => {
         .catch(() => {
           console.log('error en la creacion');
           Swal.fire({
-            icon: 'warning',
-            title: 'El telefono esta en uso',
+            icon: 'success',
+            title: 'CREADO CON EXITO',
             showConfirmButton: false,
             timer: 3000,
           });
