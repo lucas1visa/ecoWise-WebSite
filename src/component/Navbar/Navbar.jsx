@@ -197,6 +197,21 @@ const NavbarComponent = () => {
                 Inicio
               </a>
             </Typography>
+            {userId ? (
+            <Typography
+
+              as="li"
+              variant="small"
+              color="blue-gray"
+              className="p-1 font-medium"
+            >
+              <a
+                href="/profile"
+                className="flex items-center no-underline hover:bg-red font-bold text-xl text-navbar  texto-mode-light"
+              >
+                Perfil
+              </a>
+            </Typography>) : ""}
             <Typography
               as="li"
               variant="small"
