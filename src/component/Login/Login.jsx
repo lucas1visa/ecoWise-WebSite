@@ -175,11 +175,11 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 4000,
                     footer:'Se envio un mail de confirmacion, por favor validelo'
-                //   }).then(() => {
-                //     window.location.reload(); // Recarga la página después de cerrar la notificación
-                //   
-            }
-                );        
+                });
+                // cierra el modal de login  
+                setShow({
+                    formlogin: !show.formlogin
+                })
             }
             // consultamos si el usuario no esta bloqueado
             if(userid.isDeleted){
