@@ -112,7 +112,7 @@ let cartToShow = cartItems // let para sobrescribir
 
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
 
-     await fetchData();
+      fetchData();
     }
   
 
