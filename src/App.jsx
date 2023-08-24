@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import axios from "axios";
+//axios.defaults.baseURL = "http://localhost:3001"
+
+
 axios.defaults.baseURL = "https://ecowise-server01.onrender.com"
 import Home from './component/Home/Home'; 
 import { getProducts } from './redux/actions';
@@ -20,6 +23,7 @@ import FormularioPRO from './component/FormUser/FormUser';
 import RecoverPass from './component/RecoverPass/RecoverPass';
 import ChangePass from './component/PasswordRecovery/ChangePass';
 import { DarkModeProvider } from './component/DarkModeContext/DarkMode';
+import Profile from './component/Perfil/Perfil';
 
 
 function App() {
@@ -69,6 +73,7 @@ function App() {
           <Route path='/contact' element={<Contacto/>} />
           <Route path='/recoverpassword' element={<RecoverPass/>}/>
           <Route path='/changepassword' element={<ChangePass/>}/>
+          <Route path='/profile' element={<Profile/>}/>
         </Routes>
         {!isDashboardAdmin && <Footer />}
       </div>
