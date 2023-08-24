@@ -3,7 +3,7 @@ import CategorySelect from "../Filters/Filter";
 import Cart from "../ShoppingCar/Cart";
 import { useSelector, useDispatch } from "react-redux";
 // import { Navbar, Container, Nav, Button, Spinner } from "react-bootstrap";
-import plantita from "../../Img/plantita.png";
+import plantaa from "../../Img/plantaa.png";
 import "../Navbar/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -139,7 +139,7 @@ const NavbarComponent = () => {
       <div className="flex flex-wrap items-center justify-between gap-y-4 text-blue-gray-900 ">
         <Typography className="mr-4 ml-2 cursor-pointer py-1.5 text-green-500  flex">
         <Link to="/" className="navbar-brand" onClick={handleHomeLinkClick}>
-          <img src={plantita} pathname="/" alt="final" className="final ml-10"  />
+          <img src={plantaa} pathname="/" alt="final" className="final ml-10"  />
           </Link>
           <p className="mt-2.5 ml-3 font-bold pr-18 text-navbar texto-mode-light text-ecowise">ecoWise</p>
         </Typography>
@@ -183,13 +183,6 @@ const NavbarComponent = () => {
             </Modal>
           </IconButton>
 
-          {admin == "true" && (
-            <button className="btn-admin">
-              <Link className="link-admin text-navbar " to="/admin">
-                Admin
-              </Link>
-            </button>
-          )}
           <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
             <Typography
               as="li"

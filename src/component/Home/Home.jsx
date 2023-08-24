@@ -53,7 +53,7 @@ if(token){
   return (
     <div>
       {/* <Presentation/> */}
-      <div className="text-center m-4 title-container">
+      <div className="text-center m-9 ml-20 title-container">
         <img
           src="https://cdn-icons-png.flaticon.com/512/743/743007.png"
           alt=""

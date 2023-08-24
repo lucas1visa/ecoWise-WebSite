@@ -52,15 +52,11 @@
 }
 
 .final:hover{
-    background-color: transparent;
-    box-shadow: 0 0 20px 10px rgba(41, 206, 138, 0.5); /* Cambia al color #29CE8A */
-    transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen */
-    filter: brightness(1.6); /* Ajusta este valor para controlar la intensidad del brillo */
+    transform: scale(1.4);
 }
 
 
 .button-icon-car {
-    
     color: #080000;
     border: none;
     border-radius: 50%;

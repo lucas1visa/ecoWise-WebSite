@@ -123,6 +123,7 @@ const FormularioPRO = () => {
         });
         // reiniciamos los inputs
         setForm(initialstate);
+        window.location.href = "https://ecowise-web-site.vercel.app/"
       })
         .catch(() => {
           console.log('error en la creacion');
