@@ -4,8 +4,10 @@ import CartItem from './CartItem';
 import MPButton from '../MPButton/MPButton';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
+import { Button } from '@material-tailwind/react';
+import Swal from 'sweetalert2';
 
-const Cart = () => {
+const Cart = ({HandleCartOpen}) => {
 
   const dispatch = useDispatch()
 
@@ -35,7 +37,7 @@ const Cart = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(cartItems)
+
 
 let cartToShow = cartItems // let para sobrescribir
 
@@ -113,45 +115,62 @@ let cartToShow = cartItems // let para sobrescribir
       localStorage.setItem('carrito', JSON.stringify(deleteCarrito));
 
       fetchData();
+
+    }
+    const loginNo = ()=>{
+      console.log("holaaaaaaaaaaaa")
+     return Swal.fire({
+        icon: 'error',
+        title: 'Debe Estar Logueado',
+        showConfirmButton: false,
+        timer: 4500,
+        footer: 'Solo para usuarios'
+    });
     }
   
 
-
-  return (
-    <div className="min-h-80 max-w-2xl my-4 sm:my-2 mx-auto">
-        <thead>
-          <tr className="uppercase  sm:text-sm  border-b border-palette-light">
-            <th className="font-normal px-5">Producto</th>
-            <th className="font-primary font-normal px-4 py-2">cantidad</th>
-            <th className="font-primary font-normal px-4 py-4 hidden sm:table-cell">Precio</th>
-            <th className="font-primary font-normal px-2 py-4">eliminar</th>
-          </tr>
-        </thead>
-        <hr></hr> 
+    return (
+      <div className="min-h-80 max-w-2xl my-4 sm:my-2 mx-auto">
+        <table>
+          <thead>
+            <tr className="uppercase sm:text-sm border-b border-palette-light">
+              <th className="font-normal px-5">Producto</th>
+              <th className="font-primary font-normal px-4 py-2">cantidad</th>
+              <th className="font-primary font-normal px-4 py-4 hidden sm:table-cell">Precio</th>
+              <th className="font-primary font-normal px-2 py-4">eliminar</th>
+            </tr>
+          </thead>
+        </table>
+        <hr />
+    
         {cartToShow.length > 0 ? (
-  cartToShow.map((item) => (
-    <div key={item.Products[0].id}>
-      <hr />
-      {item.Products.map((product) => (
-        <CartItem
-          key={product.id}
-          product={product}
-          cartId={product.id}
-          cantidad={product.quantityAvailable}
-          handleCantidadChange={handleCantidadChange}
-          selectedCantidad={selectedCantidad}
-          handleDelete={handleDelete}
-        />
-      ))}
-    </div>
-  ))
-) : (
-  <div>No hay productos agregados</div>
-)}
-      <hr />
-      <p className="font-normal px-3"> Precio Total: ${total}</p>
-      <MPButton titul={"ecoWise"} precio={total} cantidad={1} handlersCantidadPrecio={handlersCantidadPrecio}/>
+          cartToShow.map((item,index) => (
+            <div key={index}>
+              <hr />
+              {item.Products.map((product,index) => (
+                <CartItem
+                  key={product.index}
+                  product={product}
+                  cartId={product.id}
+                  cantidad={product.quantityAvailable}
+                  handleCantidadChange={handleCantidadChange}
+                  selectedCantidad={selectedCantidad}
+                  handleDelete={handleDelete}
+                />
+              ))}
+            </div>
+          ))
+        ) : (
+          <div>No hay productos agregados</div>
+        )}
+        <hr />
+        <p className="font-normal px-3">Precio Total: ${total}</p>
+        {UserId ? (
+          <MPButton titul={"ecoWise"} precio={total} cantidad={1} handlersCantidadPrecio={handlersCantidadPrecio} />
+        ) : (
+          <Button onClick={() => { HandleCartOpen(); loginNo(); }}>Comprar</Button>
+        )}
       </div>
-  );
+    );
 };
 export default Cart;

@@ -179,7 +179,7 @@ const NavbarComponent = () => {
                 <Button onClick={HandleCartOpen}>Cerrar</Button>
               </ModalHeader>
 
-              <Cart />
+              <Cart  HandleCartOpen={HandleCartOpen}/>
             </Modal>
           </IconButton>
 
