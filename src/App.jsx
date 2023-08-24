@@ -7,9 +7,7 @@ import axios from "axios";
 
 
 axios.defaults.baseURL = "https://ecowise-server01.onrender.com"
-
-
-import Home from './component/Home/Home';
+import Home from './component/Home/Home'; 
 import { getProducts } from './redux/actions';
 import NavbarComponent from './component/Navbar/Navbar';
 import Footer from './component/Footer/Footer';
@@ -65,7 +63,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route element={<RoutesProtected tokenadmin={tokenadmin}/>}>
-            <Route path="/admin" element={<DashboardAdmin/>} />
+          <Route path="/admin" element={<DashboardAdmin/>} />
           </Route>
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/account/register/" element={<FormularioPRO/>} />

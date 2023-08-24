@@ -4,6 +4,7 @@ import '../../App.css'
 import './NewProduct.css'
 import { useDarkMode } from "../../component/DarkModeContext/DarkMode";
 
+
 const NewProduct = () => {
 
     const { isDarkMode } = useDarkMode();
