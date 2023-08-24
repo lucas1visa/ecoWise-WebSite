@@ -20,7 +20,7 @@ const NavbarAdmin = ({handleComponentChange}) => {
         {/* Perfil */}
         <div className="flex flex-col items-center justify-center p-8 gap-2 h-[30vh]">
           <img
-            src="https://ecowise-web-site.vercel.app/assets/EcoWise-d97d203f.jpg"
+            src="https://res.cloudinary.com/dms4i7mjo/image/upload/v1692817148/mnqc9trzggl8oey6jizf.jpg"
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
           <h1 className="text-xl text-white font-bold h1-admin">Administrador</h1>
@@ -33,9 +33,8 @@ const NavbarAdmin = ({handleComponentChange}) => {
           <nav className="flex flex-col gap-8">
              <Link to="/"className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" ><FcHome /> Inicio</Link> 
              <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("newProduct")}><FcAddDatabase />Productos </button> 
-             <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"><FcBarChart /> Graficos</button> 
+             <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("default")}><FcBarChart />Data</button> 
              <button  className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"  onClick={() => handleComponentChange("userControl")}><FcBadDecision /> Usuarios</button> 
-             <Link className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none">< FcApprove/> Perfil</Link> 
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl problema-admin">
             <p className="text-gray-400">¿Tienes problemas?</p>

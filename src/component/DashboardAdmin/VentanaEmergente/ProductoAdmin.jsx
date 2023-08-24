@@ -32,7 +32,6 @@ const ProductoAdmin = () => {
             },
         }));
     };
-
     const handlePrecio = (e) => {
         const productId = e.target.id;
         const newPrecio = e.target.value;
