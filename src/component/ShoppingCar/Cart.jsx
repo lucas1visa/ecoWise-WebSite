@@ -44,7 +44,7 @@ let cartToShow =[]
 // let para sobrescribir
 
   if (!parseInt(UserId)) {//caso no logueado
-    if(carritoParse.length){
+    if(Array.isArray(carritoParse) && carritoParse.length > 0){
     const carritoLocalStorage = [{ UserId: null, Products: carritoParse}]
     cartToShow =  carritoLocalStorage
   }
@@ -146,7 +146,7 @@ let cartToShow =[]
         </table>
         <hr />
     
-        {cartToShow.length > 0 ? (
+        {Array.isArray(cartToShow) && cartToShow.length > 0? (
           cartToShow.map((item,index) => (
             <div key={index}>
               <hr />
