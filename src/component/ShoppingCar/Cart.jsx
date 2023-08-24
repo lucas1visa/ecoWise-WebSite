@@ -39,7 +39,9 @@ const Cart = ({HandleCartOpen}) => {
   }, []);
 
 
-let cartToShow = cartItems // let para sobrescribir
+let cartToShow =[] 
+   cartToShow = cartItems // let para sobrescribir
+// let para sobrescribir
 
   if (!parseInt(UserId)) {//caso no logueado
     if(carritoParse.length){
@@ -47,6 +49,7 @@ let cartToShow = cartItems // let para sobrescribir
     cartToShow =  carritoLocalStorage
   }
   else{
+
     cartToShow = []
   }
   }
