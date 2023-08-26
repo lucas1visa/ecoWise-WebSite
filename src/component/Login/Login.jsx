@@ -367,8 +367,8 @@ const Login = () => {
             {/* // </Modal> */}
 
             {/* ============================================= TERMINACION DE LOGIN ====================================================== */}
-            {!localStorage.getItem('token')&&<Button onClick={handleLogin}>Iniciar</Button>}
-            {localStorage.getItem('token')&&<Button onClick={handleLogout}>Salir</Button>}
+            {!localStorage.getItem('token')&&<Button id="boton-login" onClick={handleLogin}>Iniciar</Button>}
+            {localStorage.getItem('token')&&<Button id="boton-login" onClick={handleLogout}>Salir</Button>}
             <Dialog size="xs" open={show.formlogin} className="bg-transparent shadow-none">
                 <Card className="mx-auto w-full max-w-[24rem]">
                     <CardHeader variant="gradient" color="green"className="mb-4 grid h-28 place-items-center">

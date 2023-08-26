@@ -161,7 +161,7 @@ const NavbarComponent = () => {
               </button>
             </Link>
           </IconButton>
-          <IconButton variant="text" color="blue-gray" className=" ">
+          <IconButton variant="text" color="blue-gray">
             {showCartClose && <Button onClick={handleCartClose}>Salir</Button>}
 
             <div className="ml-auto flex gap-1 md:mr-4">

@@ -90,7 +90,7 @@
   background: none;
   border: none;
   font-size: 30px;
-  color: #070707; 
+  color: rgb(142, 204, 146);
   cursor: pointer;
  margin-top: 12px;
   }
@@ -173,3 +173,4 @@
 .text-ecowise{
     font-size: 22px;
 }
+

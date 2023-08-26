@@ -21,3 +21,7 @@
 .login-button:hover {
     background-color:#b4df37; /* Mantén el mismo color en estado hover */
 }
+
+#boton-login{
+    background-color: rgb(167, 167, 167);
+}

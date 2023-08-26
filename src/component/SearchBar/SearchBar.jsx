@@ -64,7 +64,7 @@ const Search = () => {
   return (
     <div className="relative  w-full gap-2 md:w-max">
           <div className="w-72">
-            <Input  value={productName} id={styles.inputst}  onChange={(event=>setProductName(event.target.value))} label="Producto" className="bg-primary"   />
+            <Input  value={productName} id={styles.inputst}  onChange={(event=>setProductName(event.target.value))} placeholder="Search product..."  />
           </div>
           <Button onClick={handleChange} id={styles.buttonsearchBar} size="sm" className="!absolute right-1 top-1 rounded ">
             Buscar

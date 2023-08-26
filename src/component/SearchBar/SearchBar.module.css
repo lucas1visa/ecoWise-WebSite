@@ -3,7 +3,7 @@
   color: rgb(81, 81, 81);
   padding: 10px;
   border-color: rgb(5, 86, 10) !important; 
-  border-color: transparent transparent rgb(2, 53, 5) transparent !important;
+  border-color: transparent transparent rgb(101, 101, 101) transparent !important;
   border-width: 2px !important;
   border-style: solid;
   border-radius: 10px; /* Ajusta el valor de acuerdo a tus preferencias */
@@ -11,16 +11,15 @@
 }
 
 #buttonsearchBar{
-  background-color: rgb(11, 80, 5);
+  background-color: rgb(180, 180, 180);
   height: 37px;
   size: 0cqmin;
   margin-right: 7px !important;
 }
 
 #buttonsearchBar:hover{
-  background-color: rgb(129, 164, 96);
+  background-color: rgb(143, 143, 143);
   
 }
-
 
 
