@@ -17,9 +17,11 @@
       return ""; // No error message for empty field
     }
   
-    const phoneRegex = /^\d{10}$/;
+    // const phoneRegex = /^\d{10}$/;
+    const phoneRegex = /^\d{9,15}$/;
     if (!phoneRegex.test(phone)) {
-      return "Ingrese un número válido (10 dígitos).";
+      // return "Ingrese un número válido (10 dígitos).";
+      return "Teléfono debe contener solo dígitos y tener entre 9 y 15 dígitos numéricos";
     }
     return "";
   };
