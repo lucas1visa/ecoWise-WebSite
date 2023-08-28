@@ -22,7 +22,9 @@ const ProductDetail = ({ productId }) => {
   const existingFav2 = JSON.parse(existingFav1);
 
   const handleAddToCart = () => {
+    
     const userIdAsNumber = parseInt(userid); //tipo numero
+
     if (userIdAsNumber) {
 
         dispatch(addToCart(product.id, userid)); // Pasa la cantidad a agregar
@@ -48,6 +50,7 @@ const ProductDetail = ({ productId }) => {
   };
 
   const handleAddFavorite = () => {
+
     console.log("handleAddFavorite called: " + userid);
     const userIdNumber = parseInt(userid); // aca lo parseo a numero porque llega en texto plano.
     if (userIdNumber) {
