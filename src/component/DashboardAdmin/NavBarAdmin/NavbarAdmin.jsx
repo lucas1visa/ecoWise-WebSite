@@ -13,7 +13,7 @@ const NavbarAdmin = ({handleComponentChange}) => {
   return (
     <div className={isDarkMode ? 'modo-oscuro' : 'cart-modo-normal'}>
       <div
-       className={`bg-primary-100 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 navbar-admin ${
+       className={`bg-primary-250 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 navbar-admin ${
         menu ? "left-0" : "-left-full"
       }`}
       >
@@ -23,18 +23,16 @@ const NavbarAdmin = ({handleComponentChange}) => {
             src="https://res.cloudinary.com/dms4i7mjo/image/upload/v1692817148/mnqc9trzggl8oey6jizf.jpg"
             className="w-20 h-20 object-cover rounded-full ring-2 ring-gray-300"
           />
-          <h1 className="text-xl text-white font-bold h1-admin">Administrador</h1>
-          <p className="bg-primary-900 py-2 px-4 rounded-full text-white p-admin">
-            Administrador
-          </p>
+          <h1 className="text-xl text-Black font-bold h1-admin">Administrador</h1>
+         
         </div>
         {/* Nav */}
-        <div className="bg-primary-900 p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8 menu-izq">
+        <div className="bg-primary-203 p-8 rounded-tr-[100px] h-[70vh] overflow-y-scroll flex flex-col justify-between gap-8 menu-izq">
           <nav className="flex flex-col gap-8">
-             <Link to="/"className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" ><FcHome /> Inicio</Link> 
-             <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("newProduct")}><FcAddDatabase />Productos </button> 
-             <button className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("default")}><FcBarChart />Data</button> 
-             <button  className="flex items-center gap-4 text-white py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"  onClick={() => handleComponentChange("userControl")}><FcBadDecision /> Usuarios</button> 
+             <Link to="/"className="flex items-center gap-4 text-black font-bold py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" ><FcHome /> Inicio</Link> 
+             <button className="flex items-center gap-4 text-black font-bold py-2  px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("newProduct")}><FcAddDatabase />Productos </button> 
+             <button className="flex items-center gap-4 text-black font-bold py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none" onClick={() => handleComponentChange("default")}><FcBarChart />Data</button> 
+             <button  className="flex items-center gap-4 text-black font-bold py-2 px-4 rounded-xl hover:bg-primary-100/50 transition-colors text-decoration-none"  onClick={() => handleComponentChange("userControl")}><FcBadDecision /> Usuarios</button> 
           </nav>
           <div className="bg-primary-900/50 text-white p-4 rounded-xl problema-admin">
             <p className="text-gray-400">¿Tienes problemas?</p>
