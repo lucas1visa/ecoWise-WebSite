@@ -50,7 +50,7 @@ const NavbarComponent = () => {
     } else {
       setCartCount(cartParse.length);
     }
-  }, [cartParse, userId,]);
+  }, [cartParse, userId]);
 
   const [favoriteCount, setFavoriteCount] = useState(0); // contador favoritos
 
@@ -65,7 +65,7 @@ const NavbarComponent = () => {
     } else {
       setFavoriteCount(favParse.length);
     }
-  }, [favorites, favParse, favoritesStorage]);*/
+  }, [favorites, favParse, favoritesStorage]);
 
   // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
@@ -154,7 +154,9 @@ const NavbarComponent = () => {
             <Link to="/favorites">
               <button className="button-icon-cora text-navbar">
                 <ion-icon name="heart-outline"></ion-icon>{" "}{/*INCON DE CORAZON*/}
-             
+                {favoriteCount > 0 && (
+                  <span className="favorite-count">{favoriteCount}</span>
+                )}{" "}
               </button>
             </Link>
           </IconButton>
