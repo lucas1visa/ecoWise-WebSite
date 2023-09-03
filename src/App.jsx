@@ -33,7 +33,6 @@ function App() {
   const isDashboardAdmin = location.pathname.includes("/admin");
   const tokenadmin = localStorage.getItem('admin');
   const [isDarkMode, setIsDarkMode] = useState(false);
-  console.log(isDarkMode)
 
   useEffect(() => {
     dispatch(getProducts())
@@ -49,7 +48,6 @@ function App() {
 
   const changeMode = () => {
     setIsDarkMode(!isDarkMode)
-   
   }
 
   return (
@@ -58,7 +56,7 @@ function App() {
         <div className='iconos-modo-dark'>
         <button className="mode-darkk" onClick={changeMode}>{isDarkMode ? <ion-icon id="icon-sunny" name="sunny-outline" /> : <ion-icon id="icon-moon" name="moon-outline" />}</button>
         </div>
-        {!isDashboardAdmin && <NavbarComponent />}
+        {!isDashboardAdmin && <NavbarComponent setIsDarkMode={setIsDarkMode} />}
       {isLoading && <LoadingScreen />}{/* Mostrar LoadingScreen siempre que isLoading sea true */}
         <Routes>
           <Route path="/" element={<Home />} />

@@ -37,7 +37,6 @@ const NavbarComponent = () => {
   //const CartCount = useSelector((state) => state.cartCount);
   //console.log(CartCount)
   const admin = localStorage.getItem("admin");
-  console.log(admin);
   const userId = localStorage.getItem("userid");
   const [cartCount, setCartCount] = useState(0);
   const cartStorage = localStorage.getItem("carrito");
@@ -51,9 +50,9 @@ const NavbarComponent = () => {
     } else {
       setCartCount(cartParse.length);
     }
-  }, [cartParse, userId]);
+  }, [cartParse, userId,]);
 
-  /*const [favoriteCount, setFavoriteCount] = useState(0); // contador favoritos
+  const [favoriteCount, setFavoriteCount] = useState(0); // contador favoritos
 
   const favoritesStorage = localStorage.getItem("favorito");
   const favParse = JSON.parse(favoritesStorage) || [];
@@ -66,7 +65,7 @@ const NavbarComponent = () => {
     } else {
       setFavoriteCount(favParse.length);
     }
-  }, [favorites, favParse, userId]);*/
+  }, [favorites, favParse, favoritesStorage]);*/
 
   // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
