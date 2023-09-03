@@ -6,6 +6,9 @@ import { useLocation } from "react-router-dom";
 import queryString from "query-string"; 
 import { postPurcharse } from "../../redux/actions";
 import Swal from "sweetalert2";
+import Carrousel from "../Carrousel/Carrousel"
+import WhyChooseEco from "../WhyChooseEco/WhyChooseEco"
+
 
 
 
@@ -53,14 +56,24 @@ if(token){
   return (
     <div>
       {/* <Presentation/> */}
-      <div className="text-center m-9 ml-20 title-container">
+      <div className="mt-4">
+  
+        <Carrousel/>
+      </div>
+     
+      <div className="text-center mt-16 ml-20 title-container">
         <img
           src="https://cdn-icons-png.flaticon.com/512/743/743007.png"
           alt=""
           className="title-icon"
         />
       </div>
+      <div className="mt-16">
       <CardProducts />
+      </div>
+       <div className="mt-4">
+      <WhyChooseEco/>
+      </div>
       </div>
   );
 };

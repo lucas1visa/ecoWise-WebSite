@@ -55,7 +55,7 @@ const CardProducts = () => {
   };
   return (
     <div className={isDarkMode ? 'modo-oscuro' : 'cart-modo-normal'}>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center p-8 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center p-8">
       {currentProducts.map((product) => (
         
         <div
