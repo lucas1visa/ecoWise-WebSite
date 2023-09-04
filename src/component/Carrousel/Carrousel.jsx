@@ -1,22 +1,20 @@
-import { Carousel } from 'react-responsive-carousel';
+import Carousel from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import sustentabilidad1 from "../../Img/Sustentabilidad1.jpg"
-import sustentabilidad2 from "../../Img/Sustentabilidad2.jpg"
-import sustentabilidad3 from "../../Img/Sustentabilidad3.jpg"
+
 
 const CarouselComponent = () => {
   const carouselItems = [
     {
-      imageSrc: sustentabilidad1,
+      imageSrc: "https://humanidades.com/wp-content/uploads/2018/09/sustentabilidad-e1579401561930-800x400.jpg",
       title: 'ecoWise',
       paragraph: 'Elegir qué compramos, es decidir qué futuro queremos',
     },
     {
-      imageSrc: sustentabilidad2,
+      imageSrc: "https://thelogisticsworld.com/wp-content/uploads/2023/03/concepto-de-tecnologia-de-recursos-renovables-para-reducir-la-contaminacion-828x548.jpg",
       title: 'Productos sustentables',
     },
     {
-      imageSrc: sustentabilidad3,
+      imageSrc: "https://thefoodtech.com/wp-content/uploads/2021/06/sustentabilidad-en-la-indsutria.jpg",
       title: 'Comercio Justo',
       paragraph: 'Ponemos primero el cuidado del ambiente y la salud',
     },
