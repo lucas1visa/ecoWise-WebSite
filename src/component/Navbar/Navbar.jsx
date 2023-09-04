@@ -66,6 +66,7 @@ const NavbarComponent = () => {
       setFavoriteCount(favParse.length);
     }
   }, [favorites, favParse, favoritesStorage]);
+  
 
   // ====================================== VENTANA EMERGENTE PARA CARRITO ============================================
   // estado del carrito para el modal.
